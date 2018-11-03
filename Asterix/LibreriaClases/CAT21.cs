@@ -24,7 +24,7 @@ namespace LibreriaClases
         string LEVEL;
         string VR;
         string SPD, AGL;
-        string ACID;
+        string ACID_palabra;
         string VA;
 
 
@@ -267,7 +267,7 @@ namespace LibreriaClases
             for (int i = (3 + count); i < stringbinary.Length; i++)
             {
 
-                if (DI_010 == true)
+                if (DI_010 == true)//VERDADERO
                 {
                     DI_010_buffer1 = stringbinary[i];
                     i++;
@@ -277,7 +277,7 @@ namespace LibreriaClases
                     SAC = Convert.ToInt32(DI_010_buffer1, 2);
                     SIC = Convert.ToInt32(DI_010_buffer2, 2);
                 }
-                else if (DI_040 == true)
+                else if (DI_040 == true)//VERDADERO
                 {
                     DI_040_buffer1 = stringbinary[i];
                     i++;
@@ -285,31 +285,31 @@ namespace LibreriaClases
                     DI_040 = false;
 
                     char[] buff1 = DI_040_buffer1.ToArray();
-                    if (buff1[0] == 1)
+                    if (buff1[0] == '1')
                     {
                         TARGET = "DCR";
                     }
-                    else if (buff1[1] == 1)
+                    else if (buff1[1] == '1')
                     {
                         TARGET = "GBS";
                     }
-                    else if (buff1[2] == 1)
+                    else if (buff1[2] == '1')
                     {
                         TARGET = "SIM";
                     }
-                    else if (buff1[3] == 1)
+                    else if (buff1[3] == '1')
                     {
                         TARGET = "TST";
                     }
-                    else if (buff1[4] == 1)
+                    else if (buff1[4] == '1')
                     {
                         TARGET = "RAB";
                     }
-                    else if (buff1[5] == 1)
+                    else if (buff1[5] == '1')
                     {
                         TARGET = "SAA";
                     }
-                    else if (buff1[6] == 1)
+                    else if (buff1[6] == '1')
                     {
                         TARGET = "SPI";
                     }
@@ -319,7 +319,7 @@ namespace LibreriaClases
                     }
 
                 }
-                else if (DI_030 == true)
+                else if (DI_030 == true)//VERDADERO
                 {
                     DI_030_buffer1 = stringbinary[i];
                     i++;
@@ -336,7 +336,7 @@ namespace LibreriaClases
 
 
                 }
-                else if (DI_130 == true)
+                else if (DI_130 == true)//VERDADERO
                 {
                     DI_130_buffer1 = stringbinary[i];
                     i++;
@@ -351,7 +351,7 @@ namespace LibreriaClases
                     DI_130_buffer6 = stringbinary[i];
                     DI_130 = false;
                 }
-                else if (DI_080 == true)
+                else if (DI_080 == true)//VERDADERO
                 {
                     DI_080_buffer1 = stringbinary[i];
                     i++;
@@ -359,7 +359,9 @@ namespace LibreriaClases
                     i++;
                     DI_080_buffer3 = stringbinary[i];
                     DI_080 = false;
-
+                    if (stringhex[i].Count() == 1) { stringhex[i] = String.Concat("0", stringhex[i]); }
+                    if (stringhex[i - 1].Count() == 1) { stringhex[i - 1] = String.Concat("0", stringhex[i]); }
+                    if (stringhex[i - 2].Count() == 1) { stringhex[i - 2] = String.Concat("0", stringhex[i]); }
                     ADDRESS = String.Concat(stringhex[i-2],stringhex[i-1], stringhex[i]);
                 }
                 else if (DI_140 == true)
@@ -369,7 +371,7 @@ namespace LibreriaClases
                     DI_140_buffer2 = stringbinary[i];
                     DI_140 = false;
                 }
-                else if (DI_090 == true)
+                else if (DI_090 == true)//VERDADERO
                 {
                     DI_090_buffer1 = stringbinary[i];
                     i++;
@@ -411,20 +413,20 @@ namespace LibreriaClases
                     { FOM_DC = "invalid"; }
                     FOM_PA = Convert.ToString(Convert.ToInt32(PA, 2));
                 }
-                else if (DI_210 == true)
+                else if (DI_210 == true)//VERDADERO
                 {
                     DI_210_buffer1 = stringbinary[i];
                     DI_210 = false;
                     char[] octet = DI_210_buffer1.ToArray();
-                    if (octet[3] == 1)
+                    if (octet[3] == '1')
                     { LINK = " COCKPIT_DISPLAY_OF_TRAFFIC_INFO"; }
-                    else if (octet[4] == 1)
+                    else if (octet[4] == '1')
                     { LINK = "MODE_S"; }
-                    else if (octet[5] == 1)
+                    else if (octet[5] == '1')
                     { LINK = "UAT"; }
-                    else if (octet[6] == 1)
+                    else if (octet[6] == '1')
                     { LINK = "VDL_MODE_4"; }
-                    else if (octet[7] == 1)
+                    else if (octet[7] == '1')
                     { LINK = "OTHER"; }
                 }
                 else if (DI_230 == true)
@@ -434,7 +436,7 @@ namespace LibreriaClases
                     DI_230_buffer2 = stringbinary[i];
                     DI_230 = false;
                 }
-                else if (DI_145 == true)
+                else if (DI_145 == true)//VERDADERO
                 {
                     DI_145_buffer1 = stringbinary[i];
                     i++;
@@ -473,7 +475,7 @@ namespace LibreriaClases
                     DI_155_buffer2 = stringbinary[i];
                     DI_155 = false;
                 }
-                else if (DI_157 == true)
+                else if (DI_157 == true)//VERDADERO
                 {
                     DI_157_buffer1 = stringbinary[i];
                     i++;
@@ -484,7 +486,7 @@ namespace LibreriaClases
                     int VR_prov = Convert.ToInt32(octets, 2);
                     VR = String.Format("{0} FT/M",VR_prov*6.25);
                 }
-                else if (DI_160 == true)
+                else if (DI_160 == true)//VERDADERO
                 {
                     DI_160_buffer1 = stringbinary[i];
                     i++;
@@ -508,14 +510,14 @@ namespace LibreriaClases
                 {
                     DI_165_buffer1 = stringbinary[i];
                     char[] prov = DI_165_buffer1.ToArray();
-                    if (prov[prov.Length - 1] == 1)
+                    if (prov[prov.Length - 1] == '1')
                     {
                         i++;
                         DI_165_buffer2 = stringbinary[i];
                     }
                     DI_165 = false;
                 }
-                else if (DI_170 == true)
+                else if (DI_170 == true)//VERDADERO
                 {
                     DI_170_buffer1 = stringbinary[i];
                     i++;
@@ -540,9 +542,9 @@ namespace LibreriaClases
                     string oc6 = String.Concat(Convert.ToString(fulloctetchar[30]), Convert.ToString(fulloctetchar[31]), Convert.ToString(fulloctetchar[32]), Convert.ToString(fulloctetchar[33]), Convert.ToString(fulloctetchar[34]), Convert.ToString(fulloctetchar[35]));                    
                     string oc7 = String.Concat(Convert.ToString(fulloctetchar[36]), Convert.ToString(fulloctetchar[37]), Convert.ToString(fulloctetchar[38]), Convert.ToString(fulloctetchar[39]), Convert.ToString(fulloctetchar[40]), Convert.ToString(fulloctetchar[41]));
                     string oc8 = String.Concat(Convert.ToString(fulloctetchar[42]), Convert.ToString(fulloctetchar[43]), Convert.ToString(fulloctetchar[44]), Convert.ToString(fulloctetchar[45]), Convert.ToString(fulloctetchar[46]), Convert.ToString(fulloctetchar[47]));
-                    
+                    ACID_palabra = ACID(oc1, oc2, oc3, oc4, oc5, oc6,oc7,oc8); 
                 }
-                else if (DI_095 == true)
+                else if (DI_095 == true) //VERDADERO???
                 {
                     DI_095_buffer1 = stringbinary[i];
                     DI_095 = false;
@@ -550,7 +552,7 @@ namespace LibreriaClases
                     VA = Convert.ToString(Convert.ToInt32(DI_095_buffer1, 2));
 
                 }
-                else if (DI_032 == true)
+                else if (DI_032 == true)//????????
                 {
                     DI_032_buffer1 = stringbinary[i];
                     DI_032 = false;
@@ -566,11 +568,11 @@ namespace LibreriaClases
                     DI_020_buffer1 = stringbinary[i];
                     DI_020 = false;
                 }
-                else if (DI_220 == true)
+                else if (DI_220 == true)//VERDADERO
                 {
                     DI_220_buffer1 = stringbinary[i];
                     char[] prov = DI_220_buffer1.ToArray();
-                    if (prov[prov.Length - 1] == 1)
+                    if (prov[prov.Length - 1] == '1')
                     {
                         i++;
                         DI_220_buffer2 = stringbinary[i];
@@ -598,5 +600,170 @@ namespace LibreriaClases
             }
         }
 
+
+        public string ACID_oneletter(string letra)
+        {
+            string letradevolver = "";
+            if (String.Compare(letra,"000001")==0)
+            {
+                letradevolver = "A";
+            }
+            else if(String.Compare(letra,"000010") == 0)
+            {
+                letradevolver = "B";
+            }
+            else if (String.Compare(letra, "000011") == 0)
+            {
+                letradevolver = "C";
+            }
+            else if (String.Compare(letra, "000100") == 0)
+            {
+                letradevolver = "D";
+            }
+            else if (String.Compare(letra, "000101") == 0)
+            {
+                letradevolver = "E";
+            }
+            else if (String.Compare(letra, "000110") == 0)
+            {
+                letradevolver = "F";
+            }
+            else if (String.Compare(letra, "000111") == 0)
+            {
+                letradevolver = "G";
+            }
+            else if (String.Compare(letra, "001000") == 0)
+            {
+                letradevolver = "H";
+            }
+            else if (String.Compare(letra, "001001") == 0)
+            {
+                letradevolver = "I";
+            }
+            else if (String.Compare(letra, "001010") == 0)
+            {
+                letradevolver = "J";
+            }
+            else if (String.Compare(letra, "001011") == 0)
+            {
+                letradevolver = "K";
+            }
+            else if (String.Compare(letra, "001100") == 0)
+            {
+                letradevolver = "L";
+            }
+            else if (String.Compare(letra, "001101") == 0)
+            {
+                letradevolver = "M";
+            }
+            else if (String.Compare(letra, "001110") == 0)
+            {
+                letradevolver = "N";
+            }
+            else if (String.Compare(letra, "001111") == 0)
+            {
+                letradevolver = "O";
+            }
+            else if (String.Compare(letra, "010000") == 0)
+            {
+                letradevolver = "P";
+            }
+            else if (String.Compare(letra, "010001") == 0)
+            {
+                letradevolver = "Q";
+            }
+            else if (String.Compare(letra, "010010") == 0)
+            {
+                letradevolver = "R";
+            }
+            else if (String.Compare(letra, "010011") == 0)
+            {
+                letradevolver = "S";
+            }
+            else if (String.Compare(letra, "010100") == 0)
+            {
+                letradevolver = "T";
+            }
+            else if (String.Compare(letra, "010101") == 0)
+            {
+                letradevolver = "U";
+            }
+            else if (String.Compare(letra, "010110") == 0)
+            {
+                letradevolver = "V";
+            }
+            else if (String.Compare(letra, "010111") == 0)
+            {
+                letradevolver = "W";
+            }
+            else if (String.Compare(letra, "011000") == 0)
+            {
+                letradevolver = "X";
+            }
+            else if (String.Compare(letra, "011001") == 0)
+            {
+                letradevolver = "Y";
+            }
+            else if (String.Compare(letra, "011010") == 0)
+            {
+                letradevolver = "Z";
+            }
+            else if (String.Compare(letra, "110000") == 0)
+            {
+                letradevolver = "0";
+            }
+            else if (String.Compare(letra, "110001") == 0)
+            {
+                letradevolver = "1";
+            }
+            else if (String.Compare(letra, "110010") == 0)
+            {
+                letradevolver = "2";
+            }
+            else if (String.Compare(letra, "110011") == 0)
+            {
+                letradevolver = "3";
+            }
+            else if (String.Compare(letra, "110100") == 0)
+            {
+                letradevolver = "4";
+            }
+            else if (String.Compare(letra, "110101") == 0)
+            {
+                letradevolver = "5";
+            }
+            else if (String.Compare(letra, "110110") == 0)
+            {
+                letradevolver = "6";
+            }
+            else if (String.Compare(letra, "110111") == 0)
+            {
+                letradevolver = "7";
+            }
+            else if (String.Compare(letra, "111000") == 0)
+            {
+                letradevolver = "8";
+            }
+            else if (String.Compare(letra, "111001") == 0)
+            {
+                letradevolver = "9";
+            }
+            return letradevolver;
+        }
+
+        public string ACID(string oc1, string oc2, string oc3, string oc4, string oc5, string oc6,string oc7,string oc8)
+        {
+            string let1 = ACID_oneletter(oc1);
+            string let2 = ACID_oneletter(oc2);
+            string let3 = ACID_oneletter(oc3);
+            string let4 = ACID_oneletter(oc4);
+            string let5 = ACID_oneletter(oc5);
+            string let6 = ACID_oneletter(oc6);
+            string let7 = ACID_oneletter(oc7);
+            string let8 = ACID_oneletter(oc8);
+
+            string final = String.Concat(let1, let2, let3, let4, let5, let6,let7,let8);
+            return final;
+        }
     }
 }

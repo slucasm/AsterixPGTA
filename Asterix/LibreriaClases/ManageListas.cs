@@ -30,6 +30,8 @@ namespace LibreriaClases
                     listaCAT10[i].resolver_dataitems();
                 }
             }
+
+
             if (listaCAT20 != null)
             {
                 for (int j = 0; j < listaCAT20.Count; j++)

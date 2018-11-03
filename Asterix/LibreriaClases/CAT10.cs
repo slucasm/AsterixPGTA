@@ -11,7 +11,7 @@ namespace LibreriaClases
         int[] arraydec;
         string[] stringbinary;
         List<Boolean> listboolean_fspec = new List<Boolean>();
-        Boolean DI_000,DI_010, DI_020, DI_040,DI_041, DI_042, DI_060, DI_090, DI_091, DI_131, DI_140, DI_161, DI_170, DI_200, DI_202, DI_210, DI_220, DI_245, DI_250, DI_270, DI_280, DI_300, DI_310, DI_500, DI_550;
+        Boolean DI_000, DI_010, DI_020, DI_040, DI_041, DI_042, DI_060, DI_090, DI_091, DI_131, DI_140, DI_161, DI_170, DI_200, DI_202, DI_210, DI_220, DI_245, DI_250, DI_270, DI_280, DI_300, DI_310, DI_500, DI_550;
 
         string DI_010_buffer1, DI_010_buffer2, DI_000_buffer1, DI_020_buffer1, DI_020_buffer2, DI_140_buffer1, DI_140_buffer2, DI_140_buffer3, DI_041_buffer1, DI_041_buffer2, DI_041_buffer3, DI_041_buffer4, DI_041_buffer5, DI_041_buffer6, DI_041_buffer7, DI_041_buffer8, DI_040_buffer1, DI_040_buffer2, DI_040_buffer3, DI_040_buffer4, DI_042_buffer1, DI_042_buffer2, DI_042_buffer3, DI_042_buffer4, DI_200_buffer1, DI_200_buffer2, DI_200_buffer3, DI_200_buffer4, DI_202_buffer1, DI_202_buffer2, DI_202_buffer3, DI_202_buffer4, DI_161_buffer1, DI_161_buffer2, DI_170_buffer1, DI_170_buffer2, DI_060_buffer1, DI_060_buffer2, DI_220_buffer1, DI_220_buffer2, DI_220_buffer3, DI_245_buffer1, DI_245_buffer2, DI_245_buffer3, DI_245_buffer4, DI_245_buffer5, DI_245_buffer6, DI_245_buffer7, DI_250_buffer1, DI_300_buffer1, DI_090_buffer1, DI_090_buffer2, DI_091_buffer1, DI_091_buffer2, DI_270_buffer1, DI_270_buffer2, DI_550_buffer1, DI_310_buffer1, DI_500_buffer1, DI_500_buffer2, DI_500_buffer3, DI_500_buffer4, DI_280_buffer1, DI_131_buffer1, DI_210_buffer1, DI_210_buffer2;
 
