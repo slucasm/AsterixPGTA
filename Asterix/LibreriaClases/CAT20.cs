@@ -29,7 +29,36 @@ namespace LibreriaClases
         string ADDRESS;
         string ACID_palabra;
         int RECEIVERS;
-        
+
+        int CAT;
+
+        public int getCAT()
+        {
+            return CAT;
+        }
+
+        public Tuple<int, int, string, string, string, string,string, string> methodget1()
+        {
+            Tuple<int, int, string, string, string, string, string, string> tuple = new Tuple<int, int, string, string, string, string, string, string>(SAC, SIC, MLAT_type, D020_RAB, D020_SPI, D020_CHN, D020_GBS, D020_CRT);
+            return tuple;
+        }
+        public Tuple<string,string,string,double,double,string,string,string> methodget2()
+        {
+            Tuple<string, string, string, double, double, string, string, string> tuple = new Tuple<string, string, string, double, double, string, string, string>(D020_SIM, D020_TST, Time, X, Y, TRACK_NUM, TRACKSTATUS_CNF, TRACKSTATUS_TRE);
+            return tuple;
+        }
+        public Tuple<string, string, string, string, string, string, double,double> methodget3()
+        {
+            Tuple<string, string, string, string, string, string, double, double> tuple = new Tuple<string, string, string, string, string, string, double, double>(TRACKSTATUS_CST, TRACKSTATUS_CDM, TRACKSTATUS_MAH, TRACKSTATUS_STH, TRACKSTATUS_GHO,MODE_3A,VX,VY);
+            return tuple;
+        }
+        public Tuple<double,string,string,int> methodget4()
+        {
+            Tuple<double, string, string, int> tuple = new Tuple<double, string, string, int>(MODE_C,ADDRESS,ACID_palabra,RECEIVERS);
+            return tuple;
+        }
+
+
         public CAT20(string[] stringhex)
         {
             this.stringhex = stringhex;
@@ -240,6 +269,7 @@ namespace LibreriaClases
 
         public void resolver_dataitems()
         {
+            CAT = Convert.ToInt32(stringbinary[0], 2);
             int count = 0;
             if (listboolean_fspec.Count == 8)
             {

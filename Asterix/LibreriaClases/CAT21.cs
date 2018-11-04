@@ -27,6 +27,24 @@ namespace LibreriaClases
         string ACID_palabra;
         string VA;
 
+        int CAT;
+
+        public int getCAT()
+        {
+            return CAT;
+        }
+
+        public Tuple<int, int, string, string, string, string, string, string> methodget1()
+        {
+            Tuple<int, int, string, string, string, string, string, string> tuple = new Tuple<int, int, string, string, string, string, string, string>(SAC, SIC, TARGET,Time,ADDRESS,FOM_AC,FOM_MN,FOM_DC);
+            return tuple;
+        }
+        public Tuple<string,string, string, string, string, string, string,string> methodget2()
+        {
+            Tuple<string, string, string, string, string, string, string,string> tuple = new Tuple<string, string, string, string, string, string, string,string>(FOM_PA,LINK,LEVEL,VR,SPD,AGL,ACID_palabra,VA);
+            return tuple;
+        }
+
 
         public CAT21(string[] stringhex)
         {
@@ -235,9 +253,9 @@ namespace LibreriaClases
             }
         }
 
-
         public void resolver_dataitems()
         {
+            CAT = Convert.ToInt32(stringbinary[0], 2);
             int count = 0;
             if (listboolean_fspec.Count == 8)
             {

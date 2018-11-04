@@ -13,9 +13,55 @@ namespace LibreriaClases
         List<Boolean> listboolean_fspec = new List<Boolean>();
         Boolean DI_000, DI_010, DI_020, DI_040, DI_041, DI_042, DI_060, DI_090, DI_091, DI_131, DI_140, DI_161, DI_170, DI_200, DI_202, DI_210, DI_220, DI_245, DI_250, DI_270, DI_280, DI_300, DI_310, DI_500, DI_550;
 
-        string DI_010_buffer1, DI_010_buffer2, DI_000_buffer1, DI_020_buffer1, DI_020_buffer2, DI_140_buffer1, DI_140_buffer2, DI_140_buffer3, DI_041_buffer1, DI_041_buffer2, DI_041_buffer3, DI_041_buffer4, DI_041_buffer5, DI_041_buffer6, DI_041_buffer7, DI_041_buffer8, DI_040_buffer1, DI_040_buffer2, DI_040_buffer3, DI_040_buffer4, DI_042_buffer1, DI_042_buffer2, DI_042_buffer3, DI_042_buffer4, DI_200_buffer1, DI_200_buffer2, DI_200_buffer3, DI_200_buffer4, DI_202_buffer1, DI_202_buffer2, DI_202_buffer3, DI_202_buffer4, DI_161_buffer1, DI_161_buffer2, DI_170_buffer1, DI_170_buffer2, DI_060_buffer1, DI_060_buffer2, DI_220_buffer1, DI_220_buffer2, DI_220_buffer3, DI_245_buffer1, DI_245_buffer2, DI_245_buffer3, DI_245_buffer4, DI_245_buffer5, DI_245_buffer6, DI_245_buffer7, DI_250_buffer1, DI_300_buffer1, DI_090_buffer1, DI_090_buffer2, DI_091_buffer1, DI_091_buffer2, DI_270_buffer1, DI_270_buffer2, DI_550_buffer1, DI_310_buffer1, DI_500_buffer1, DI_500_buffer2, DI_500_buffer3, DI_500_buffer4, DI_280_buffer1, DI_131_buffer1, DI_210_buffer1, DI_210_buffer2;
+        string DI_010_buffer1, DI_010_buffer2, DI_000_buffer1, DI_020_buffer1, DI_020_buffer2,DI_020_buffer3, DI_140_buffer1, DI_140_buffer2, DI_140_buffer3, DI_041_buffer1, DI_041_buffer2, DI_041_buffer3, DI_041_buffer4, DI_041_buffer5, DI_041_buffer6, DI_041_buffer7, DI_041_buffer8, DI_040_buffer1, DI_040_buffer2, DI_040_buffer3, DI_040_buffer4, DI_042_buffer1, DI_042_buffer2, DI_042_buffer3, DI_042_buffer4, DI_200_buffer1, DI_200_buffer2, DI_200_buffer3, DI_200_buffer4, DI_202_buffer1, DI_202_buffer2, DI_202_buffer3, DI_202_buffer4, DI_161_buffer1, DI_161_buffer2, DI_170_buffer1, DI_170_buffer2,DI_170_buffer3, DI_060_buffer1, DI_060_buffer2, DI_220_buffer1, DI_220_buffer2, DI_220_buffer3, DI_245_buffer1, DI_245_buffer2, DI_245_buffer3, DI_245_buffer4, DI_245_buffer5, DI_245_buffer6, DI_245_buffer7, DI_250_buffer1, DI_300_buffer1, DI_090_buffer1, DI_090_buffer2, DI_091_buffer1, DI_091_buffer2, DI_270_buffer1, DI_270_buffer2, DI_550_buffer1, DI_310_buffer1, DI_500_buffer1, DI_500_buffer2, DI_500_buffer3, DI_500_buffer4, DI_280_buffer1, DI_131_buffer1, DI_210_buffer1, DI_210_buffer2;
 
+        int SAC, SIC;
+        string Message_type;
+        string TARGET_TYP,TARGET_DCR,TARGET_CHN,TARGET_GBS,TARGET_CRT,TARGET_SIM,TARGET_TST,TARGET_RAB,TARGET_LOP,TARGET_TOT,TARGET_SPI;
+        string Time;
+        double X, Y;
+        double VX, VY;
+        int TRACKNUMBER;
+        string TRACKSTATUS_CNF, TRACKSTATUS_TRE, TRACKSTATUS_CST, TRACKSTATUS_MAH, TRACKSTATUS_TCC, TRACKSTATUS_STH, TRACKSTATUS_TOM, TRACKSTATUS_DOU, TRACKSTATUS_MRS, TRACKSTATUS_GHO;
+        string MODE_3A;
+        string ADDRESS;
+        string ACID_palabra;
+        double FLIGHTLEVEL;
 
+        int CAT;
+
+        public int getCAT()
+        {
+            return CAT;
+        }
+
+        public Tuple<int, int, string, string, string, string, string, string> methodget1()
+        {
+            Tuple<int, int, string, string, string, string, string, string> tuple = new Tuple<int, int, string, string, string, string, string, string>(SAC, SIC, Message_type, TARGET_TYP, TARGET_DCR, TARGET_CHN, TARGET_GBS, TARGET_CRT);
+            return tuple;
+        }
+        public Tuple<string, string, string, string, string, string, string, double> methodget2()
+        {
+            Tuple<string, string, string, string, string, string, string, double> tuple = new Tuple<string, string, string, string, string, string, string, double>(TARGET_SIM, TARGET_TST, TARGET_RAB, TARGET_LOP, TARGET_TOT, TARGET_SPI, Time, X);
+            return tuple;
+        }
+        public Tuple<double, double, double, int, string, string, string, string> methodget3()
+        {
+            Tuple<double, double, double, int, string, string, string, string> tuple = new Tuple<double, double, double, int, string, string, string, string>(Y, VX, VY, TRACKNUMBER, TRACKSTATUS_CNF, TRACKSTATUS_TRE, TRACKSTATUS_CST, TRACKSTATUS_MAH);
+            return tuple;
+        }
+        public Tuple<string, string, string, string, string, string, string, string> methodget4()
+        {
+            Tuple<string, string, string, string, string, string, string, string> tuple = new Tuple<string, string, string, string, string, string, string, string>(TRACKSTATUS_TCC, TRACKSTATUS_STH, TRACKSTATUS_TOM, TRACKSTATUS_DOU, TRACKSTATUS_MRS, TRACKSTATUS_GHO,MODE_3A,ADDRESS);
+            return tuple;
+        }
+        public Tuple<string, double> methodget5()
+        {
+            Tuple<string, double> tuple = new Tuple<string, double>(ACID_palabra,FLIGHTLEVEL);
+            return tuple;
+        }
+
+        
         public CAT10(string[] stringhex)
         {
             this.stringhex = stringhex;
@@ -219,9 +265,9 @@ namespace LibreriaClases
             }
         }
 
-
         public void resolver_dataitems()
         {
+            CAT = Convert.ToInt32(stringbinary[0], 2);
             int count = 0;
             if (listboolean_fspec.Count == 8)
             {
@@ -251,34 +297,91 @@ namespace LibreriaClases
             for (int i = (3 + count); i < stringbinary.Length; i++)
             {
 
-                if (DI_010 == true) //VERDADERO
+                if (DI_010 == true) //VERDADERO HECHO
                 {
                     DI_010_buffer1 = stringbinary[i];
                     i++;
                     DI_010_buffer2 = stringbinary[i];
                     DI_010 = false;
 
-                    //SAC = Convert.ToInt32(DI_010_buffer1, 2);
-                    //SIC = Convert.ToInt32(DI_010_buffer2, 2);
+                    SAC = Convert.ToInt32(DI_010_buffer1, 2);
+                    SIC = Convert.ToInt32(DI_010_buffer2, 2);
                 }
-                else if (DI_000 == true)//VERDADERO
+                else if (DI_000 == true)//VERDADERO COMPROBAR
                 {
                     DI_000_buffer1 = stringbinary[i];
                     DI_000 = false;
+
+                    int messg = Convert.ToInt32(DI_000_buffer1, 2);
+                    if (messg == 1) { Message_type = "Target Report"; }
+                    else if (messg == 2) { Message_type = "Start of Update Cycle"; }
+                    else if (messg == 3) { Message_type = "Periodic Status Message"; }
+                    else { Message_type = "Event-triggered Status Message"; }
                 }
-                else if (DI_020 == true)//VERDADERO
+                else if (DI_020 == true)//VERDADERO COMPROBAR
                 {
                     DI_020_buffer1 = stringbinary[i];
                     char[] prov = DI_020_buffer1.ToArray();
-                    if (prov[prov.Length - 1] == 1)
+
+                    int TYP = Convert.ToInt32(String.Concat(prov[0], prov[1], prov[2]));
+                    if (TYP == 0) { TARGET_TYP = "SSR multilateration"; }
+                    else if (TYP == 1) { TARGET_TYP = "Mode S multilateration"; }
+                    else if (TYP == 10) { TARGET_TYP = "ADS-B"; }
+                    else if (TYP == 11) { TARGET_TYP = "PSR"; }
+                    else if (TYP == 100) { TARGET_TYP = "Magnetic Loop System"; }
+                    else if (TYP == 101) { TARGET_TYP = "HF multilateration"; }
+                    else if (TYP == 110) { TARGET_TYP = "Not defined"; }
+                    else if (TYP == 111) { TARGET_TYP = "Other types"; }
+
+                    if (prov[3] == '0') { TARGET_DCR = "No differential correction"; }
+                    else { TARGET_DCR = "Differential correction"; }
+
+                    if (prov[4] == '0') { TARGET_CHN = "Chain 1"; }
+                    else { TARGET_CHN = "Chain 2"; }
+
+                    if (prov[5] == '0') { TARGET_GBS = "Transponder Ground bit not set"; }
+                    else { TARGET_GBS = "Transponder Ground bit set"; }
+
+                    if (prov[6] == '0') { TARGET_CRT = "No Corrupted reply in multilateration "; }
+                    else { TARGET_CRT = "No Corrupted reply in multilateration "; }
+
+                    if (prov[prov.Length - 1] == '1')
                     {
                         i++;
                         DI_020_buffer2 = stringbinary[i];
+                        char[] prov2 = DI_020_buffer2.ToArray();
+                        int LOP = Convert.ToInt32(String.Concat(prov[3], prov[4]));
+                        int TOT = Convert.ToInt32(String.Concat(prov[5], prov[6]));
+                        if (prov2[0] == '0') { TARGET_SIM = "Actual target report "; }
+                        else { TARGET_SIM = "Simulated target report "; }
+
+                        if (prov2[1] == '0') { TARGET_TST = "Default"; }
+                        else { TARGET_TST = "Test Target"; }
+
+                        if (prov2[2] == '0') { TARGET_RAB = "Report from target transponder "; }
+                        else { TARGET_RAB = "Report from field monitor"; }
+
+                        if (LOP == 0) { TARGET_LOP = "Undetermined "; }
+                        else if (LOP == 1) { TARGET_LOP = "Loop start"; }
+                        else if (LOP == 10) { TARGET_LOP = "Loop finish"; }
+
+                        if (TOT == 0) { TARGET_TOT = "Undeterminated"; }
+                        else if (TOT == 1) { TARGET_TOT = "Aircraft"; }
+                        else if (TOT == 10) { TARGET_TOT = "Ground vehicle "; }
+                        else { TARGET_TOT = "Helicopter "; }
+
+                        if (prov2[prov.Length - 1] == '1')
+                        {
+                            i++;
+                            DI_020_buffer3 = stringbinary[i];
+                            if (DI_020_buffer3[0] == '0') { TARGET_SPI = "Absence of SPI"; }
+                            else { TARGET_SPI = "Special Position Identification"; }
+                        }
                     }
                     DI_020 = false;
 
                 }
-                else if (DI_140 == true)//VERDADERO
+                else if (DI_140 == true)//VERDADERO COMPROBAR
                 {
                     DI_140_buffer1 = stringbinary[i];
                     i++;
@@ -286,6 +389,10 @@ namespace LibreriaClases
                     i++;
                     DI_140_buffer3 = stringbinary[i];
                     DI_140 = false;
+                    int DI_140_bff = Convert.ToInt32(String.Concat(DI_140_buffer1, DI_140_buffer2, DI_140_buffer3), 2);
+                    double seconds = DI_140_bff / 128;
+                    TimeSpan time = TimeSpan.FromSeconds(seconds);
+                    Time = time.ToString(@"hh\:mm\:ss");
                 }
                 else if (DI_041 == true)
                 {
@@ -306,7 +413,7 @@ namespace LibreriaClases
                     DI_041_buffer8 = stringbinary[i];
                     DI_041 = false;
                 }
-                else if (DI_040 == true)//VERDADERO
+                else if (DI_040 == true)
                 {
                     DI_040_buffer1 = stringbinary[i];
                     i++;
@@ -317,7 +424,7 @@ namespace LibreriaClases
                     DI_040_buffer4 = stringbinary[i];
                     DI_040 = false;
                 }
-                else if (DI_042 == true)//VERDADERO
+                else if (DI_042 == true)//VERDADERO COMPROBAR
                 {
                     DI_042_buffer1 = stringbinary[i];
                     i++;
@@ -327,6 +434,9 @@ namespace LibreriaClases
                     i++;
                     DI_042_buffer4 = stringbinary[i];
                     DI_042 = false;
+
+                    X = Convert.ToDouble(Convert.ToInt32(String.Concat(DI_042_buffer1,DI_042_buffer2),2));
+                    Y = Convert.ToDouble(Convert.ToInt32(String.Concat(DI_042_buffer3,DI_042_buffer4),2));
 
                 }
                 else if (DI_200 == true)//VERDADERO
@@ -341,7 +451,7 @@ namespace LibreriaClases
                     DI_200 = false;
 
                 }
-                else if (DI_202 == true)//VERDADERO
+                else if (DI_202 == true)//VERDADERO COMPROBAR
                 {
                     DI_202_buffer1 = stringbinary[i];
                     i++;
@@ -351,34 +461,105 @@ namespace LibreriaClases
                     i++;
                     DI_202_buffer4 = stringbinary[i];
                     DI_202 = false;
+
+                    VX = Convert.ToDouble(Convert.ToInt32(String.Concat(DI_202_buffer1, DI_202_buffer2), 2));
+                    VY = Convert.ToDouble(Convert.ToInt32(String.Concat(DI_202_buffer3, DI_202_buffer4), 2));
                 }
-                else if (DI_161 == true)//VERDADERO
+                else if (DI_161 == true)//VERDADERO COMPROBAR
                 {
                     DI_161_buffer1 = stringbinary[i];
                     i++;
                     DI_161_buffer2 = stringbinary[i];
                     DI_161 = false;
+
+                    string oc = String.Concat(DI_161_buffer1[3], DI_161_buffer1[4], DI_161_buffer1[5], DI_161_buffer1[6], DI_161_buffer1[7],DI_161_buffer2);
+                    TRACKNUMBER = Convert.ToInt32(oc, 2);
                 }
-                else if (DI_170 == true)//VERDADERO
+                else if (DI_170 == true)//VERDADERO COMPROBAR
                 {
                     DI_170_buffer1 = stringbinary[i];
                     char[] prov = DI_170_buffer1.ToArray();
-                    if (prov[prov.Length - 1] == 1)
+
+                    if (prov[0] == '0') { TRACKSTATUS_CNF = "Confirmed track"; }
+                    else { TRACKSTATUS_CNF = "Track in initialisation phase"; }
+
+                    if (prov[1] == '0') { TRACKSTATUS_TRE = "Default"; }
+                    else { TRACKSTATUS_TRE = "Last report for a track"; }
+
+                    int bit65 = Convert.ToInt32(String.Concat(prov[2], prov[3]));
+                    if (bit65 == 0) { TRACKSTATUS_CST = "No extrapolation"; }
+                    else if (bit65 == 1) { TRACKSTATUS_CST = "Predictable extrapolation due to sensor refresh period"; }
+                    else if (bit65 == 10) { TRACKSTATUS_CST = "Predictable extrapolation in masked area"; }
+                    else if (bit65 == 11) { TRACKSTATUS_CST = "Extrapolation due to unpredictable absence of detection"; }
+
+                    if (prov[4] == '0') { TRACKSTATUS_MAH = "Default"; }
+                    else { TRACKSTATUS_MAH = "Horizontal manoeuvre"; }
+
+                    if (prov[5] == '0') { TRACKSTATUS_TCC = "Slant range correction and a suitable projection technique"; }
+                    else { TRACKSTATUS_TCC = "Sensor plane  "; }
+
+                    if (prov[6] == '0') { TRACKSTATUS_STH = "Measured position"; }
+                    else { TRACKSTATUS_STH = "Smoothed position "; }
+
+                    if (prov[prov.Length - 1] == '1')
                     {
                         i++;
                         DI_170_buffer2 = stringbinary[i];
+                        char[] prov2 = DI_170_buffer2.ToArray();
+                        int TOM = Convert.ToInt32(String.Concat(prov2[0],prov2[1]));
+                        int DOU = Convert.ToInt32(String.Concat(prov2[2], prov2[3],prov2[4]));
+                        int MRS = Convert.ToInt32(String.Concat(prov2[5], prov2[6]));
+
+                        if (TOM == 0) { TRACKSTATUS_TOM = "Unknown type of movement"; }
+                        else if (TOM == 1) { TRACKSTATUS_TOM = "Taking-off"; }
+                        else if (TOM == 10) { TRACKSTATUS_TOM = "Lading"; }
+                        else if (TOM == 11) { TRACKSTATUS_TOM = "Other types of movement"; }
+
+                        if (DOU == 0) { TRACKSTATUS_DOU = "No doubt"; }
+                        else if (DOU == 1) { TRACKSTATUS_DOU = "Doubtful correlation (undetermined reason)"; }
+                        else if (DOU == 10) { TRACKSTATUS_DOU = "Doubtful correlation in clutter"; }
+                        else if (DOU == 11) { TRACKSTATUS_DOU = " Loss of accuracy"; }
+                        else if (DOU == 100) { TRACKSTATUS_DOU = "Loss of accuracy in clutter"; }
+                        else if (DOU == 101) { TRACKSTATUS_DOU = "Unstable track"; }
+                        else if (DOU == 110) { TRACKSTATUS_DOU = "Previously coasted"; }
+
+                        if (MRS == 0) { TRACKSTATUS_MRS = "Merge or split indication undetermined "; }
+                        else if (MRS == 1) { TRACKSTATUS_MRS = "Track merged by association to plot"; }
+                        else if (MRS == 10) { TRACKSTATUS_MRS = "Track merged by non-association to plot "; }
+                        else if (MRS == 11) { TRACKSTATUS_MRS = "Split track"; }
+
+                        if (prov2[7] == '1')
+                        {
+                            i++;
+                            DI_170_buffer3 = stringbinary[i];
+
+                            if (DI_170_buffer3[0] == '0') { TRACKSTATUS_GHO = "Default"; }
+                            else { TRACKSTATUS_GHO = "Ghost track"; }
+                        }
                     }
                     DI_170 = false;
                 }
-                else if (DI_060 == true)//VERDADERO
+                else if (DI_060 == true)//VERDADERO COMPROBAR
                 {
 
                     DI_060_buffer1 = stringbinary[i];
                     i++;
                     DI_060_buffer2 = stringbinary[i];
                     DI_060 = false;
+
+                    char[] oc1 = DI_060_buffer1.ToArray();
+                    char[] oc2 = DI_060_buffer2.ToArray();
+                    string bit4_6 = String.Concat(oc1[4], oc1[5], oc1[6]);
+                    string bit7_9 = String.Concat(oc1[7], oc2[0], oc2[1]);
+                    string bit10_12 = String.Concat(oc2[2], oc2[3], oc2[4]);
+                    string bit13_15 = String.Concat(oc2[5], oc2[6], oc2[7]);
+                    int bbit4_6 = Convert.ToInt32(bit4_6, 2);
+                    int bbit7_9 = Convert.ToInt32(bit7_9, 2);
+                    int bbit10_12 = Convert.ToInt32(bit10_12, 2);
+                    int bbit13_15 = Convert.ToInt32(bit13_15, 2);
+                    MODE_3A = String.Concat(bbit4_6, bbit7_9, bbit10_12, bbit13_15);
                 }
-                else if (DI_220 == true)//VERDADERO
+                else if (DI_220 == true)//VERDADERO COMPROBAR
                 {
                     DI_220_buffer1 = stringbinary[i];
                     i++;
@@ -387,8 +568,13 @@ namespace LibreriaClases
                     DI_220_buffer3 = stringbinary[i];
                     i++;
                     DI_220 = false;
+
+                    if (stringhex[i].Count() == 1) { stringhex[i] = String.Concat("0", stringhex[i]); } //AÑADIMOS UN 0 SI SOLO HAY UNA LETRA O NÚMERO PORQUE EL 0 DESAPARECE AL PRINCIPIO
+                    if (stringhex[i - 1].Count() == 1) { stringhex[i - 1] = String.Concat("0", stringhex[i]); }
+                    if (stringhex[i - 2].Count() == 1) { stringhex[i - 2] = String.Concat("0", stringhex[i]); }
+                    ADDRESS = String.Concat(stringhex[i - 2], stringhex[i - 1], stringhex[i]);
                 }
-                else if (DI_245 == true)//VERDADERO
+                else if (DI_245 == true)//VERDADERO COMPROBAR
                 {
                     DI_245_buffer1 = stringbinary[i];
                     i++;
@@ -404,6 +590,19 @@ namespace LibreriaClases
                     i++;
                     DI_245_buffer7 = stringbinary[i];
                     DI_245 = false;
+
+                    string fulloctet = String.Concat(DI_245_buffer1, DI_245_buffer2, DI_245_buffer3, DI_245_buffer4, DI_245_buffer5, DI_245_buffer6, DI_245_buffer7);
+                    char[] fulloctetchar = fulloctet.ToArray();
+                    string oc1 = String.Concat(Convert.ToString(fulloctetchar[8]), Convert.ToString(fulloctetchar[9]), Convert.ToString(fulloctetchar[10]), Convert.ToString(fulloctetchar[11]), Convert.ToString(fulloctetchar[12]), Convert.ToString(fulloctetchar[13]));
+                    string oc2 = String.Concat(Convert.ToString(fulloctetchar[14]), Convert.ToString(fulloctetchar[15]), Convert.ToString(fulloctetchar[16]), Convert.ToString(fulloctetchar[17]), Convert.ToString(fulloctetchar[18]), Convert.ToString(fulloctetchar[19]));
+                    string oc3 = String.Concat(Convert.ToString(fulloctetchar[20]), Convert.ToString(fulloctetchar[21]), Convert.ToString(fulloctetchar[22]), Convert.ToString(fulloctetchar[23]), Convert.ToString(fulloctetchar[24]), Convert.ToString(fulloctetchar[25]));
+                    string oc4 = String.Concat(Convert.ToString(fulloctetchar[26]), Convert.ToString(fulloctetchar[27]), Convert.ToString(fulloctetchar[28]), Convert.ToString(fulloctetchar[29]), Convert.ToString(fulloctetchar[30]), Convert.ToString(fulloctetchar[31]));
+                    string oc5 = String.Concat(Convert.ToString(fulloctetchar[32]), Convert.ToString(fulloctetchar[33]), Convert.ToString(fulloctetchar[34]), Convert.ToString(fulloctetchar[35]), Convert.ToString(fulloctetchar[36]), Convert.ToString(fulloctetchar[37]));
+                    string oc6 = String.Concat(Convert.ToString(fulloctetchar[38]), Convert.ToString(fulloctetchar[39]), Convert.ToString(fulloctetchar[40]), Convert.ToString(fulloctetchar[41]), Convert.ToString(fulloctetchar[42]), Convert.ToString(fulloctetchar[43]));
+                    string oc7 = String.Concat(Convert.ToString(fulloctetchar[44]), Convert.ToString(fulloctetchar[45]), Convert.ToString(fulloctetchar[46]), Convert.ToString(fulloctetchar[47]), Convert.ToString(fulloctetchar[48]), Convert.ToString(fulloctetchar[49]));
+                    string oc8 = String.Concat(Convert.ToString(fulloctetchar[50]), Convert.ToString(fulloctetchar[51]), Convert.ToString(fulloctetchar[52]), Convert.ToString(fulloctetchar[53]), Convert.ToString(fulloctetchar[54]), Convert.ToString(fulloctetchar[55]));
+
+                    ACID_palabra = ACID(oc1, oc2, oc3, oc4, oc5, oc6, oc7,oc8); 
                 }
                 else if (DI_250 == true)
                 {
@@ -415,12 +614,17 @@ namespace LibreriaClases
                     DI_300_buffer1 = stringbinary[i];
                     DI_300 = false;
                 }
-                else if (DI_090 == true)//VERDADERO
+                else if (DI_090 == true)//VERDADERO COMPROBAR
                 {
                     DI_090_buffer1 = stringbinary[i];
                     i++;
                     DI_090_buffer2 = stringbinary[i];
                     DI_090 = false;
+
+                    string flighlvl = String.Concat(DI_090_buffer1[2], DI_090_buffer1[3], DI_090_buffer1[4], DI_090_buffer1[5], DI_090_buffer1[6], DI_090_buffer1[7], DI_090_buffer2);
+                    FLIGHTLEVEL = Convert.ToDouble(Convert.ToInt32(flighlvl, 2)) / 4;
+                
+                
                 }
                 else if (DI_091 == true)
                 {
@@ -479,6 +683,171 @@ namespace LibreriaClases
                     DI_210 = false;
                 }
             }
+        }
+
+        public string ACID_oneletter(string letra)
+        {
+            string letradevolver = "";
+            if (String.Compare(letra, "000001") == 0)
+            {
+                letradevolver = "A";
+            }
+            else if (String.Compare(letra, "000010") == 0)
+            {
+                letradevolver = "B";
+            }
+            else if (String.Compare(letra, "000011") == 0)
+            {
+                letradevolver = "C";
+            }
+            else if (String.Compare(letra, "000100") == 0)
+            {
+                letradevolver = "D";
+            }
+            else if (String.Compare(letra, "000101") == 0)
+            {
+                letradevolver = "E";
+            }
+            else if (String.Compare(letra, "000110") == 0)
+            {
+                letradevolver = "F";
+            }
+            else if (String.Compare(letra, "000111") == 0)
+            {
+                letradevolver = "G";
+            }
+            else if (String.Compare(letra, "001000") == 0)
+            {
+                letradevolver = "H";
+            }
+            else if (String.Compare(letra, "001001") == 0)
+            {
+                letradevolver = "I";
+            }
+            else if (String.Compare(letra, "001010") == 0)
+            {
+                letradevolver = "J";
+            }
+            else if (String.Compare(letra, "001011") == 0)
+            {
+                letradevolver = "K";
+            }
+            else if (String.Compare(letra, "001100") == 0)
+            {
+                letradevolver = "L";
+            }
+            else if (String.Compare(letra, "001101") == 0)
+            {
+                letradevolver = "M";
+            }
+            else if (String.Compare(letra, "001110") == 0)
+            {
+                letradevolver = "N";
+            }
+            else if (String.Compare(letra, "001111") == 0)
+            {
+                letradevolver = "O";
+            }
+            else if (String.Compare(letra, "010000") == 0)
+            {
+                letradevolver = "P";
+            }
+            else if (String.Compare(letra, "010001") == 0)
+            {
+                letradevolver = "Q";
+            }
+            else if (String.Compare(letra, "010010") == 0)
+            {
+                letradevolver = "R";
+            }
+            else if (String.Compare(letra, "010011") == 0)
+            {
+                letradevolver = "S";
+            }
+            else if (String.Compare(letra, "010100") == 0)
+            {
+                letradevolver = "T";
+            }
+            else if (String.Compare(letra, "010101") == 0)
+            {
+                letradevolver = "U";
+            }
+            else if (String.Compare(letra, "010110") == 0)
+            {
+                letradevolver = "V";
+            }
+            else if (String.Compare(letra, "010111") == 0)
+            {
+                letradevolver = "W";
+            }
+            else if (String.Compare(letra, "011000") == 0)
+            {
+                letradevolver = "X";
+            }
+            else if (String.Compare(letra, "011001") == 0)
+            {
+                letradevolver = "Y";
+            }
+            else if (String.Compare(letra, "011010") == 0)
+            {
+                letradevolver = "Z";
+            }
+            else if (String.Compare(letra, "110000") == 0)
+            {
+                letradevolver = "0";
+            }
+            else if (String.Compare(letra, "110001") == 0)
+            {
+                letradevolver = "1";
+            }
+            else if (String.Compare(letra, "110010") == 0)
+            {
+                letradevolver = "2";
+            }
+            else if (String.Compare(letra, "110011") == 0)
+            {
+                letradevolver = "3";
+            }
+            else if (String.Compare(letra, "110100") == 0)
+            {
+                letradevolver = "4";
+            }
+            else if (String.Compare(letra, "110101") == 0)
+            {
+                letradevolver = "5";
+            }
+            else if (String.Compare(letra, "110110") == 0)
+            {
+                letradevolver = "6";
+            }
+            else if (String.Compare(letra, "110111") == 0)
+            {
+                letradevolver = "7";
+            }
+            else if (String.Compare(letra, "111000") == 0)
+            {
+                letradevolver = "8";
+            }
+            else if (String.Compare(letra, "111001") == 0)
+            {
+                letradevolver = "9";
+            }
+            return letradevolver;
+        }
+
+        public string ACID(string oc1, string oc2, string oc3, string oc4, string oc5, string oc6, string oc7,string oc8)
+        {
+            string let1 = ACID_oneletter(oc1);
+            string let2 = ACID_oneletter(oc2);
+            string let3 = ACID_oneletter(oc3);
+            string let4 = ACID_oneletter(oc4);
+            string let5 = ACID_oneletter(oc5);
+            string let6 = ACID_oneletter(oc6);
+            string let7 = ACID_oneletter(oc7);
+            string let8 = ACID_oneletter(oc8);
+
+            string final = String.Concat(let1, let2, let3, let4, let5, let6, let7,oc8);
+            return final;
         }
     }
 }
