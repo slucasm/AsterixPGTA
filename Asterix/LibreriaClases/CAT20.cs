@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 
 namespace LibreriaClases
 {
@@ -32,32 +33,25 @@ namespace LibreriaClases
 
         int CAT;
 
+        TimeSpan myTime;
+
         public int getCAT()
         {
             return CAT;
         }
-
-        public Tuple<int, int, string, string, string, string,string, string> methodget1()
+        public string getADDRESS()
         {
-            Tuple<int, int, string, string, string, string, string, string> tuple = new Tuple<int, int, string, string, string, string, string, string>(SAC, SIC, MLAT_type, D020_RAB, D020_SPI, D020_CHN, D020_GBS, D020_CRT);
-            return tuple;
+            return this.ADDRESS;
         }
-        public Tuple<string,string,string,double,double,string,string,string> methodget2()
+        public string getACID()
         {
-            Tuple<string, string, string, double, double, string, string, string> tuple = new Tuple<string, string, string, double, double, string, string, string>(D020_SIM, D020_TST, Time, X, Y, TRACK_NUM, TRACKSTATUS_CNF, TRACKSTATUS_TRE);
-            return tuple;
+            return this.ACID_palabra;
         }
-        public Tuple<string, string, string, string, string, string, double,double> methodget3()
+        public TimeSpan getTime()
         {
-            Tuple<string, string, string, string, string, string, double, double> tuple = new Tuple<string, string, string, string, string, string, double, double>(TRACKSTATUS_CST, TRACKSTATUS_CDM, TRACKSTATUS_MAH, TRACKSTATUS_STH, TRACKSTATUS_GHO,MODE_3A,VX,VY);
-            return tuple;
+            return this.myTime;
         }
-        public Tuple<double,string,string,int> methodget4()
-        {
-            Tuple<double, string, string, int> tuple = new Tuple<double, string, string, int>(MODE_C,ADDRESS,ACID_palabra,RECEIVERS);
-            return tuple;
-        }
-
+        
 
         public CAT20(string[] stringhex)
         {
@@ -418,9 +412,9 @@ namespace LibreriaClases
                     DI_140_buffer3 = stringbinary[i];
                     DI_140 = false;
                     int DI_140_bff = Convert.ToInt32(String.Concat(DI_140_buffer1, DI_140_buffer2, DI_140_buffer3), 2);
-                    double seconds = DI_140_bff / 128;
-                    TimeSpan time = TimeSpan.FromSeconds(seconds);
-                    Time = time.ToString(@"hh\:mm\:ss");
+                    double seconds = Math.Round(Convert.ToDouble(DI_140_bff) / 128, 3);
+                    myTime = TimeSpan.FromSeconds(seconds);
+                    //Time = time.ToString(@"hh\:mm\:ss\.fff");
                 }
                 else if (DI_041 == true)
                 {
@@ -441,7 +435,7 @@ namespace LibreriaClases
                     DI_041_buffer8 = stringbinary[i];
                     DI_041 = false;
                 }
-                else if (DI_042 == true)//VERDADERO MAL
+                else if (DI_042 == true)//VERDADERO COMPROBADO
                 {
                     DI_042_buffer1 = stringbinary[i];
                     i++;
@@ -456,23 +450,16 @@ namespace LibreriaClases
                     DI_042_buffer6 = stringbinary[i];
                     DI_042 = false;
 
-                    char[] uno = DI_042_buffer3.ToArray();
-                    string buffer3 = String.Concat(uno[0], uno[1],uno[2],uno[3],uno[4],uno[5],uno[6]);
-                    string bintoX = String.Concat(DI_042_buffer1,DI_042_buffer2,buffer3);
-                    X = Convert.ToDouble(Convert.ToInt32(bintoX,2));
-                    if (uno[7] == '1')
-                    {
-                        X = X + 0.5;
-                    }
+                    string oc1 = String.Concat(DI_042_buffer1, DI_042_buffer2, DI_042_buffer3);
+                    string oc2 = String.Concat(DI_042_buffer4, DI_042_buffer5, DI_042_buffer6);
 
-                    char[] dos = DI_042_buffer6.ToArray();
-                    string buffer6 = String.Concat(dos[0], dos[1], dos[2], dos[3], dos[4], dos[5], dos[6]);
-                    string bintoY = String.Concat(DI_042_buffer4, DI_042_buffer5, buffer6);
-                    Y = Convert.ToDouble(Convert.ToInt32(bintoY, 2));
-                    if (dos[7] == '1')
-                    {
-                        Y = Y + 0.5;
-                    }
+                    X = CA2todec(oc1)*0.5;
+                    if (X < 0)
+                    { X = X + 0.5;}
+                    Y = CA2todec(oc2)*0.5;
+                    if (Y < 0)
+                    { Y = Y + 0.5;}
+                    
 
                 }
                 else if (DI_161 == true)//VERDADERO HECHO
@@ -559,13 +546,15 @@ namespace LibreriaClases
                     DI_202_buffer4 = stringbinary[i];
                     DI_202 = false;
 
-                    int oc1 = Convert.ToInt32(DI_202_buffer1, 2);
-                    int oc2 = Convert.ToInt32(DI_202_buffer2, 2);
-                    int oc3 = Convert.ToInt32(DI_202_buffer3, 2);
-                    int oc4 = Convert.ToInt32(DI_202_buffer4, 2);
-                    VX = (oc2 - oc1) * 0.25;
-                    VY = (oc4 - oc3) * 0.25;//PUEDE FALLAR ESTE POR EL ÚLTIMO VALOR DEL TERCER OCTETO!!!
+                    string oc1 = String.Concat(DI_202_buffer1, DI_202_buffer2);
+                    string oc2 = String.Concat(DI_202_buffer3,DI_202_buffer4);
 
+                    VX = CA2todec(oc1) * 0.25;
+                    if (VX < 0)
+                    { VX = VX + 0.25; }
+                    VY = CA2todec(oc2) * 0.25;//PUEDE FALLAR ESTE POR EL ÚLTIMO VALOR DEL TERCER OCTETO!!!
+                    if (VY < 0)
+                    { VY = VY + 0.25; }
                 }
                 else if (DI_090 == true)//VERDADERO HECHO
                 {
@@ -808,6 +797,7 @@ namespace LibreriaClases
                     DI_050 = false;
                 }
             }
+            //myTime = DateTime.ParseExact(Time, "HH:mm:ss.fff", System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public string ACID_oneletter(string letra)
@@ -972,6 +962,50 @@ namespace LibreriaClases
 
             string final = String.Concat(let1, let2, let3, let4, let5, let6, let7);
             return final;
+        }
+        public int CA2todec(string CA2)
+        {
+            bool negativo;
+            if (Convert.ToInt32("" + CA2[0]) == 1)
+            { negativo = true; }
+            else
+            { negativo = false; }
+
+            int result;
+            string binario = "";
+            int i = 1;
+            if (negativo)
+            {
+                while (i < CA2.Length)
+                {
+                    if (Convert.ToInt32("" + CA2[i]) == 1)
+                    { binario = binario + "0"; }
+                    if (Convert.ToInt32("" + CA2[i]) == 0)
+                    { binario = binario + "1"; }
+                    i++;
+                }
+                result = Convert.ToInt32(binario, 2) + 1;
+                result = -result;
+            }
+            else
+            {
+                while (i < CA2.Length)
+                {
+                    if (Convert.ToInt32("" + CA2[i]) == 1)
+                    { binario = binario + "1"; }
+                    if (Convert.ToInt32("" + CA2[i]) == 0)
+                    { binario = binario + "0"; }
+                    i++;
+                }
+                result = Convert.ToInt32(binario, 2);
+            }
+            return result;
+        }
+
+        public DataTable actualizarTabla(DataTable dt)
+        {
+            dt.Rows.Add(SAC, SIC, MLAT_type, myTime, X, Y, VX, VY, "No sé", TRACK_NUM, "hh", MODE_3A, MODE_C, ADDRESS, ACID_palabra, RECEIVERS);
+            return dt;
         }
     }
 }

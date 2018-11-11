@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 
 namespace LibreriaClases
 {
@@ -26,25 +27,28 @@ namespace LibreriaClases
         string SPD, AGL;
         string ACID_palabra;
         string VA;
+        double latitud, longitud;
 
         int CAT;
+
+        TimeSpan myTime;
 
         public int getCAT()
         {
             return CAT;
         }
-
-        public Tuple<int, int, string, string, string, string, string, string> methodget1()
+        public string getADDRESS()
         {
-            Tuple<int, int, string, string, string, string, string, string> tuple = new Tuple<int, int, string, string, string, string, string, string>(SAC, SIC, TARGET,Time,ADDRESS,FOM_AC,FOM_MN,FOM_DC);
-            return tuple;
+            return this.ADDRESS;
         }
-        public Tuple<string,string, string, string, string, string, string,string> methodget2()
+        public string getACID()
         {
-            Tuple<string, string, string, string, string, string, string,string> tuple = new Tuple<string, string, string, string, string, string, string,string>(FOM_PA,LINK,LEVEL,VR,SPD,AGL,ACID_palabra,VA);
-            return tuple;
+            return this.ACID_palabra;
         }
-
+        public TimeSpan getTime()
+        {
+            return this.myTime;
+        }
 
         public CAT21(string[] stringhex)
         {
@@ -348,9 +352,9 @@ namespace LibreriaClases
 
                     
                     int DI_030_bff = Convert.ToInt32(String.Concat(DI_030_buffer1, DI_030_buffer2, DI_030_buffer3),2);
-                    double seconds = DI_030_bff / 128;
-                    TimeSpan time = TimeSpan.FromSeconds(seconds);
-                    Time = time.ToString(@"hh\:mm\:ss");
+                    double seconds = Math.Round(Convert.ToDouble(DI_030_bff) / 128, 3);
+                    myTime = TimeSpan.FromSeconds(seconds);
+                    //Time = time.ToString(@"hh\:mm\:ss\.fff");
 
 
                 }
@@ -368,6 +372,13 @@ namespace LibreriaClases
                     i++;
                     DI_130_buffer6 = stringbinary[i];
                     DI_130 = false;
+
+                    string lat = String.Concat(DI_130_buffer1, DI_130_buffer2, DI_130_buffer3);
+                    string lon = String.Concat(DI_130_buffer4,DI_130_buffer5,DI_130_buffer6);
+
+                    latitud = CA2todec(lat)*(2.145767 * Math.Pow(10,-5));
+                    longitud = CA2todec(lon) * (2.145767 * Math.Pow(10, -5));
+
                 }
                 else if (DI_080 == true)//VERDADERO
                 {
@@ -462,7 +473,8 @@ namespace LibreriaClases
                     DI_145 = false;
 
                     string octetos = String.Concat(DI_145_buffer1, DI_145_buffer2);
-                    double FL = Convert.ToDouble(Convert.ToInt32(octetos, 2)/4);
+                    //double FL = Convert.ToDouble(Convert.ToInt32(octetos, 2)/4);
+                    double FL = Convert.ToDouble(CA2todec(octetos)) / 4;
                     LEVEL = String.Format("{0}FL", FL);
                 }
                 else if (DI_150 == true)
@@ -616,6 +628,7 @@ namespace LibreriaClases
 
                 }
             }
+            //myTime = DateTime.ParseExact(Time, "HH:mm:ss.fff",null);
         }
 
 
@@ -782,6 +795,51 @@ namespace LibreriaClases
 
             string final = String.Concat(let1, let2, let3, let4, let5, let6,let7,let8);
             return final;
+        }
+
+        public int CA2todec(string CA2)
+        {
+            bool negativo;
+            if (Convert.ToInt32("" + CA2[0]) == 1)
+            { negativo = true; }
+            else
+            { negativo = false; }
+
+            int result;
+            string binario = "";
+            int i = 1;
+            if (negativo)
+            {
+                while (i < CA2.Length)
+                {
+                    if (Convert.ToInt32("" + CA2[i]) == 1)
+                    { binario = binario + "0"; }
+                    if (Convert.ToInt32("" + CA2[i]) == 0)
+                    { binario = binario + "1"; }
+                    i++;
+                }
+                result = Convert.ToInt32(binario, 2) + 1;
+                result = -result;
+            }
+            else
+            {
+                while (i < CA2.Length)
+                {
+                    if (Convert.ToInt32("" + CA2[i]) == 1)
+                    { binario = binario + "1"; }
+                    if (Convert.ToInt32("" + CA2[i]) == 0)
+                    { binario = binario + "0"; }
+                    i++;
+                }
+                result = Convert.ToInt32(binario, 2) ;
+            }
+            return result;
+        }
+
+        public DataTable actualizarTabla(DataTable dt)
+        {
+            dt.Rows.Add(SAC, SIC, TARGET, myTime, latitud, longitud, VR, LINK, LEVEL, SPD, AGL, "No sé", ADDRESS, ACID_palabra, VA);
+            return dt;
         }
     }
 }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections;
+using System.Data;
 
 namespace LibreriaClases
 {
@@ -30,37 +32,26 @@ namespace LibreriaClases
 
         int CAT;
 
+        TimeSpan myTime;
+       
+
         public int getCAT()
         {
             return CAT;
         }
 
-        public Tuple<int, int, string, string, string, string, string, string> methodget1()
+        public string getADDRESS()
         {
-            Tuple<int, int, string, string, string, string, string, string> tuple = new Tuple<int, int, string, string, string, string, string, string>(SAC, SIC, Message_type, TARGET_TYP, TARGET_DCR, TARGET_CHN, TARGET_GBS, TARGET_CRT);
-            return tuple;
+            return this.ADDRESS;
         }
-        public Tuple<string, string, string, string, string, string, string, double> methodget2()
+        public string getACID()
         {
-            Tuple<string, string, string, string, string, string, string, double> tuple = new Tuple<string, string, string, string, string, string, string, double>(TARGET_SIM, TARGET_TST, TARGET_RAB, TARGET_LOP, TARGET_TOT, TARGET_SPI, Time, X);
-            return tuple;
+            return this.ACID_palabra;
         }
-        public Tuple<double, double, double, int, string, string, string, string> methodget3()
+        public TimeSpan getTime()
         {
-            Tuple<double, double, double, int, string, string, string, string> tuple = new Tuple<double, double, double, int, string, string, string, string>(Y, VX, VY, TRACKNUMBER, TRACKSTATUS_CNF, TRACKSTATUS_TRE, TRACKSTATUS_CST, TRACKSTATUS_MAH);
-            return tuple;
+            return this.myTime;
         }
-        public Tuple<string, string, string, string, string, string, string, string> methodget4()
-        {
-            Tuple<string, string, string, string, string, string, string, string> tuple = new Tuple<string, string, string, string, string, string, string, string>(TRACKSTATUS_TCC, TRACKSTATUS_STH, TRACKSTATUS_TOM, TRACKSTATUS_DOU, TRACKSTATUS_MRS, TRACKSTATUS_GHO,MODE_3A,ADDRESS);
-            return tuple;
-        }
-        public Tuple<string, double> methodget5()
-        {
-            Tuple<string, double> tuple = new Tuple<string, double>(ACID_palabra,FLIGHTLEVEL);
-            return tuple;
-        }
-
         
         public CAT10(string[] stringhex)
         {
@@ -390,9 +381,9 @@ namespace LibreriaClases
                     DI_140_buffer3 = stringbinary[i];
                     DI_140 = false;
                     int DI_140_bff = Convert.ToInt32(String.Concat(DI_140_buffer1, DI_140_buffer2, DI_140_buffer3), 2);
-                    double seconds = DI_140_bff / 128;
-                    TimeSpan time = TimeSpan.FromSeconds(seconds);
-                    Time = time.ToString(@"hh\:mm\:ss");
+                    double seconds = Math.Round(Convert.ToDouble(DI_140_bff) / 128, 3);
+                    myTime = TimeSpan.FromSeconds(seconds);
+                    //Time = time.ToString(@"hh\:mm\:ss\.fff");
                 }
                 else if (DI_041 == true)
                 {
@@ -435,8 +426,10 @@ namespace LibreriaClases
                     DI_042_buffer4 = stringbinary[i];
                     DI_042 = false;
 
-                    X = Convert.ToDouble(Convert.ToInt32(String.Concat(DI_042_buffer1,DI_042_buffer2),2));
-                    Y = Convert.ToDouble(Convert.ToInt32(String.Concat(DI_042_buffer3,DI_042_buffer4),2));
+                    string oc1 = String.Concat(DI_042_buffer1,DI_042_buffer2);
+                    string oc2 = String.Concat(DI_042_buffer3,DI_042_buffer4);
+                    X = CA2todec(oc1);
+                    Y = CA2todec(oc2);
 
                 }
                 else if (DI_200 == true)//VERDADERO
@@ -462,8 +455,13 @@ namespace LibreriaClases
                     DI_202_buffer4 = stringbinary[i];
                     DI_202 = false;
 
-                    VX = Convert.ToDouble(Convert.ToInt32(String.Concat(DI_202_buffer1, DI_202_buffer2), 2));
-                    VY = Convert.ToDouble(Convert.ToInt32(String.Concat(DI_202_buffer3, DI_202_buffer4), 2));
+                    string oc1 = String.Concat(DI_202_buffer1, DI_202_buffer2);
+                    string oc2 = String.Concat(DI_202_buffer3, DI_202_buffer4);
+
+                    VX = CA2todec(oc1)*0.25;
+                    { VX = VX + 0.25; }
+                    VY = CA2todec(oc2)*0.25;
+                    { VY = VY + 0.25; }
                 }
                 else if (DI_161 == true)//VERDADERO COMPROBAR
                 {
@@ -566,11 +564,10 @@ namespace LibreriaClases
                     DI_220_buffer2 = stringbinary[i];
                     i++;
                     DI_220_buffer3 = stringbinary[i];
-                    i++;
                     DI_220 = false;
 
                     if (stringhex[i].Count() == 1) { stringhex[i] = String.Concat("0", stringhex[i]); } //AÑADIMOS UN 0 SI SOLO HAY UNA LETRA O NÚMERO PORQUE EL 0 DESAPARECE AL PRINCIPIO
-                    if (stringhex[i - 1].Count() == 1) { stringhex[i - 1] = String.Concat("0", stringhex[i]); }
+                    if (stringhex[i-1].Count() == 1) { stringhex[i - 1] = String.Concat("0", stringhex[i]); }
                     if (stringhex[i - 2].Count() == 1) { stringhex[i - 2] = String.Concat("0", stringhex[i]); }
                     ADDRESS = String.Concat(stringhex[i - 2], stringhex[i - 1], stringhex[i]);
                 }
@@ -683,8 +680,10 @@ namespace LibreriaClases
                     DI_210 = false;
                 }
             }
+            //myTime = DateTime.ParseExact(Time, "HH:mm:ss.fff", System.Globalization.CultureInfo.InvariantCulture);
+            //roww = new DataRow(SAC, SIC, Message_type, "Target", myTime, X, Y, VX, VY, TRACKNUMBER, "Track Status", MODE_3A, ADDRESS, ACID_palabra, FLIGHTLEVEL);
         }
-
+        
         public string ACID_oneletter(string letra)
         {
             string letradevolver = "";
@@ -848,6 +847,51 @@ namespace LibreriaClases
 
             string final = String.Concat(let1, let2, let3, let4, let5, let6, let7,oc8);
             return final;
+        }
+        public int CA2todec(string CA2)
+        {
+            bool negativo;
+            if (Convert.ToInt32("" + CA2[0]) == 1)
+            { negativo = true; }
+            else
+            { negativo = false; }
+
+            int result;
+            string binario = "";
+            int i = 1;
+            if (negativo)
+            {
+                while (i < CA2.Length)
+                {
+                    if (Convert.ToInt32("" + CA2[i]) == 1)
+                    { binario = binario + "0"; }
+                    if (Convert.ToInt32("" + CA2[i]) == 0)
+                    { binario = binario + "1"; }
+                    i++;
+                }
+                result = Convert.ToInt32(binario, 2) + 1;
+                result = -result;
+            }
+            else
+            {
+                while (i < CA2.Length)
+                {
+                    if (Convert.ToInt32("" + CA2[i]) == 1)
+                    { binario = binario + "1"; }
+                    if (Convert.ToInt32("" + CA2[i]) == 0)
+                    { binario = binario + "0"; }
+                    i++;
+                }
+                result = Convert.ToInt32(binario, 2);
+            }
+            return result;
+        }
+
+
+        public DataTable actualizarTabla(DataTable dt)
+        {
+            dt.Rows.Add(SAC, SIC, Message_type, myTime, X, Y, VX, VY, "Ya veremos", TRACKNUMBER, "Ya veremos", MODE_3A, ADDRESS, ACID_palabra, FLIGHTLEVEL);
+            return dt;
         }
     }
 }

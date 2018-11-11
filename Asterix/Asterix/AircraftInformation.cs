@@ -12,11 +12,19 @@ namespace Asterix
 {
     public partial class AircraftInformation : Form
     {
-        public AircraftInformation(CAT10 cat10,CAT20 cat20,CAT21 cat21)
+        public AircraftInformation(CAT10 cat10)
         {
             InitializeComponent();
             this.cat10 = cat10;
+        }
+        public AircraftInformation(CAT20 cat20)
+        {
+            InitializeComponent();
             this.cat20 = cat20;
+        }
+        public AircraftInformation(CAT21 cat21)
+        {
+            InitializeComponent();
             this.cat21 = cat21;
         }
 

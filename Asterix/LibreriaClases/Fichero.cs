@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Data;
 
 
 namespace LibreriaClases
@@ -13,11 +14,27 @@ namespace LibreriaClases
         List<CAT10> listaCAT10 = new List<CAT10>();
         List<CAT20> listaCAT20 = new List<CAT20>();
         List<CAT21> listaCAT21 = new List<CAT21>();
+        DataTable tablaCAT10 = new DataTable();
+        DataTable tablaCAT20 = new DataTable();
+        DataTable tablaCAT21 = new DataTable();
 
 
         public Fichero(string nombre)
         {
             this.path = nombre;
+        }
+
+        public List<CAT10> getListCAT10()
+        {
+            return listaCAT10;
+        }
+        public List<CAT20> getListCAT20()
+        {
+            return listaCAT20;
+        }
+        public List<CAT21> getListCAT21()
+        {
+            return listaCAT21;
         }
 
         public void leer()
@@ -84,9 +101,21 @@ namespace LibreriaClases
                     listaCAT21.Add(newcat21);
                 }
             }
-            ManageListas listas = new ManageListas(listaCAT10, listaCAT20, listaCAT21);
-            listas.resolvelistas();
+            
 
+        }
+
+        public DataTable getTablaCAT10()
+        {
+            return tablaCAT10;
+        }
+        public DataTable getTablaCAT20()
+        {
+            return tablaCAT20;
+        }
+        public DataTable getTablaCAT21()
+        {
+            return tablaCAT21;
         }
     }
 }
