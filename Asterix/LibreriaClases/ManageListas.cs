@@ -148,5 +148,18 @@ namespace LibreriaClases
         {
             return tablaCAT21;
         }
+
+        public List<CAT10> getListCAT10()
+        {
+            return listaCAT10;
+        }
+        public List<CAT20> getListCAT20()
+        {
+            return listaCAT20;
+        }
+        public List<CAT21> getListCAT21()
+        {
+            return listaCAT21;
+        }
     }
 }

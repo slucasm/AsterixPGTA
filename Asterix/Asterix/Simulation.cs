@@ -10,21 +10,19 @@ using LibreriaClases;
 
 namespace Asterix
 {
-    public partial class Main : Form
+    public partial class Simulation : Form
     {
-        public Main()
+        public Simulation(ManageListas listas)
         {
             InitializeComponent();
+            this.listas = listas;
         }
 
         Fichero fichero;
-        public List<CAT10> listaCAT10;
-        public List<CAT20> listaCAT20;
-        public List<CAT21> listaCAT21;
-        public DataTable tablaCAT10;
-        public DataTable tablaCAT20;
-        public DataTable tablaCAT21;
-        public ManageListas listas;
+        List<CAT10> listaCAT10;
+        List<CAT20> listaCAT20;
+        List<CAT21> listaCAT21;
+        ManageListas listas;
         TimeSpan starttime = TimeSpan.FromHours(22);
         int i = 0;
         int j = 0;
@@ -33,6 +31,9 @@ namespace Asterix
         {
             label_starttime.Text = starttime.ToString(@"hh\:mm\:ss");
             timer.Interval = 1000;
+            listaCAT10 = listas.getListCAT10();
+            listaCAT20 = listas.getListCAT20();
+            listaCAT21 = listas.getListCAT21();            
         }
 
         private void button_open_Click(object sender, EventArgs e)
@@ -49,7 +50,9 @@ namespace Asterix
             listaCAT21 = fichero.getListCAT21();
             listas = new ManageListas(listaCAT10, listaCAT20, listaCAT21);
             listas.resolvelistas();
-            
+            listas.actualizarTabla();
+            MessageBox.Show("Fichero decodificado correctamente");
+ 
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -139,11 +142,7 @@ namespace Asterix
 
         private void button_tablas_Click(object sender, EventArgs e)
         {
-            listas.actualizarTabla();
-            tablaCAT10 = listas.getTablaCAT10();
-            tablaCAT20 = listas.getTablaCAT20();
-            tablaCAT21 = listas.getTablaCAT21();
-            TablaVuelos f = new TablaVuelos(this);
+            TablaVuelos f = new TablaVuelos(listas);
             f.Show();
         }
 
@@ -151,5 +150,12 @@ namespace Asterix
         {
             Application.Exit();
         }
+
+        private void button_introduction_Click(object sender, EventArgs e)
+        {
+            Introduction i = new Introduction();
+            i.Show();
+        }
+
     }
 }
