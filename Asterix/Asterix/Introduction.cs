@@ -29,7 +29,8 @@ namespace Asterix
 
         private void Introduction_Load(object sender, EventArgs e)
         {
-
+            
+            
         }
 
         private void button_open_Click(object sender, EventArgs e)
@@ -83,6 +84,7 @@ namespace Asterix
         {
             Application.Exit();
         }
+
 
         
     }

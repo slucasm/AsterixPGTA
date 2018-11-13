@@ -38,6 +38,13 @@
             this.pictureBox_logo = new System.Windows.Forms.PictureBox();
             this.pictureBox_close = new System.Windows.Forms.PictureBox();
             this.pictureBox_simulator = new System.Windows.Forms.PictureBox();
+            this.label_title = new System.Windows.Forms.Label();
+            this.textBox_body = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label_maintitle = new System.Windows.Forms.Label();
+            this.label_course = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel_vertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_titulo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).BeginInit();
@@ -146,7 +153,7 @@
             // 
             this.pictureBox_logo.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox_logo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_logo.Image")));
-            this.pictureBox_logo.Location = new System.Drawing.Point(325, 0);
+            this.pictureBox_logo.Location = new System.Drawing.Point(300, 0);
             this.pictureBox_logo.Name = "pictureBox_logo";
             this.pictureBox_logo.Size = new System.Drawing.Size(132, 122);
             this.pictureBox_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -158,7 +165,7 @@
             this.pictureBox_close.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_close.Image")));
             this.pictureBox_close.Location = new System.Drawing.Point(1260, 10);
             this.pictureBox_close.Name = "pictureBox_close";
-            this.pictureBox_close.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox_close.Size = new System.Drawing.Size(25, 25);
             this.pictureBox_close.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_close.TabIndex = 9;
             this.pictureBox_close.TabStop = false;
@@ -175,11 +182,99 @@
             this.pictureBox_simulator.TabIndex = 10;
             this.pictureBox_simulator.TabStop = false;
             // 
+            // label_title
+            // 
+            this.label_title.AutoSize = true;
+            this.label_title.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(124)))), ((int)(((byte)(191)))));
+            this.label_title.Location = new System.Drawing.Point(309, 141);
+            this.label_title.Name = "label_title";
+            this.label_title.Size = new System.Drawing.Size(237, 28);
+            this.label_title.TabIndex = 11;
+            this.label_title.Text = "ASTERIX SIMULATOR";
+            // 
+            // textBox_body
+            // 
+            this.textBox_body.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.textBox_body.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox_body.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.textBox_body.ForeColor = System.Drawing.Color.White;
+            this.textBox_body.Location = new System.Drawing.Point(299, 183);
+            this.textBox_body.Multiline = true;
+            this.textBox_body.Name = "textBox_body";
+            this.textBox_body.Size = new System.Drawing.Size(953, 324);
+            this.textBox_body.TabIndex = 13;
+            this.textBox_body.Text = resources.GetString("textBox_body.Text");
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(295, 510);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(194, 19);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Program developed by:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(124)))), ((int)(((byte)(191)))));
+            this.label2.Location = new System.Drawing.Point(495, 510);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(158, 95);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "Eduard Graells\r\nRaymond Gargallo\r\nAntonio Jiménez\r\nMiguel Martín\r\nSergi Lucas";
+            // 
+            // label_maintitle
+            // 
+            this.label_maintitle.AutoSize = true;
+            this.label_maintitle.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold);
+            this.label_maintitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(124)))), ((int)(((byte)(191)))));
+            this.label_maintitle.Location = new System.Drawing.Point(466, 22);
+            this.label_maintitle.Name = "label_maintitle";
+            this.label_maintitle.Size = new System.Drawing.Size(405, 28);
+            this.label_maintitle.TabIndex = 16;
+            this.label_maintitle.Text = "Projects in air traffic management";
+            // 
+            // label_course
+            // 
+            this.label_course.AutoSize = true;
+            this.label_course.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_course.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(124)))), ((int)(((byte)(191)))));
+            this.label_course.Location = new System.Drawing.Point(467, 60);
+            this.label_course.Name = "label_course";
+            this.label_course.Size = new System.Drawing.Size(131, 23);
+            this.label_course.TabIndex = 17;
+            this.label_course.Text = "Course 18-19";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(124)))), ((int)(((byte)(191)))));
+            this.label3.Location = new System.Drawing.Point(842, 392);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(204, 19);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "CAT10, CAT20 and CAT21";
+            // 
             // Introduction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(1300, 650);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label_course);
+            this.Controls.Add(this.label_maintitle);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox_body);
+            this.Controls.Add(this.label_title);
             this.Controls.Add(this.pictureBox_simulator);
             this.Controls.Add(this.pictureBox_close);
             this.Controls.Add(this.panel_vertical);
@@ -195,6 +290,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_close)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_simulator)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -209,5 +305,12 @@
         private System.Windows.Forms.PictureBox pictureBox_close;
         private System.Windows.Forms.PictureBox pictureBox_titulo;
         private System.Windows.Forms.PictureBox pictureBox_simulator;
+        private System.Windows.Forms.Label label_title;
+        private System.Windows.Forms.TextBox textBox_body;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label_maintitle;
+        private System.Windows.Forms.Label label_course;
+        private System.Windows.Forms.Label label3;
     }
 }

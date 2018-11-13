@@ -157,5 +157,15 @@ namespace Asterix
             i.Show();
         }
 
+        private void pictureBox_start_Click(object sender, EventArgs e)
+        {
+            timer.Start();
+        }
+
+        private void pictureBox_pause_Click(object sender, EventArgs e)
+        {
+            timer.Stop();
+        }
+
     }
 }

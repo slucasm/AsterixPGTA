@@ -36,20 +36,22 @@
             this.checkBox_CAT20 = new System.Windows.Forms.CheckBox();
             this.checkBox_CAT21 = new System.Windows.Forms.CheckBox();
             this.panel_vertical = new System.Windows.Forms.Panel();
+            this.pictureBox_simulator = new System.Windows.Forms.PictureBox();
             this.pictureBox_titulo = new System.Windows.Forms.PictureBox();
             this.button_introduction = new System.Windows.Forms.Button();
             this.button_open = new System.Windows.Forms.Button();
             this.button_tablas = new System.Windows.Forms.Button();
             this.button_simulation = new System.Windows.Forms.Button();
             this.pictureBox_close = new System.Windows.Forms.PictureBox();
-            this.pictureBox_simulator = new System.Windows.Forms.PictureBox();
+            this.pictureBox_logo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_CAT10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_CAT20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_CAT21)).BeginInit();
             this.panel_vertical.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_simulator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_titulo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_close)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_simulator)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView_CAT10
@@ -129,6 +131,16 @@
             this.panel_vertical.Name = "panel_vertical";
             this.panel_vertical.Size = new System.Drawing.Size(250, 650);
             this.panel_vertical.TabIndex = 7;
+            // 
+            // pictureBox_simulator
+            // 
+            this.pictureBox_simulator.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_simulator.Image")));
+            this.pictureBox_simulator.Location = new System.Drawing.Point(35, 100);
+            this.pictureBox_simulator.Name = "pictureBox_simulator";
+            this.pictureBox_simulator.Size = new System.Drawing.Size(180, 25);
+            this.pictureBox_simulator.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_simulator.TabIndex = 9;
+            this.pictureBox_simulator.TabStop = false;
             // 
             // pictureBox_titulo
             // 
@@ -218,21 +230,22 @@
             this.pictureBox_close.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_close.Image")));
             this.pictureBox_close.Location = new System.Drawing.Point(1260, 10);
             this.pictureBox_close.Name = "pictureBox_close";
-            this.pictureBox_close.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox_close.Size = new System.Drawing.Size(25, 25);
             this.pictureBox_close.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_close.TabIndex = 8;
             this.pictureBox_close.TabStop = false;
             this.pictureBox_close.Click += new System.EventHandler(this.pictureBox_close_Click);
             // 
-            // pictureBox_simulator
+            // pictureBox_logo
             // 
-            this.pictureBox_simulator.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_simulator.Image")));
-            this.pictureBox_simulator.Location = new System.Drawing.Point(35, 100);
-            this.pictureBox_simulator.Name = "pictureBox_simulator";
-            this.pictureBox_simulator.Size = new System.Drawing.Size(180, 25);
-            this.pictureBox_simulator.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox_simulator.TabIndex = 9;
-            this.pictureBox_simulator.TabStop = false;
+            this.pictureBox_logo.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_logo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_logo.Image")));
+            this.pictureBox_logo.Location = new System.Drawing.Point(300, 0);
+            this.pictureBox_logo.Name = "pictureBox_logo";
+            this.pictureBox_logo.Size = new System.Drawing.Size(132, 122);
+            this.pictureBox_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_logo.TabIndex = 9;
+            this.pictureBox_logo.TabStop = false;
             // 
             // TablaVuelos
             // 
@@ -240,6 +253,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(1300, 650);
+            this.Controls.Add(this.pictureBox_logo);
             this.Controls.Add(this.pictureBox_close);
             this.Controls.Add(this.panel_vertical);
             this.Controls.Add(this.checkBox_CAT21);
@@ -257,9 +271,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_CAT20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_CAT21)).EndInit();
             this.panel_vertical.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_simulator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_titulo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_close)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_simulator)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -281,5 +296,6 @@
         private System.Windows.Forms.Button button_introduction;
         private System.Windows.Forms.PictureBox pictureBox_titulo;
         private System.Windows.Forms.PictureBox pictureBox_simulator;
+        private System.Windows.Forms.PictureBox pictureBox_logo;
     }
 }
