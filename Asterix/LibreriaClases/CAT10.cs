@@ -33,6 +33,8 @@ namespace LibreriaClases
         int CAT;
 
         TimeSpan myTime;
+
+        string coordinates;
        
 
         public int getCAT()
@@ -430,6 +432,66 @@ namespace LibreriaClases
                     string oc2 = String.Concat(DI_042_buffer3,DI_042_buffer4);
                     X = CA2todec(oc1);
                     Y = CA2todec(oc2);
+                    double latitud, longitud;
+                    if (SAC == 107)
+                    {
+                        double gradlat = 41;
+                        double gradlon = 2;
+                        double mintogradlat = (Convert.ToDouble(17) / 60);
+                        double mintogradlon = (Convert.ToDouble(4) / 60);
+                        double sectogradlat = Convert.ToDouble(44.426) / 3600;
+                        double sectogradlon = Convert.ToDouble(42.410) / 3600;
+                        latitud = (Convert.ToDouble(gradlat) + Convert.ToDouble(mintogradlat)) + Convert.ToDouble(sectogradlat);
+                        longitud = (Convert.ToDouble(gradlon) + Convert.ToDouble(mintogradlon)) + Convert.ToDouble(sectogradlon);
+                    }
+                    else
+                    {
+                        double gradlat = 41;
+                        double gradlon = 2;
+                        double mintogradlat = (Convert.ToDouble(17) / 60);
+                        double mintogradlon = (Convert.ToDouble(5) / 60);
+                        double sectogradlat = Convert.ToDouble(44.226) / 3600;
+                        double sectogradlon = Convert.ToDouble(42.411) / 3600;
+                        latitud = (Convert.ToDouble(gradlat) + Convert.ToDouble(mintogradlat)) + Convert.ToDouble(sectogradlat);
+                        longitud = (Convert.ToDouble(gradlon) + Convert.ToDouble(mintogradlon)) + Convert.ToDouble(sectogradlon);
+                    }
+                    latitud = latitud + (X / 30) / 3600;
+                    longitud = longitud + (Y / 30) / 3600;
+                    string[] separados1lat;
+                    string[] separados1lon;
+
+                    separados1lat = Convert.ToString(latitud).Split(',');
+                    separados1lon = Convert.ToString(longitud).Split(',');
+                    string gradoslat = separados1lat[0];
+                    string gradoslon = separados1lon[0];
+                    string uno = String.Concat("0,", separados1lat[1]);
+                    string dos = String.Concat("0,", separados1lon[1]);
+                    double mindeclat = Convert.ToDouble(uno) * 60;
+                    double mindeclon = Convert.ToDouble(dos) * 60;
+                    string[] separados2lat = Convert.ToString(mindeclat).Split(',');
+                    string[] separados2lon = Convert.ToString(mindeclon).Split(',');
+                    string minlat = separados2lat[0];
+                    string minlon = separados2lon[0];
+                    double segdeclat = Convert.ToDouble(String.Concat("0.", separados2lat[1])) * 60;
+                    double segdeclon = Convert.ToDouble(String.Concat("0.", separados2lon[1])) * 60;
+                    string seclat = Convert.ToString(Math.Round(segdeclat, 3));
+                    string seclon = Convert.ToString(Math.Round(segdeclon, 3));
+                    string latitudd, longitudd;
+                    if (latitud > 0)
+                    { latitudd = String.Concat(gradoslat, "º", minlat, "'", seclat, "''", 'N'); }
+                    else
+                    { latitudd = String.Concat(gradoslat, 'º', minlat, "'", seclat, "''", 'S'); }
+                    if (longitud > 0)
+                    { longitudd = String.Concat(gradoslon, 'º', minlon, "'", seclon, "''", 'E'); }
+                    else
+                    { longitudd = String.Concat(gradoslon, 'º', minlon, "'", seclon, "''", 'O'); }
+
+                    coordinates = String.Concat(latitudd, longitudd);   
+
+
+
+
+
 
                 }
                 else if (DI_200 == true)//VERDADERO
@@ -890,7 +952,7 @@ namespace LibreriaClases
 
         public DataTable actualizarTabla(DataTable dt)
         {
-            dt.Rows.Add(SAC, SIC, Message_type, myTime, X, Y, VX, VY, "Ya veremos", TRACKNUMBER, "Ya veremos", MODE_3A, ADDRESS, ACID_palabra, FLIGHTLEVEL);
+            dt.Rows.Add(SAC, SIC, Message_type, myTime, X, Y,coordinates, VX, VY, "Ya veremos", TRACKNUMBER, "Ya veremos", MODE_3A, ADDRESS, ACID_palabra, FLIGHTLEVEL);
             return dt;
         }
     }

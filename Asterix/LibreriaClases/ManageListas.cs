@@ -67,6 +67,7 @@ namespace LibreriaClases
             tablaCAT10.Columns.Add("Time", typeof(TimeSpan));
             tablaCAT10.Columns.Add("X", typeof(double));
             tablaCAT10.Columns.Add("Y", typeof(double));
+            tablaCAT10.Columns.Add("Coordinates", typeof(string));
             tablaCAT10.Columns.Add("Vx", typeof(double));
             tablaCAT10.Columns.Add("Vy", typeof(double));
             tablaCAT10.Columns.Add("Target", typeof(string));
@@ -83,6 +84,7 @@ namespace LibreriaClases
             tablaCAT20.Columns.Add("Time", typeof(TimeSpan));
             tablaCAT20.Columns.Add("X", typeof(double));
             tablaCAT20.Columns.Add("Y", typeof(double));
+            tablaCAT20.Columns.Add("Coordinates", typeof(string));
             tablaCAT20.Columns.Add("Vx", typeof(double));
             tablaCAT20.Columns.Add("Vy", typeof(double));
             tablaCAT20.Columns.Add("Target report", typeof(string));
@@ -100,6 +102,7 @@ namespace LibreriaClases
             tablaCAT21.Columns.Add("Time", typeof(TimeSpan));
             tablaCAT21.Columns.Add("Latitud", typeof(double));
             tablaCAT21.Columns.Add("Longitud", typeof(double));
+            tablaCAT21.Columns.Add("Coordinates", typeof(string));
             tablaCAT21.Columns.Add("Vr", typeof(string));
             tablaCAT21.Columns.Add("Link", typeof(string));
             tablaCAT21.Columns.Add("Level", typeof(string));
@@ -109,7 +112,6 @@ namespace LibreriaClases
             tablaCAT21.Columns.Add("Address", typeof(string));
             tablaCAT21.Columns.Add("ACID", typeof(string));
             tablaCAT21.Columns.Add("VA", typeof(string));
-
 
 
             if (listaCAT10.Count != 0)

@@ -41,6 +41,7 @@ namespace Asterix
             dataGridView_CAT10.RowHeadersVisible = false;
             dataGridView_CAT20.RowHeadersVisible = false;
             dataGridView_CAT21.RowHeadersVisible = false;
+            
 
             if (tablaCAT10.Rows.Count != 0)
             {

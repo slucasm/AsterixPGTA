@@ -33,6 +33,8 @@ namespace LibreriaClases
 
         TimeSpan myTime;
 
+        string coordinates;
+
         public int getCAT()
         {
             return CAT;
@@ -378,6 +380,38 @@ namespace LibreriaClases
 
                     latitud = CA2todec(lat)*(2.145767 * Math.Pow(10,-5));
                     longitud = CA2todec(lon) * (2.145767 * Math.Pow(10, -5));
+
+                    string[] separados1lat;
+                    string[] separados1lon;
+
+                    separados1lat = Convert.ToString(latitud).Split(',');
+                    separados1lon = Convert.ToString(longitud).Split(',');
+                    string gradoslat = separados1lat[0];
+                    string gradoslon = separados1lon[0];
+                    string uno = String.Concat("0,", separados1lat[1]);
+                    string dos = String.Concat("0,", separados1lon[1]);
+                    double mindeclat = Convert.ToDouble(uno) * 60;
+                    double mindeclon = Convert.ToDouble(dos) * 60;
+                    string[] separados2lat = Convert.ToString(mindeclat).Split(',');
+                    string[] separados2lon = Convert.ToString(mindeclon).Split(',');
+                    string minlat = separados2lat[0];
+                    string minlon = separados2lon[0];
+                    double segdeclat = Convert.ToDouble(String.Concat("0.",separados2lat[1])) * 60;
+                    double segdeclon = Convert.ToDouble(String.Concat("0.",separados2lon[1])) * 60;
+                    string seclat = Convert.ToString(Math.Round(segdeclat,3));
+                    string seclon = Convert.ToString(Math.Round(segdeclon, 3));
+                    string latitudd, longitudd;
+                    if (latitud > 0)
+                    { latitudd = String.Concat(gradoslat,"º", minlat,"'", seclat,"''", 'N'); }
+                    else
+                    { latitudd = String.Concat(gradoslat, 'º', minlat, "'", seclat, "''", 'S'); }
+                    if (longitud > 0)
+                    { longitudd = String.Concat(gradoslon,'º', minlon,"'", seclon,"''", 'E'); }
+                    else
+                    { longitudd = String.Concat(gradoslon, 'º', minlon, "'", seclon, "''", 'O'); }
+
+                    coordinates = String.Concat(latitudd, longitudd);
+
 
                 }
                 else if (DI_080 == true)//VERDADERO
@@ -838,7 +872,7 @@ namespace LibreriaClases
 
         public DataTable actualizarTabla(DataTable dt)
         {
-            dt.Rows.Add(SAC, SIC, TARGET, myTime, latitud, longitud, VR, LINK, LEVEL, SPD, AGL, "No sé", ADDRESS, ACID_palabra, VA);
+            dt.Rows.Add(SAC, SIC, TARGET, myTime, latitud, longitud,coordinates, VR, LINK, LEVEL, SPD, AGL, "No sé", ADDRESS, ACID_palabra, VA);
             return dt;
         }
     }
