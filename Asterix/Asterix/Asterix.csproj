@@ -52,6 +52,66 @@
     <Compile Include="AircraftInformation.Designer.cs">
       <DependentUpon>AircraftInformation.cs</DependentUpon>
     </Compile>
+    <Compile Include="CAT10_INFOFLIGHT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CAT10_INFOFLIGHT.Designer.cs">
+      <DependentUpon>CAT10_INFOFLIGHT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CAT10_TARGET.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CAT10_TARGET.Designer.cs">
+      <DependentUpon>CAT10_TARGET.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CAT10_TRACKSTATUS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CAT10_TRACKSTATUS.Designer.cs">
+      <DependentUpon>CAT10_TRACKSTATUS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CAT20_INFOFLIGHT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CAT20_INFOFLIGHT.Designer.cs">
+      <DependentUpon>CAT20_INFOFLIGHT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CAT20_TARGET.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CAT20_TARGET.Designer.cs">
+      <DependentUpon>CAT20_TARGET.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CAT20_TRACKSTATUS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CAT20_TRACKSTATUS.Designer.cs">
+      <DependentUpon>CAT20_TRACKSTATUS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CAT21_FOM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CAT21_FOM.Designer.cs">
+      <DependentUpon>CAT21_FOM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CAT21_INFOFLIGHT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CAT21_INFOFLIGHT.Designer.cs">
+      <DependentUpon>CAT21_INFOFLIGHT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CAT21_LINK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CAT21_LINK.Designer.cs">
+      <DependentUpon>CAT21_LINK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CAT21_TARGET.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CAT21_TARGET.Designer.cs">
+      <DependentUpon>CAT21_TARGET.cs</DependentUpon>
+    </Compile>
     <Compile Include="Introduction.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +134,36 @@
     </Compile>
     <EmbeddedResource Include="AircraftInformation.resx">
       <DependentUpon>AircraftInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CAT10_INFOFLIGHT.resx">
+      <DependentUpon>CAT10_INFOFLIGHT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CAT10_TARGET.resx">
+      <DependentUpon>CAT10_TARGET.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CAT10_TRACKSTATUS.resx">
+      <DependentUpon>CAT10_TRACKSTATUS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CAT20_INFOFLIGHT.resx">
+      <DependentUpon>CAT20_INFOFLIGHT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CAT20_TARGET.resx">
+      <DependentUpon>CAT20_TARGET.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CAT20_TRACKSTATUS.resx">
+      <DependentUpon>CAT20_TRACKSTATUS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CAT21_FOM.resx">
+      <DependentUpon>CAT21_FOM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CAT21_INFOFLIGHT.resx">
+      <DependentUpon>CAT21_INFOFLIGHT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CAT21_LINK.resx">
+      <DependentUpon>CAT21_LINK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CAT21_TARGET.resx">
+      <DependentUpon>CAT21_TARGET.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Introduction.resx">
       <DependentUpon>Introduction.cs</DependentUpon>

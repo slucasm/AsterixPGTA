@@ -17,25 +17,46 @@ namespace LibreriaClases
 
         string DI_010_buffer1, DI_010_buffer2, DI_000_buffer1, DI_020_buffer1, DI_020_buffer2,DI_020_buffer3, DI_140_buffer1, DI_140_buffer2, DI_140_buffer3, DI_041_buffer1, DI_041_buffer2, DI_041_buffer3, DI_041_buffer4, DI_041_buffer5, DI_041_buffer6, DI_041_buffer7, DI_041_buffer8, DI_040_buffer1, DI_040_buffer2, DI_040_buffer3, DI_040_buffer4, DI_042_buffer1, DI_042_buffer2, DI_042_buffer3, DI_042_buffer4, DI_200_buffer1, DI_200_buffer2, DI_200_buffer3, DI_200_buffer4, DI_202_buffer1, DI_202_buffer2, DI_202_buffer3, DI_202_buffer4, DI_161_buffer1, DI_161_buffer2, DI_170_buffer1, DI_170_buffer2,DI_170_buffer3, DI_060_buffer1, DI_060_buffer2, DI_220_buffer1, DI_220_buffer2, DI_220_buffer3, DI_245_buffer1, DI_245_buffer2, DI_245_buffer3, DI_245_buffer4, DI_245_buffer5, DI_245_buffer6, DI_245_buffer7, DI_250_buffer1, DI_300_buffer1, DI_090_buffer1, DI_090_buffer2, DI_091_buffer1, DI_091_buffer2, DI_270_buffer1, DI_270_buffer2, DI_550_buffer1, DI_310_buffer1, DI_500_buffer1, DI_500_buffer2, DI_500_buffer3, DI_500_buffer4, DI_280_buffer1, DI_131_buffer1, DI_210_buffer1, DI_210_buffer2;
 
-        int SAC, SIC;
-        string Message_type;
-        string TARGET_TYP,TARGET_DCR,TARGET_CHN,TARGET_GBS,TARGET_CRT,TARGET_SIM,TARGET_TST,TARGET_RAB,TARGET_LOP,TARGET_TOT,TARGET_SPI;
-        string Time;
-        double X, Y;
-        double VX, VY;
-        int TRACKNUMBER;
-        string TRACKSTATUS_CNF, TRACKSTATUS_TRE, TRACKSTATUS_CST, TRACKSTATUS_MAH, TRACKSTATUS_TCC, TRACKSTATUS_STH, TRACKSTATUS_TOM, TRACKSTATUS_DOU, TRACKSTATUS_MRS, TRACKSTATUS_GHO;
-        string MODE_3A;
-        string ADDRESS;
-        string ACID_palabra;
-        double FLIGHTLEVEL;
+        public int SAC, SIC;
+        public string Message_type;
+        public string TARGET_TYP, TARGET_DCR, TARGET_CHN, TARGET_GBS, TARGET_CRT, TARGET_SIM, TARGET_TST, TARGET_RAB, TARGET_LOP, TARGET_TOT, TARGET_SPI;
+        public string Time;
+        public double X, Y;
+        public double VX, VY;
+        public int TRACKNUMBER;
+        public string TRACKSTATUS_CNF, TRACKSTATUS_TRE, TRACKSTATUS_CST, TRACKSTATUS_MAH, TRACKSTATUS_TCC, TRACKSTATUS_STH, TRACKSTATUS_TOM, TRACKSTATUS_DOU, TRACKSTATUS_MRS, TRACKSTATUS_GHO;
+        public string MODE_3A;
+        public string ADDRESS;
+        public string ACID_palabra;
+        public double FLIGHTLEVEL;
 
         int CAT;
 
-        TimeSpan myTime;
+        public TimeSpan myTime;
 
-        string coordinates;
-       
+        public string coordinates;
+
+
+        public Tuple<string, string, string, string, string, string, string> getTarget1()
+        {
+            Tuple<string, string, string, string, string, string, string> tuple = new Tuple<string, string, string, string, string, string, string>(TARGET_TYP, TARGET_DCR, TARGET_CHN, TARGET_GBS, TARGET_CRT, TARGET_SIM, TARGET_TST);
+            return tuple;
+        }
+        public Tuple<string, string, string, string> getTarget2()
+        {
+            Tuple<string, string, string, string> tuple = new Tuple<string, string, string, string>(TARGET_RAB, TARGET_LOP, TARGET_TOT, TARGET_SPI);
+            return tuple;
+        }
+        public Tuple<string, string, string, string, string, string, string> getTrackstatus1()
+        {
+            Tuple<string, string, string, string, string, string, string> tuple = new Tuple<string, string, string, string, string, string, string>(TRACKSTATUS_CNF, TRACKSTATUS_TRE, TRACKSTATUS_CST, TRACKSTATUS_MAH, TRACKSTATUS_TCC, TRACKSTATUS_STH, TRACKSTATUS_TOM);
+            return tuple;
+        }
+        public Tuple<string, string, string> getTrackstatus2()
+        {
+            Tuple<string, string, string> tuple = new Tuple<string, string, string>(TRACKSTATUS_DOU, TRACKSTATUS_MRS, TRACKSTATUS_GHO);
+            return tuple;
+        }
 
         public int getCAT()
         {
@@ -472,19 +493,19 @@ namespace LibreriaClases
                     string[] separados2lon = Convert.ToString(mindeclon).Split(',');
                     string minlat = separados2lat[0];
                     string minlon = separados2lon[0];
-                    double segdeclat = Convert.ToDouble(String.Concat("0.", separados2lat[1])) * 60;
-                    double segdeclon = Convert.ToDouble(String.Concat("0.", separados2lon[1])) * 60;
-                    string seclat = Convert.ToString(Math.Round(segdeclat, 3));
-                    string seclon = Convert.ToString(Math.Round(segdeclon, 3));
+                    double segdeclat = Convert.ToDouble(String.Concat("0,", separados2lat[1])) * 60;
+                    double segdeclon = Convert.ToDouble(String.Concat("0,", separados2lon[1])) * 60;
+                    string seclat = (Math.Round(segdeclat, 3)).ToString(System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
+                    string seclon = (Math.Round(segdeclon, 3)).ToString(System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
                     string latitudd, longitudd;
                     if (latitud > 0)
-                    { latitudd = String.Concat(gradoslat, "º", minlat, "'", seclat, "''", 'N'); }
+                    { latitudd = String.Concat(gradoslat, "º", minlat, "'", seclat, '"', 'N'); }
                     else
-                    { latitudd = String.Concat(gradoslat, 'º', minlat, "'", seclat, "''", 'S'); }
+                    { latitudd = String.Concat(gradoslat, 'º', minlat, "'", seclat, '"', 'S'); }
                     if (longitud > 0)
-                    { longitudd = String.Concat(gradoslon, 'º', minlon, "'", seclon, "''", 'E'); }
+                    { longitudd = String.Concat(gradoslon, 'º', minlon, "'", seclon, '"', 'E'); }
                     else
-                    { longitudd = String.Concat(gradoslon, 'º', minlon, "'", seclon, "''", 'O'); }
+                    { longitudd = String.Concat(gradoslon, 'º', minlon, "'", seclon, '"', 'O'); }
 
                     coordinates = String.Concat(latitudd, longitudd);   
 
@@ -952,7 +973,7 @@ namespace LibreriaClases
 
         public DataTable actualizarTabla(DataTable dt)
         {
-            dt.Rows.Add(SAC, SIC, Message_type, myTime, X, Y,coordinates, VX, VY, "Ya veremos", TRACKNUMBER, "Ya veremos", MODE_3A, ADDRESS, ACID_palabra, FLIGHTLEVEL);
+            dt.Rows.Add(SAC, SIC, Message_type, myTime, X, Y,coordinates, VX, VY, "Click for more information", TRACKNUMBER, "Click for more information", MODE_3A, ADDRESS, ACID_palabra, FLIGHTLEVEL);
             return dt;
         }
     }

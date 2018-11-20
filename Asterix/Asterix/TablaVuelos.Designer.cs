@@ -61,6 +61,7 @@
             this.dataGridView_CAT10.Name = "dataGridView_CAT10";
             this.dataGridView_CAT10.Size = new System.Drawing.Size(900, 450);
             this.dataGridView_CAT10.TabIndex = 0;
+            this.dataGridView_CAT10.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CAT10_CellContentClick);
             // 
             // dataGridView_CAT20
             // 
@@ -69,6 +70,7 @@
             this.dataGridView_CAT20.Name = "dataGridView_CAT20";
             this.dataGridView_CAT20.Size = new System.Drawing.Size(900, 450);
             this.dataGridView_CAT20.TabIndex = 1;
+            this.dataGridView_CAT20.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CAT20_CellContentClick);
             // 
             // dataGridView_CAT21
             // 
@@ -78,6 +80,7 @@
             this.dataGridView_CAT21.Name = "dataGridView_CAT21";
             this.dataGridView_CAT21.Size = new System.Drawing.Size(900, 450);
             this.dataGridView_CAT21.TabIndex = 2;
+            this.dataGridView_CAT21.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CAT21_CellContentClick);
             // 
             // checkBox_CAT10
             // 

@@ -80,7 +80,6 @@ namespace LibreriaClases
 
             tablaCAT20.Columns.Add("SAC", typeof(int));
             tablaCAT20.Columns.Add("SIC", typeof(int));
-            tablaCAT20.Columns.Add("MLAT", typeof(string));
             tablaCAT20.Columns.Add("Time", typeof(TimeSpan));
             tablaCAT20.Columns.Add("X", typeof(double));
             tablaCAT20.Columns.Add("Y", typeof(double));

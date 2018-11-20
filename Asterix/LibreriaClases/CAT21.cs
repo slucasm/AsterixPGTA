@@ -16,24 +16,46 @@ namespace LibreriaClases
 
         string DI_010_buffer1, DI_010_buffer2, DI_040_buffer1,DI_040_buffer2, DI_030_buffer1, DI_030_buffer2, DI_030_buffer3, DI_130_buffer1, DI_130_buffer2, DI_130_buffer3, DI_130_buffer4, DI_130_buffer5, DI_130_buffer6, DI_080_buffer1, DI_080_buffer2,DI_080_buffer3, DI_140_buffer1, DI_140_buffer2, DI_090_buffer1, DI_090_buffer2, DI_210_buffer1, DI_230_buffer1, DI_230_buffer2, DI_145_buffer1, DI_145_buffer2, DI_150_buffer1, DI_150_buffer2, DI_151_buffer1, DI_151_buffer2, DI_152_buffer1, DI_152_buffer2, DI_155_buffer1, DI_155_buffer2, DI_157_buffer1, DI_157_buffer2, DI_160_buffer1, DI_160_buffer2, DI_160_buffer3, DI_160_buffer4, DI_165_buffer1,DI_165_buffer2,DI_170_buffer1,DI_170_buffer2,DI_170_buffer3,DI_170_buffer4,DI_170_buffer5,DI_170_buffer6, DI_095_buffer1, DI_032_buffer1, DI_200_buffer1, DI_020_buffer1, DI_220_buffer1, DI_220_buffer2, DI_146_buffer1, DI_146_buffer2, DI_148_buffer1, DI_148_buffer2;
 
-        int SAC, SIC;
-        string TARGET;
-        string Time;
-        string ADDRESS;
-        string FOM_AC, FOM_MN, FOM_DC, FOM_PA;
-        string LINK;
-        string LEVEL;
-        string VR;
-        string SPD, AGL;
-        string ACID_palabra;
-        string VA;
-        double latitud, longitud;
+        public int SAC, SIC;
+        public string TARGET_DCR, TARGET_GBS, TARGET_SIM, TARGET_TST, TARGET_RAB, TARGET_SAA, TARGET_SPI, TARGET_ATP, TARGET_ARC;
+        public string Time;
+        public string ADDRESS;
+        public string FOM_AC, FOM_MN, FOM_DC, FOM_PA;
+        public string LINK_DTI, LINK_MDS, LINK_UAT, LINK_VDL, LINK_OTR;
+        public string LEVEL;
+        public string VR;
+        public string SPD, AGL;
+        public string ACID_palabra;
+        public string VA;
+        public double latitud, longitud;
 
         int CAT;
 
-        TimeSpan myTime;
+        public TimeSpan myTime;
 
-        string coordinates;
+        public string coordinates;
+
+        public Tuple<string, string, string, string, string, string, string> getTarget1()
+        {
+            Tuple<string, string, string, string, string, string, string> tuple = new Tuple<string, string, string, string, string, string, string>(TARGET_DCR, TARGET_GBS, TARGET_SIM, TARGET_TST, TARGET_RAB, TARGET_SAA, TARGET_SPI);
+            return tuple;
+        }
+        public Tuple<string, string> getTarget2()
+        {
+            Tuple<string, string> tuple = new Tuple<string, string>(TARGET_ATP, TARGET_ARC);
+            return tuple;
+        }
+        public Tuple<string, string,string,string> getFOM()
+        {
+            Tuple<string, string, string, string> tuple = new Tuple<string, string, string, string>(FOM_AC, FOM_MN, FOM_DC, FOM_PA);
+            return tuple;
+        }
+        public Tuple<string, string, string, string,string> getLINK()
+        {
+            Tuple<string, string, string, string,string> tuple = new Tuple<string, string, string, string,string>(LINK_DTI,LINK_MDS,LINK_UAT,LINK_VDL,LINK_OTR);
+            return tuple;
+        }
+
 
         public int getCAT()
         {
@@ -311,37 +333,60 @@ namespace LibreriaClases
                     char[] buff1 = DI_040_buffer1.ToArray();
                     if (buff1[0] == '1')
                     {
-                        TARGET = "DCR";
+                        TARGET_DCR = "Differential correction";
                     }
-                    else if (buff1[1] == '1')
+                    else 
                     {
-                        TARGET = "GBS";
+                        TARGET_DCR = "No differential correction";
                     }
-                    else if (buff1[2] == '1')
+                    if (buff1[1] == '1')
                     {
-                        TARGET = "SIM";
+                        TARGET_GBS = "Ground Bit set";
                     }
-                    else if (buff1[3] == '1')
+                    else { TARGET_GBS = "Ground Bit not set"; }
+                    if (buff1[2] == '1')
                     {
-                        TARGET = "TST";
+                        TARGET_SIM = "Simulated target report";
                     }
-                    else if (buff1[4] == '1')
+                    else { TARGET_SIM = "Actual target report"; }
+                    if (buff1[3] == '1')
                     {
-                        TARGET = "RAB";
+                        TARGET_TST = "Test target";
                     }
-                    else if (buff1[5] == '1')
+                    else { TARGET_TST = "Default"; }
+                    if (buff1[4] == '1')
                     {
-                        TARGET = "SAA";
+                        TARGET_RAB = "Report from field monitor";
                     }
-                    else if (buff1[6] == '1')
+                    else { TARGET_RAB = "Report from target transponder"; }
+                    if (buff1[5] == '1')
                     {
-                        TARGET = "SPI";
+                        TARGET_SAA = "Equipement capable to provide Selected Altitud";
+                    }
+                    else { TARGET_SAA = "Equipement not capable to provide Selected Altitude"; }
+                    if (buff1[6] == '1')
+                    {
+                        TARGET_SPI = "Special Position Identification";
                     }
                     else
                     {
-                        TARGET = "NORMAL";
+                        TARGET_SPI = "Absence of SPI";
                     }
 
+                    string concat1 = String.Concat(DI_040_buffer2[0],DI_040_buffer2[1],DI_040_buffer2[2]);
+                    string concat2 = String.Concat(DI_040_buffer2[3], DI_040_buffer2[4]);
+
+                    int num1 = Convert.ToInt32(concat1,2);
+                    int num2 = Convert.ToInt32(concat2, 2);
+
+                    if (num1 == 0) { TARGET_ATP = "Non unique addres"; }
+                    else if (num1 == 1) { TARGET_ATP = "24-Bit ICAO address"; }
+                    else if (num1 == 2) { TARGET_ATP = "Surface vehicle address"; }
+                    else { TARGET_ATP = "Anonymous addres"; }
+
+                    if (num2 == 0) { TARGET_ARC = "Uknown"; }
+                    else if (num2 == 1) { TARGET_ARC = "25 ft"; }
+                    else { TARGET_ARC = "100 ft"; }
                 }
                 else if (DI_030 == true)//VERDADERO
                 {
@@ -396,19 +441,19 @@ namespace LibreriaClases
                     string[] separados2lon = Convert.ToString(mindeclon).Split(',');
                     string minlat = separados2lat[0];
                     string minlon = separados2lon[0];
-                    double segdeclat = Convert.ToDouble(String.Concat("0.",separados2lat[1])) * 60;
-                    double segdeclon = Convert.ToDouble(String.Concat("0.",separados2lon[1])) * 60;
-                    string seclat = Convert.ToString(Math.Round(segdeclat,3));
-                    string seclon = Convert.ToString(Math.Round(segdeclon, 3));
+                    double segdeclat = Convert.ToDouble(String.Concat("0,",separados2lat[1])) * 60;
+                    double segdeclon = Convert.ToDouble(String.Concat("0,",separados2lon[1])) * 60;
+                    string seclat = (Math.Round(segdeclat, 3)).ToString(System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
+                    string seclon = (Math.Round(segdeclon, 3)).ToString(System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
                     string latitudd, longitudd;
                     if (latitud > 0)
-                    { latitudd = String.Concat(gradoslat,"º", minlat,"'", seclat,"''", 'N'); }
+                    { latitudd = String.Concat(gradoslat,"º", minlat,"'", seclat,'"', 'N'); }
                     else
-                    { latitudd = String.Concat(gradoslat, 'º', minlat, "'", seclat, "''", 'S'); }
+                    { latitudd = String.Concat(gradoslat, 'º', minlat, "'", seclat, '"', 'S'); }
                     if (longitud > 0)
-                    { longitudd = String.Concat(gradoslon,'º', minlon,"'", seclon,"''", 'E'); }
+                    { longitudd = String.Concat(gradoslon,'º', minlon,"'", seclon,'"', 'E'); }
                     else
-                    { longitudd = String.Concat(gradoslon, 'º', minlon, "'", seclon, "''", 'O'); }
+                    { longitudd = String.Concat(gradoslon, 'º', minlon, "'", seclon, '"', 'O'); }
 
                     coordinates = String.Concat(latitudd, longitudd);
 
@@ -482,15 +527,20 @@ namespace LibreriaClases
                     DI_210 = false;
                     char[] octet = DI_210_buffer1.ToArray();
                     if (octet[3] == '1')
-                    { LINK = " COCKPIT_DISPLAY_OF_TRAFFIC_INFO"; }
-                    else if (octet[4] == '1')
-                    { LINK = "MODE_S"; }
-                    else if (octet[5] == '1')
-                    { LINK = "UAT"; }
-                    else if (octet[6] == '1')
-                    { LINK = "VDL_MODE_4"; }
-                    else if (octet[7] == '1')
-                    { LINK = "OTHER"; }
+                    { LINK_DTI = " Aircraft equiped with CDTI"; }
+                    else {LINK_DTI = "Uknown"; }
+                    if (octet[4] == '1')
+                    { LINK_MDS = "Used"; }
+                    else {LINK_MDS = "Not used"; }
+                    if (octet[5] == '1')
+                    { LINK_UAT = "Used"; }
+                    else {LINK_UAT = "Not used"; }
+                    if (octet[6] == '1')
+                    { LINK_VDL = "Used"; }
+                    else { LINK_VDL = "Not used";}
+                    if (octet[7] == '1')
+                    { LINK_OTR = "Used"; }
+                    else {LINK_OTR = "Not used"; }
                 }
                 else if (DI_230 == true)
                 {
@@ -509,7 +559,7 @@ namespace LibreriaClases
                     string octetos = String.Concat(DI_145_buffer1, DI_145_buffer2);
                     //double FL = Convert.ToDouble(Convert.ToInt32(octetos, 2)/4);
                     double FL = Convert.ToDouble(CA2todec(octetos)) / 4;
-                    LEVEL = String.Format("{0}FL", FL);
+                    LEVEL = String.Format("{0}", FL);
                 }
                 else if (DI_150 == true)
                 {
@@ -548,7 +598,7 @@ namespace LibreriaClases
 
                     string octets = String.Concat(DI_157_buffer1, DI_157_buffer2);
                     int VR_prov = Convert.ToInt32(octets, 2);
-                    VR = String.Format("{0} FT/M",VR_prov*6.25);
+                    VR = String.Format("{0}",VR_prov*6.25);
                 }
                 else if (DI_160 == true)//VERDADERO
                 {
@@ -567,8 +617,8 @@ namespace LibreriaClases
                     int oc1 = Convert.ToInt32(octet1,2);
                     int oc2 = Convert.ToInt32(octet2,2);
 
-                    SPD = String.Format("{0}KT", oc1*0.22);
-                    AGL = String.Format("{0}DEG", oc2*0.0055);
+                    SPD = String.Format("{0}", oc1*0.22);
+                    AGL = String.Format("{0}", oc2*0.0055);
                 }
                 else if (DI_165 == true)
                 {
@@ -872,7 +922,7 @@ namespace LibreriaClases
 
         public DataTable actualizarTabla(DataTable dt)
         {
-            dt.Rows.Add(SAC, SIC, TARGET, myTime, latitud, longitud,coordinates, VR, LINK, LEVEL, SPD, AGL, "No sé", ADDRESS, ACID_palabra, VA);
+            dt.Rows.Add(SAC, SIC, "Click for more information", myTime, latitud, longitud,coordinates, VR, "Click for more information", LEVEL, SPD, AGL, "Click for more information", ADDRESS, ACID_palabra, VA);
             return dt;
         }
     }

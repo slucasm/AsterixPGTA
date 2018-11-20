@@ -29,6 +29,9 @@ namespace Asterix
 
         private void TablaVuelos_Load(object sender, EventArgs e)
         {
+            listaCAT10 = listas.getListCAT10();
+            listaCAT20 = listas.getListCAT20();
+            listaCAT21 = listas.getListCAT21();
             tablaCAT10 = listas.getTablaCAT10();
             tablaCAT20 = listas.getTablaCAT20();
             tablaCAT21 = listas.getTablaCAT21();
@@ -41,6 +44,33 @@ namespace Asterix
             dataGridView_CAT10.RowHeadersVisible = false;
             dataGridView_CAT20.RowHeadersVisible = false;
             dataGridView_CAT21.RowHeadersVisible = false;
+
+            dataGridView_CAT10.RowsDefaultCellStyle.BackColor = Color.FromArgb(45, 45, 48);
+            dataGridView_CAT20.RowsDefaultCellStyle.BackColor = Color.FromArgb(45, 45, 48);
+            dataGridView_CAT21.RowsDefaultCellStyle.BackColor = Color.FromArgb(45, 45, 48);
+
+            dataGridView_CAT10.DefaultCellStyle.ForeColor = Color.White;
+            dataGridView_CAT20.DefaultCellStyle.ForeColor = Color.White;
+            dataGridView_CAT21.DefaultCellStyle.ForeColor = Color.White;
+
+            dataGridView_CAT10.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView_CAT20.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView_CAT21.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            dataGridView_CAT10.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(0, 124, 191);
+            dataGridView_CAT20.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(0, 124, 191);
+            dataGridView_CAT21.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(0, 124, 191);
+
+            dataGridView_CAT10.EnableHeadersVisualStyles = false;
+            dataGridView_CAT20.EnableHeadersVisualStyles = false;
+            dataGridView_CAT21.EnableHeadersVisualStyles = false;
+
+            dataGridView_CAT10.DefaultCellStyle.SelectionBackColor = Color.FromArgb(45, 45, 48);
+            dataGridView_CAT20.DefaultCellStyle.SelectionBackColor = Color.FromArgb(45, 45, 48);
+            dataGridView_CAT21.DefaultCellStyle.SelectionBackColor = Color.FromArgb(45, 45, 48);
+
+
+
             
 
             if (tablaCAT10.Rows.Count != 0)
@@ -51,6 +81,7 @@ namespace Asterix
                 dataGridView_CAT10.Visible = true;
                 dataGridView_CAT20.Visible = false;
                 dataGridView_CAT21.Visible = false;
+                dataGridView_CAT10.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
                 
             }
             else if (tablaCAT20.Rows.Count != 0)
@@ -61,6 +92,7 @@ namespace Asterix
                 dataGridView_CAT10.Visible = false;
                 dataGridView_CAT20.Visible = true;
                 dataGridView_CAT21.Visible = false;
+                dataGridView_CAT20.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             }
             else if (tablaCAT21.Rows.Count != 0)
             {
@@ -70,6 +102,7 @@ namespace Asterix
                 dataGridView_CAT10.Visible = false;
                 dataGridView_CAT20.Visible = false;
                 dataGridView_CAT21.Visible = true;
+                dataGridView_CAT21.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             }
             
 
@@ -85,6 +118,8 @@ namespace Asterix
                 dataGridView_CAT10.Visible = true;
                 dataGridView_CAT20.Visible = false;
                 dataGridView_CAT21.Visible = false;
+                dataGridView_CAT10.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+                
             }
             else
             {
@@ -103,6 +138,7 @@ namespace Asterix
                 dataGridView_CAT10.Visible = false;
                 dataGridView_CAT20.Visible = true;
                 dataGridView_CAT21.Visible = false;
+                dataGridView_CAT20.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             }
             else
             {
@@ -121,6 +157,7 @@ namespace Asterix
                 dataGridView_CAT10.Visible = false;
                 dataGridView_CAT20.Visible = false;
                 dataGridView_CAT21.Visible = true;
+                dataGridView_CAT21.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             }
             else
             {
@@ -168,6 +205,66 @@ namespace Asterix
             dataGridView_CAT10.DataSource = tablaCAT10;
             dataGridView_CAT20.DataSource = tablaCAT20;
             dataGridView_CAT21.DataSource = tablaCAT21;
+            if (listaCAT10.Count != 0) { dataGridView_CAT10.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells; }
+            if (listaCAT20.Count != 0) { dataGridView_CAT20.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells; }
+            if (listaCAT21.Count != 0) { dataGridView_CAT21.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells; }
+            
+            
+            
+        }
+
+        private void dataGridView_CAT21_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int columna = dataGridView_CAT21.CurrentCell.ColumnIndex;
+            int fila = dataGridView_CAT21.CurrentCell.RowIndex;
+            if (columna == 2)
+            { 
+                CAT21_TARGET target = new CAT21_TARGET(listaCAT21[fila]);
+                target.Show();
+            }
+            else if (columna == 8)
+            {
+                CAT21_LINK link = new CAT21_LINK(listaCAT21[fila]);
+                link.Show();
+            }
+            else if (columna == 12)
+            {
+                CAT21_FOM fom = new CAT21_FOM(listaCAT21[fila]);
+                fom.Show();
+            }
+        }
+
+        private void dataGridView_CAT20_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int columna = dataGridView_CAT20.CurrentCell.ColumnIndex;
+            int fila = dataGridView_CAT20.CurrentCell.RowIndex;
+            if (columna == 8)
+            {
+                CAT20_TARGET target = new CAT20_TARGET(listaCAT20[fila]);
+                target.Show();
+            }
+            else if (columna == 10)
+            {
+                CAT20_TRACKSTATUS trackstatus = new CAT20_TRACKSTATUS(listaCAT20[fila]);
+                trackstatus.Show();
+            }
+
+        }
+
+        private void dataGridView_CAT10_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int columna = dataGridView_CAT10.CurrentCell.ColumnIndex;
+            int fila = dataGridView_CAT10.CurrentCell.RowIndex;
+            if (columna == 9)
+            {
+                CAT10_TARGET target = new CAT10_TARGET(listaCAT10[fila]);
+                target.Show();
+            }
+            else if (columna == 11)
+            {
+                CAT10_TRACKSTATUS trackstatus = new CAT10_TRACKSTATUS(listaCAT10[fila]);
+                trackstatus.Show();
+            }
         }
 
         

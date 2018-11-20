@@ -17,25 +17,41 @@ namespace LibreriaClases
         string DI_010_buffer1, DI_010_buffer2, DI_020_buffer1, DI_020_buffer2, DI_140_buffer1, DI_140_buffer2, DI_140_buffer3, DI_041_buffer1, DI_041_buffer2, DI_041_buffer3, DI_041_buffer4, DI_041_buffer5, DI_041_buffer6, DI_041_buffer7, DI_041_buffer8, DI_042_buffer1, DI_042_buffer2, DI_042_buffer3, DI_042_buffer4, DI_042_buffer5, DI_042_buffer6, DI_161_buffer1, DI_161_buffer2, DI_170_buffer1, DI_170_buffer2, DI_070_buffer1, DI_070_buffer2, DI_202_buffer1, DI_202_buffer2, DI_202_buffer3, DI_202_buffer4, DI_090_buffer1, DI_090_buffer2, DI_100_buffer1, DI_100_buffer2, DI_100_buffer3, DI_100_buffer4, DI_220_buffer1, DI_220_buffer2, DI_220_buffer3, DI_245_buffer1, DI_245_buffer2, DI_245_buffer3, DI_245_buffer4, DI_245_buffer5, DI_245_buffer6, DI_245_buffer7, DI_110_buffer1, DI_110_buffer2, DI_105_buffer1, DI_105_buffer2, DI_210_buffer1, DI_210_buffer2, DI_300_buffer1, DI_310_buffer1, DI_500_buffer1, DI_400_buffer1, DI_250_buffer1, DI_230_buffer1, DI_230_buffer2, DI_260_buffer1, DI_260_buffer2, DI_260_buffer3, DI_260_buffer4, DI_260_buffer5, DI_260_buffer6, DI_260_buffer7, DI_030_buffer1, DI_030_buffer2, DI_055_buffer1, DI_050_buffer1, DI_050_buffer2, DI_500_buffer2, DI_500_buffer3, DI_500_buffer4, DI_500_buffer5, DI_500_buffer6, DI_500_buffer7, DI_500_buffer8, DI_500_buffer9, DI_500_buffer10, DI_500_buffer11, DI_500_buffer12, DI_500_buffer13, DI_500_buffer14, DI_500_buffer15, DI_400_buffer2, DI_400_buffer3, DI_400_buffer4, DI_400_buffer5, DI_400_buffer6, DI_400_buffer7, DI_400_buffer8, DI_400_buffer9;
 
 
-        int SAC, SIC;
-        string MLAT_type;
-        string D020_RAB,D020_SPI,D020_CHN,D020_GBS,D020_CRT,D020_SIM,D020_TST;
-        string Time;
-        double X, Y;
-        string TRACK_NUM;
-        string TRACKSTATUS_CNF, TRACKSTATUS_TRE, TRACKSTATUS_CST, TRACKSTATUS_CDM, TRACKSTATUS_MAH, TRACKSTATUS_STH, TRACKSTATUS_GHO;
-        string MODE_3A;
-        double VX, VY;
-        double MODE_C;
-        string ADDRESS;
-        string ACID_palabra;
-        int RECEIVERS;
+        public int SAC, SIC;
+        public string MLAT_type;
+        public string D020_SSR, D020_MS, D020_HF, D020_VDL4, D020_UAT, D020_DME, D020_OT, D020_RAB, D020_SPI, D020_CHN, D020_GBS, D020_CRT, D020_SIM, D020_TST;
+        public string Time;
+        public double X, Y;
+        public string TRACK_NUM;
+        public string TRACKSTATUS_CNF, TRACKSTATUS_TRE, TRACKSTATUS_CST, TRACKSTATUS_CDM, TRACKSTATUS_MAH, TRACKSTATUS_STH, TRACKSTATUS_GHO;
+        public string MODE_3A;
+        public double VX, VY;
+        public double MODE_C;
+        public string ADDRESS;
+        public string ACID_palabra;
+        public int RECEIVERS;
 
         int CAT;
 
-        TimeSpan myTime;
+        public TimeSpan myTime;
 
-        string coordinates;
+        public string coordinates;
+
+        public Tuple<string, string, string, string, string, string, string> getTarget1()
+        {
+            Tuple<string, string, string, string, string, string, string> tuple = new Tuple<string, string, string, string, string, string, string>(D020_SSR, D020_MS, D020_HF, D020_VDL4, D020_UAT, D020_DME, D020_OT);
+            return tuple;
+        }
+        public Tuple<string, string, string, string, string, string, string> getTarget2()
+        {
+            Tuple<string, string, string, string, string, string, string> tuple = new Tuple<string, string, string, string, string, string, string>(D020_RAB, D020_SPI, D020_CHN, D020_GBS, D020_CRT, D020_SIM, D020_TST);
+            return tuple;
+        }
+        public Tuple<string, string, string, string, string, string, string> getTrackstatus()
+        {
+            Tuple<string, string, string, string, string, string, string> tuple = new Tuple<string, string, string, string, string, string, string>(TRACKSTATUS_CNF, TRACKSTATUS_TRE, TRACKSTATUS_CST, TRACKSTATUS_CDM, TRACKSTATUS_MAH, TRACKSTATUS_STH, TRACKSTATUS_GHO);
+            return tuple;
+        }
 
         public int getCAT()
         {
@@ -317,32 +333,39 @@ namespace LibreriaClases
                     DI_020 = false;
                     if (prov[0] == '1')
                     {
-                        MLAT_type = "SSR";
+                        D020_SSR = "Non-Mode S 1090MHz multilateration";
                     }
-                    else if (prov[1] == '1')
+                    else { D020_SSR = "no Non-Mode S 1090MHz multilateration"; }
+                    if (prov[1] == '1')
                     {
-                        MLAT_type = "Mode-S";
+                        D020_MS = "Mode-S 1090 MHz multilateration";
                     }
-                    else if (prov[2] == '1')
+                    else { D020_MS = "no Mode-s 1090 MHz multilateration"; }
+                    if (prov[2] == '1')
                     {
-                        MLAT_type = "HF";
+                        D020_HF = "HF multilateration";
                     }
-                    else if (prov[3] == '1')
+                    else { D020_HF = "no HF multilateration"; }
+                    if (prov[3] == '1')
                     {
-                        MLAT_type = "VDL4";
+                        D020_VDL4 = "VDL Mode 4 multilateration";
                     }
-                    else if (prov[4] == '1')
+                    else { D020_VDL4 = "no VDL Mode 4 multilateration"; }
+                    if (prov[4] == '1')
                     {
-                        MLAT_type = "UAT";
+                        D020_UAT = "UAT multilateration";
                     }
-                    else if (prov[5] == '1')
+                    else { D020_UAT = "no UAT multilateration"; }
+                    if (prov[5] == '1')
                     {
-                        MLAT_type = "DME";
+                        D020_DME = "DME/TACAN multilateration";
                     }
-                    else if (prov[6] == '1')
+                    else { D020_DME = "no DME/TACAN multilateration"; }
+                    if (prov[6] == '1')
                     {
-                        MLAT_type = "OT";
+                        D020_OT = "Other Tecnology Multilateration";
                     }
+                    else { D020_OT = "No Other Tecnology Multilateration"; }
 
                     if (DI_020_buffer2 != null)
                     {
@@ -487,19 +510,19 @@ namespace LibreriaClases
                     string[] separados2lon = Convert.ToString(mindeclon).Split(',');
                     string minlat = separados2lat[0];
                     string minlon = separados2lon[0];
-                    double segdeclat = Convert.ToDouble(String.Concat("0.", separados2lat[1])) * 60;
-                    double segdeclon = Convert.ToDouble(String.Concat("0.", separados2lon[1])) * 60;
-                    string seclat = Convert.ToString(Math.Round(segdeclat, 3));
-                    string seclon = Convert.ToString(Math.Round(segdeclon, 3));
+                    double segdeclat = Convert.ToDouble(String.Concat("0,", separados2lat[1])) * 60;
+                    double segdeclon = Convert.ToDouble(String.Concat("0,", separados2lon[1])) * 60;
+                    string seclat = (Math.Round(segdeclat, 3)).ToString(System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
+                    string seclon = (Math.Round(segdeclon, 3)).ToString(System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
                     string latitudd, longitudd;
                     if (latitud > 0)
-                    { latitudd = String.Concat(gradoslat, "º", minlat, "'", seclat, "''", 'N'); }
+                    { latitudd = String.Concat(gradoslat, "º", minlat, "'", seclat, '"', 'N'); }
                     else
-                    { latitudd = String.Concat(gradoslat, 'º', minlat, "'", seclat, "''", 'S'); }
+                    { latitudd = String.Concat(gradoslat, 'º', minlat, "'", seclat, '"', 'S'); }
                     if (longitud > 0)
-                    { longitudd = String.Concat(gradoslon, 'º', minlon, "'", seclon, "''", 'E'); }
+                    { longitudd = String.Concat(gradoslon, 'º', minlon, "'", seclon, '"', 'E'); }
                     else
-                    { longitudd = String.Concat(gradoslon, 'º', minlon, "'", seclon, "''", 'O'); }
+                    { longitudd = String.Concat(gradoslon, 'º', minlon, "'", seclon, '"', 'O'); }
 
                     coordinates = String.Concat(latitudd, longitudd);                  
 
@@ -1046,7 +1069,7 @@ namespace LibreriaClases
 
         public DataTable actualizarTabla(DataTable dt)
         {
-            dt.Rows.Add(SAC, SIC, MLAT_type, myTime, X, Y,coordinates, VX, VY, "No sé", TRACK_NUM, "hh", MODE_3A, MODE_C, ADDRESS, ACID_palabra, RECEIVERS);
+            dt.Rows.Add(SAC, SIC, myTime, X, Y,coordinates, VX, VY, "Click for more information", TRACK_NUM, "Click for more information", MODE_3A, MODE_C, ADDRESS, ACID_palabra, RECEIVERS);
             return dt;
         }
     }
