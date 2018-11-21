@@ -31,7 +31,7 @@ namespace LibreriaClases
         public string ACID_palabra;
         public int RECEIVERS;
 
-        int CAT;
+        public int CAT;
 
         public TimeSpan myTime;
 

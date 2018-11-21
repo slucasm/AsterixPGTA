@@ -44,6 +44,7 @@
     <Compile Include="CAT20.cs" />
     <Compile Include="CAT21.cs" />
     <Compile Include="Fichero.cs" />
+    <Compile Include="Flight.cs" />
     <Compile Include="ManageListas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

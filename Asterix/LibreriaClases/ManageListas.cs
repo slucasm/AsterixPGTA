@@ -15,6 +15,10 @@ namespace LibreriaClases
         DataTable tablaCAT20 = new DataTable();
         DataTable tablaCAT21 = new DataTable();
 
+        DataTable tablaSingle = new DataTable();
+
+        List<Flight> listFlights = new List<Flight>();
+
         public ManageListas(List<CAT10> listaCAT10, List<CAT20> listaCAT20, List<CAT21> listaCAT21)
         {
             this.listaCAT10 = listaCAT10;
@@ -57,6 +61,8 @@ namespace LibreriaClases
                     listaCAT21[k].resolver_dataitems();
                 }
             }
+
+
         }
 
         public void actualizarTabla()
@@ -161,6 +167,89 @@ namespace LibreriaClases
         public List<CAT21> getListCAT21()
         {
             return listaCAT21;
+        }
+
+
+        public void singleList()
+        {
+            if (listaCAT10.Count != 0 && listaCAT21.Count != 0)
+            {
+                int x = 0;
+                int z = 0;
+                while (true)
+                {
+                    if (listaCAT10[x].myTime < listaCAT21[z].myTime)
+                    {
+                        this.listFlights.Add(new Flight(listaCAT10[x].CAT,listaCAT10[x].ACID_palabra,listaCAT10[x].ADDRESS,listaCAT10[x].myTime,listaCAT10[x].coordinates,listaCAT10[x].X,listaCAT10[x].Y,x));
+                        x++;
+                    }
+                    else
+                    {
+                        this.listFlights.Add(new Flight(listaCAT21[z].CAT, listaCAT21[z].ACID_palabra, listaCAT21[z].ADDRESS, listaCAT21[z].myTime, listaCAT21[z].coordinates, listaCAT21[z].latitud, listaCAT21[z].longitud, z));
+                        z++;                   
+                    }
+                    if (x == listaCAT10.Count)
+                    {
+                        for (int i = x;  i < listaCAT10.Count; i++)
+                        {
+                            this.listFlights.Add(new Flight(listaCAT10[i].CAT, listaCAT10[i].ACID_palabra, listaCAT10[i].ADDRESS, listaCAT10[i].myTime, listaCAT10[i].coordinates, listaCAT10[i].X, listaCAT10[i].Y, i));
+                        }
+                        break;
+                    }
+
+                    if (z == listaCAT21.Count)
+                    {
+                        for (int y = z; y < listaCAT21.Count; y++)
+                        {
+                            this.listFlights.Add(new Flight(listaCAT21[y].CAT, listaCAT21[y].ACID_palabra, listaCAT21[y].ADDRESS, listaCAT21[y].myTime, listaCAT21[y].coordinates, listaCAT21[y].latitud, listaCAT21[y].longitud, y));
+                        }
+                        break;
+                    }
+                }
+            }
+
+            else if (listaCAT10.Count != 0)
+            {
+                for (int a = 0; a < listaCAT10.Count; a++)
+                {
+                    this.listFlights.Add(new Flight(listaCAT10[a].CAT, listaCAT10[a].ACID_palabra, listaCAT10[a].ADDRESS, listaCAT10[a].myTime, listaCAT10[a].coordinates, listaCAT10[a].X, listaCAT10[a].Y, a));
+                }
+            }
+            else if (listaCAT20.Count != 0)
+            {
+                for (int a = 0; a < listaCAT20.Count; a++)
+                {
+                    this.listFlights.Add(new Flight(listaCAT20[a].CAT, listaCAT20[a].ACID_palabra, listaCAT20[a].ADDRESS, listaCAT20[a].myTime, listaCAT20[a].coordinates, listaCAT20[a].X, listaCAT20[a].Y, a));
+                }
+            }
+            else if (listaCAT21.Count != 0)
+            {
+                for (int a = 0; a < listaCAT21.Count; a++)
+                {
+                    this.listFlights.Add(new Flight(listaCAT21[a].CAT, listaCAT21[a].ACID_palabra, listaCAT21[a].ADDRESS, listaCAT21[a].myTime, listaCAT21[a].coordinates, listaCAT21[a].latitud, listaCAT21[a].longitud, a));
+                }
+            }
+        }
+
+        public List<Flight> getSingleList()
+        {
+            return this.listFlights;
+        }
+
+        public DataTable createSingleTable()
+        {
+            tablaSingle.Columns.Add("#", typeof(int));
+            tablaSingle.Columns.Add("CAT", typeof(int));
+            tablaSingle.Columns.Add("ACID", typeof(string));
+            tablaSingle.Columns.Add("Time", typeof(TimeSpan));
+            tablaSingle.Columns.Add("Coordinates", typeof(string));
+            tablaSingle.Columns.Add("Real index", typeof(int));
+
+            for (int i = 0; i < listFlights.Count; i++)
+            {
+                listFlights[i].actualizarTabla(tablaSingle, i);
+            }
+            return tablaSingle;
         }
     }
 }

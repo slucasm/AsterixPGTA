@@ -29,7 +29,7 @@ namespace LibreriaClases
         public string VA;
         public double latitud, longitud;
 
-        int CAT;
+        public int CAT;
 
         public TimeSpan myTime;
 

@@ -30,7 +30,7 @@ namespace LibreriaClases
         public string ACID_palabra;
         public double FLIGHTLEVEL;
 
-        int CAT;
+        public int CAT;
 
         public TimeSpan myTime;
 
@@ -914,6 +914,7 @@ namespace LibreriaClases
             {
                 letradevolver = "9";
             }
+            //else { letradevolver = "0"; }
             return letradevolver;
         }
 
@@ -928,7 +929,7 @@ namespace LibreriaClases
             string let7 = ACID_oneletter(oc7);
             string let8 = ACID_oneletter(oc8);
 
-            string final = String.Concat(let1, let2, let3, let4, let5, let6, let7,oc8);
+            string final = String.Concat(let1, let2, let3, let4, let5, let6, let7,let8);
             return final;
         }
         public int CA2todec(string CA2)

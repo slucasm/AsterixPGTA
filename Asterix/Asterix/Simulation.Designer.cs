@@ -45,6 +45,7 @@
             this.pictureBox_start = new System.Windows.Forms.PictureBox();
             this.pictureBox_pause = new System.Windows.Forms.PictureBox();
             this.pictureBox_restart = new System.Windows.Forms.PictureBox();
+            this.dataGridView_flights = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_speedtime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).BeginInit();
             this.panel_vertical.SuspendLayout();
@@ -54,6 +55,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_start)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_pause)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_restart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_flights)).BeginInit();
             this.SuspendLayout();
             // 
             // button_open
@@ -93,7 +95,7 @@
             // 
             // trackBar_speedtime
             // 
-            this.trackBar_speedtime.Location = new System.Drawing.Point(591, 258);
+            this.trackBar_speedtime.Location = new System.Drawing.Point(642, 136);
             this.trackBar_speedtime.Maximum = 1000;
             this.trackBar_speedtime.Minimum = 1;
             this.trackBar_speedtime.Name = "trackBar_speedtime";
@@ -246,12 +248,25 @@
             this.pictureBox_restart.TabIndex = 10;
             this.pictureBox_restart.TabStop = false;
             // 
+            // dataGridView_flights
+            // 
+            this.dataGridView_flights.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dataGridView_flights.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_flights.Location = new System.Drawing.Point(300, 250);
+            this.dataGridView_flights.Name = "dataGridView_flights";
+            this.dataGridView_flights.RowHeadersVisible = false;
+            this.dataGridView_flights.Size = new System.Drawing.Size(497, 114);
+            this.dataGridView_flights.TabIndex = 11;
+            this.dataGridView_flights.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_flights_CellContentClick);
+            this.dataGridView_flights.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_flights_CellDoubleClick);
+            // 
             // Simulation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(1300, 650);
+            this.Controls.Add(this.dataGridView_flights);
             this.Controls.Add(this.pictureBox_restart);
             this.Controls.Add(this.pictureBox_pause);
             this.Controls.Add(this.pictureBox_start);
@@ -274,6 +289,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_start)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_pause)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_restart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_flights)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -296,6 +312,7 @@
         private System.Windows.Forms.PictureBox pictureBox_start;
         private System.Windows.Forms.PictureBox pictureBox_pause;
         private System.Windows.Forms.PictureBox pictureBox_restart;
+        private System.Windows.Forms.DataGridView dataGridView_flights;
     }
 }
 

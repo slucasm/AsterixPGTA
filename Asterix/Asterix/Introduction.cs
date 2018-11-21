@@ -51,6 +51,7 @@ namespace Asterix
             tablaCAT10 = listas.getTablaCAT10();
             tablaCAT20 = listas.getTablaCAT20();
             tablaCAT21 = listas.getTablaCAT21();
+            listas.singleList();
             MessageBox.Show("Fichero decodificado correctamente");
         }
 
