@@ -35,5 +35,10 @@ namespace Asterix
             label_ACID.Text = "ACID: " + cat20.ACID_palabra;
             label_receivers.Text = "Nº receivers = " + cat20.RECEIVERS.ToString();
         }
+
+        private void pictureBox_close_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

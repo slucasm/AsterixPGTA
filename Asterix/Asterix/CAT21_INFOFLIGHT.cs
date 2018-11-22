@@ -35,5 +35,10 @@ namespace Asterix
             label_VA.Text = "VA = " + cat21.VA;
 
         }
+
+        private void pictureBox_close_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

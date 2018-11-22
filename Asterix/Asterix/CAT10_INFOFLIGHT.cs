@@ -35,5 +35,10 @@ namespace Asterix
             label_ACID.Text = "ACID: " + cat10.ACID_palabra;
             label_FL.Text = "Flight Level = " + cat10.FLIGHTLEVEL.ToString();
         }
+
+        private void pictureBox_close_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }
