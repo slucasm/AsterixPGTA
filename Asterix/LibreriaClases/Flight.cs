@@ -25,6 +25,7 @@ namespace LibreriaClases
         public string ACID, ADDRESS, coordinates;
         public double lat, lon;
         public TimeSpan time;
+        public List<String> listacoordenadas;
 
         public DataTable actualizarTabla(DataTable dt,int i)
         {

@@ -173,6 +173,7 @@ namespace Asterix
         {
             TablaVuelos f = new TablaVuelos(listas);
             f.Show();
+            this.Hide();
         }
 
         private void pictureBox_close_Click(object sender, EventArgs e)
@@ -184,6 +185,7 @@ namespace Asterix
         {
             Introduction i = new Introduction();
             i.Show();
+            this.Hide();
         }
 
         private void pictureBox_start_Click(object sender, EventArgs e)
@@ -221,22 +223,40 @@ namespace Asterix
         private void dataGridView_flights_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int fila = dataGridView_flights.CurrentCell.RowIndex;
+            List<String> listaCoordenades = createListCoordenadas(fila);
 
             if (listFLights[fila].CAT == 10)
             {
-                CAT10_INFOFLIGHT cat10_infoflight = new CAT10_INFOFLIGHT(listaCAT10[listFLights[fila].realindex]);
+                CAT10_INFOFLIGHT cat10_infoflight = new CAT10_INFOFLIGHT(listaCAT10[listFLights[fila].realindex],listaCoordenades);
                 cat10_infoflight.Show();
             }
             else if (listFLights[fila].CAT == 20)
             {
-                CAT20_INFOFLIGHT cat20_infoflight = new CAT20_INFOFLIGHT(listaCAT20[listFLights[fila].realindex]);
+                CAT20_INFOFLIGHT cat20_infoflight = new CAT20_INFOFLIGHT(listaCAT20[listFLights[fila].realindex], listaCoordenades);
                 cat20_infoflight.Show();
             }
             else if (listFLights[fila].CAT == 21)
             {
-                CAT21_INFOFLIGHT cat21_infoflight = new CAT21_INFOFLIGHT(listaCAT21[listFLights[fila].realindex]);
+                CAT21_INFOFLIGHT cat21_infoflight = new CAT21_INFOFLIGHT(listaCAT21[listFLights[fila].realindex], listaCoordenades);
                 cat21_infoflight.Show();
             }
+        }
+
+        private List<String> createListCoordenadas(int fila)
+        {
+            List<String> listaCoordenadas = new List<String>();
+
+            string nombre = listFLights[fila].ACID;
+            listaCoordenadas.Add(listFLights[fila].coordinates);
+            for (int i = fila+1; i < listFLights.Count; i++)
+            {
+                if (nombre.Equals(listFLights[i].ACID))
+                {
+                    listaCoordenadas.Add(listFLights[i].coordinates);
+                }
+            }
+
+            return listaCoordenadas;
         }
 
     }

@@ -12,12 +12,14 @@ namespace Asterix
 {
     public partial class CAT10_INFOFLIGHT : Form
     {
-        public CAT10_INFOFLIGHT(CAT10 cat10)
+        public CAT10_INFOFLIGHT(CAT10 cat10,List<String> listaCoordenadas)
         {
             InitializeComponent();
             this.cat10 = cat10;
+            this.listaCoordenadas = listaCoordenadas;
         }
         CAT10 cat10;
+        List<String> listaCoordenadas;
         private void CAT10_INFOFLIGHT_Load(object sender, EventArgs e)
         {
             label_SAC.Text = "SAC = " + cat10.SAC.ToString();

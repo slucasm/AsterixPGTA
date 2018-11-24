@@ -35,6 +35,7 @@ namespace LibreriaClases
         public TimeSpan myTime;
 
         public string coordinates;
+        
 
 
         public Tuple<string, string, string, string, string, string, string> getTarget1()

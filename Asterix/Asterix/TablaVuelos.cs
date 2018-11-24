@@ -175,12 +175,14 @@ namespace Asterix
         {
             Simulation s = new Simulation(listas);
             s.Show();
+            this.Hide();
         }
 
         private void button_introduction_Click(object sender, EventArgs e)
         {
             Introduction i = new Introduction();
             i.Show();
+            this.Hide();
         }
 
         private void button_open_Click(object sender, EventArgs e)

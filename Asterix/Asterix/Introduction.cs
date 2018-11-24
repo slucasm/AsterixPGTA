@@ -61,6 +61,7 @@ namespace Asterix
             {
                 Simulation simulation = new Simulation(listas);
                 simulation.Show();
+                this.Hide();
             }
             else
             {
@@ -74,6 +75,7 @@ namespace Asterix
             {
                 TablaVuelos f = new TablaVuelos(listas);
                 f.Show();
+                this.Hide();
             }
             else
             {
