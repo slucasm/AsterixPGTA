@@ -7,21 +7,42 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using LibreriaClases;
+using GMap.NET;
+using GMap.NET.MapProviders;
+using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
 
 namespace Asterix
 {
     public partial class CAT10_INFOFLIGHT : Form
     {
-        public CAT10_INFOFLIGHT(CAT10 cat10,List<String> listaCoordenadas)
+        public CAT10_INFOFLIGHT(CAT10 cat10, List<PointLatLng> listaCoordenadas)
         {
             InitializeComponent();
             this.cat10 = cat10;
             this.listaCoordenadas = listaCoordenadas;
         }
         CAT10 cat10;
-        List<String> listaCoordenadas;
+        List<PointLatLng> listaCoordenadas;
+        GMapOverlay markers = new GMapOverlay("markers");
+
         private void CAT10_INFOFLIGHT_Load(object sender, EventArgs e)
         {
+            gMap_mapa.MapProvider = GMapProviders.GoogleMap;
+            gMap_mapa.DragButton = MouseButtons.Left;
+            gMap_mapa.Zoom = 5;
+            gMap_mapa.MinZoom = 1;
+            gMap_mapa.MaxZoom = 50;
+            gMap_mapa.Position = new PointLatLng(41.289182, 2.0746423);
+
+            for (int i = 0; i < listaCoordenadas.Count; i++)
+            {
+                Bitmap bmpMarker = (Bitmap)Image.FromFile("avion-negro.png");
+                GMapMarker marker = new GMarkerGoogle(listaCoordenadas[i], bmpMarker);
+                markers.Markers.Add(marker);
+                gMap_mapa.Overlays.Add(markers);
+            }
+
             label_SAC.Text = "SAC = " + cat10.SAC.ToString();
             label_SIC.Text = "SIC = " + cat10.SIC.ToString();
             label_Message.Text = "Message: " + cat10.Message_type;

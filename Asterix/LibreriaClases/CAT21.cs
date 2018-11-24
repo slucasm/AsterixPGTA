@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
+using GMap.NET.MapProviders;
+using GMap.NET;
 
 namespace LibreriaClases
 {
@@ -28,6 +30,7 @@ namespace LibreriaClases
         public string ACID_palabra;
         public string VA;
         public double latitud, longitud;
+        public PointLatLng punto;
 
         public int CAT;
 
@@ -425,6 +428,8 @@ namespace LibreriaClases
 
                     latitud = CA2todec(lat)*(2.145767 * Math.Pow(10,-5));
                     longitud = CA2todec(lon) * (2.145767 * Math.Pow(10, -5));
+
+                    punto = new PointLatLng(latitud, longitud);
 
                     string[] separados1lat;
                     string[] separados1lon;

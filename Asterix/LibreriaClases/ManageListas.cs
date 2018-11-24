@@ -180,19 +180,19 @@ namespace LibreriaClases
                 {
                     if (listaCAT10[x].myTime < listaCAT21[z].myTime)
                     {
-                        this.listFlights.Add(new Flight(listaCAT10[x].CAT,listaCAT10[x].ACID_palabra,listaCAT10[x].ADDRESS,listaCAT10[x].myTime,listaCAT10[x].coordinates,listaCAT10[x].X,listaCAT10[x].Y,x));
+                        this.listFlights.Add(new Flight(listaCAT10[x].CAT,listaCAT10[x].ACID_palabra,listaCAT10[x].ADDRESS,listaCAT10[x].myTime,listaCAT10[x].coordinates,listaCAT10[x].X,listaCAT10[x].Y,x,listaCAT10[x].punto));
                         x++;
                     }
                     else
                     {
-                        this.listFlights.Add(new Flight(listaCAT21[z].CAT, listaCAT21[z].ACID_palabra, listaCAT21[z].ADDRESS, listaCAT21[z].myTime, listaCAT21[z].coordinates, listaCAT21[z].latitud, listaCAT21[z].longitud, z));
+                        this.listFlights.Add(new Flight(listaCAT21[z].CAT, listaCAT21[z].ACID_palabra, listaCAT21[z].ADDRESS, listaCAT21[z].myTime, listaCAT21[z].coordinates, listaCAT21[z].latitud, listaCAT21[z].longitud, z,listaCAT21[z].punto));
                         z++;                   
                     }
                     if (x == listaCAT10.Count)
                     {
                         for (int i = x;  i < listaCAT10.Count; i++)
                         {
-                            this.listFlights.Add(new Flight(listaCAT10[i].CAT, listaCAT10[i].ACID_palabra, listaCAT10[i].ADDRESS, listaCAT10[i].myTime, listaCAT10[i].coordinates, listaCAT10[i].X, listaCAT10[i].Y, i));
+                            this.listFlights.Add(new Flight(listaCAT10[i].CAT, listaCAT10[i].ACID_palabra, listaCAT10[i].ADDRESS, listaCAT10[i].myTime, listaCAT10[i].coordinates, listaCAT10[i].X, listaCAT10[i].Y, i,listaCAT10[i].punto));
                         }
                         break;
                     }
@@ -201,7 +201,7 @@ namespace LibreriaClases
                     {
                         for (int y = z; y < listaCAT21.Count; y++)
                         {
-                            this.listFlights.Add(new Flight(listaCAT21[y].CAT, listaCAT21[y].ACID_palabra, listaCAT21[y].ADDRESS, listaCAT21[y].myTime, listaCAT21[y].coordinates, listaCAT21[y].latitud, listaCAT21[y].longitud, y));
+                            this.listFlights.Add(new Flight(listaCAT21[y].CAT, listaCAT21[y].ACID_palabra, listaCAT21[y].ADDRESS, listaCAT21[y].myTime, listaCAT21[y].coordinates, listaCAT21[y].latitud, listaCAT21[y].longitud, y,listaCAT21[y].punto));
                         }
                         break;
                     }
@@ -212,21 +212,21 @@ namespace LibreriaClases
             {
                 for (int a = 0; a < listaCAT10.Count; a++)
                 {
-                    this.listFlights.Add(new Flight(listaCAT10[a].CAT, listaCAT10[a].ACID_palabra, listaCAT10[a].ADDRESS, listaCAT10[a].myTime, listaCAT10[a].coordinates, listaCAT10[a].X, listaCAT10[a].Y, a));
+                    this.listFlights.Add(new Flight(listaCAT10[a].CAT, listaCAT10[a].ACID_palabra, listaCAT10[a].ADDRESS, listaCAT10[a].myTime, listaCAT10[a].coordinates, listaCAT10[a].X, listaCAT10[a].Y, a,listaCAT10[a].punto));
                 }
             }
             else if (listaCAT20.Count != 0)
             {
                 for (int a = 0; a < listaCAT20.Count; a++)
                 {
-                    this.listFlights.Add(new Flight(listaCAT20[a].CAT, listaCAT20[a].ACID_palabra, listaCAT20[a].ADDRESS, listaCAT20[a].myTime, listaCAT20[a].coordinates, listaCAT20[a].X, listaCAT20[a].Y, a));
+                    this.listFlights.Add(new Flight(listaCAT20[a].CAT, listaCAT20[a].ACID_palabra, listaCAT20[a].ADDRESS, listaCAT20[a].myTime, listaCAT20[a].coordinates, listaCAT20[a].X, listaCAT20[a].Y, a,listaCAT20[a].punto));
                 }
             }
             else if (listaCAT21.Count != 0)
             {
                 for (int a = 0; a < listaCAT21.Count; a++)
                 {
-                    this.listFlights.Add(new Flight(listaCAT21[a].CAT, listaCAT21[a].ACID_palabra, listaCAT21[a].ADDRESS, listaCAT21[a].myTime, listaCAT21[a].coordinates, listaCAT21[a].latitud, listaCAT21[a].longitud, a));
+                    this.listFlights.Add(new Flight(listaCAT21[a].CAT, listaCAT21[a].ACID_palabra, listaCAT21[a].ADDRESS, listaCAT21[a].myTime, listaCAT21[a].coordinates, listaCAT21[a].latitud, listaCAT21[a].longitud, a,listaCAT21[a].punto));
                 }
             }
         }

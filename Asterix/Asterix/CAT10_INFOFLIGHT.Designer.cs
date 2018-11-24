@@ -45,6 +45,7 @@
             this.label_ACID = new System.Windows.Forms.Label();
             this.label_FL = new System.Windows.Forms.Label();
             this.pictureBox_close = new System.Windows.Forms.PictureBox();
+            this.gMap_mapa = new GMap.NET.WindowsForms.GMapControl();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_close)).BeginInit();
             this.SuspendLayout();
             // 
@@ -216,7 +217,7 @@
             // pictureBox_close
             // 
             this.pictureBox_close.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_close.Image")));
-            this.pictureBox_close.Location = new System.Drawing.Point(403, 4);
+            this.pictureBox_close.Location = new System.Drawing.Point(672, 3);
             this.pictureBox_close.Name = "pictureBox_close";
             this.pictureBox_close.Size = new System.Drawing.Size(25, 25);
             this.pictureBox_close.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -224,12 +225,39 @@
             this.pictureBox_close.TabStop = false;
             this.pictureBox_close.Click += new System.EventHandler(this.pictureBox_close_Click);
             // 
+            // gMap_mapa
+            // 
+            this.gMap_mapa.Bearing = 0F;
+            this.gMap_mapa.CanDragMap = true;
+            this.gMap_mapa.EmptyTileColor = System.Drawing.Color.Navy;
+            this.gMap_mapa.GrayScaleMode = false;
+            this.gMap_mapa.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+            this.gMap_mapa.LevelsKeepInMemmory = 5;
+            this.gMap_mapa.Location = new System.Drawing.Point(361, 121);
+            this.gMap_mapa.MarkersEnabled = true;
+            this.gMap_mapa.MaxZoom = 2;
+            this.gMap_mapa.MinZoom = 2;
+            this.gMap_mapa.MouseWheelZoomEnabled = true;
+            this.gMap_mapa.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+            this.gMap_mapa.Name = "gMap_mapa";
+            this.gMap_mapa.NegativeMode = false;
+            this.gMap_mapa.PolygonsEnabled = true;
+            this.gMap_mapa.RetryLoadTile = 0;
+            this.gMap_mapa.RoutesEnabled = true;
+            this.gMap_mapa.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            this.gMap_mapa.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
+            this.gMap_mapa.ShowTileGridLines = false;
+            this.gMap_mapa.Size = new System.Drawing.Size(311, 204);
+            this.gMap_mapa.TabIndex = 16;
+            this.gMap_mapa.Zoom = 0D;
+            // 
             // CAT10_INFOFLIGHT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(124)))), ((int)(((byte)(191)))));
-            this.ClientSize = new System.Drawing.Size(430, 450);
+            this.ClientSize = new System.Drawing.Size(700, 450);
+            this.Controls.Add(this.gMap_mapa);
             this.Controls.Add(this.pictureBox_close);
             this.Controls.Add(this.label_FL);
             this.Controls.Add(this.label_ACID);
@@ -276,5 +304,6 @@
         private System.Windows.Forms.Label label_ACID;
         private System.Windows.Forms.Label label_FL;
         private System.Windows.Forms.PictureBox pictureBox_close;
+        private GMap.NET.WindowsForms.GMapControl gMap_mapa;
     }
 }

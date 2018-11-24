@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
+using GMap.NET.MapProviders;
+using GMap.NET;
 
 namespace LibreriaClases
 {
@@ -36,6 +38,7 @@ namespace LibreriaClases
         public TimeSpan myTime;
 
         public string coordinates;
+        public PointLatLng punto;
 
         public Tuple<string, string, string, string, string, string, string> getTarget1()
         {
@@ -495,6 +498,9 @@ namespace LibreriaClases
                     double longitud = (Convert.ToDouble(gradlon) + Convert.ToDouble(mintogradlon)) + Convert.ToDouble(sectogradlon);
                     latitud = latitud + (X/30)/3600;
                     longitud = longitud + (Y/30)/3600;
+
+                    punto = new PointLatLng(latitud, longitud);
+
                     string[] separados1lat;
                     string[] separados1lon;
 

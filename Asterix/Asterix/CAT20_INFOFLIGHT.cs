@@ -7,21 +7,40 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using LibreriaClases;
+using GMap.NET;
+using GMap.NET.MapProviders;
+using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
 
 namespace Asterix
 {
     public partial class CAT20_INFOFLIGHT : Form
     {
-        public CAT20_INFOFLIGHT(CAT20 cat20,List<String> listaCoordenadas)
+        public CAT20_INFOFLIGHT(CAT20 cat20, List<PointLatLng> listaCoordenadas)
         {
             InitializeComponent();
             this.cat20 = cat20;
             this.listaCoordenadas = listaCoordenadas;
         }
         CAT20 cat20;
-        List<String> listaCoordenadas;
+        List<PointLatLng> listaCoordenadas;
+        GMapOverlay markers = new GMapOverlay("markers");
+
         private void CAT20_INFOFLIGHT_Load(object sender, EventArgs e)
         {
+            gMap_mapa.MapProvider = GMapProviders.GoogleMap;
+            gMap_mapa.DragButton = MouseButtons.Left;
+            gMap_mapa.Zoom = 5;
+            gMap_mapa.MinZoom = 1;
+            gMap_mapa.MaxZoom = 50;
+            gMap_mapa.Position = new PointLatLng(41.289182, 2.0746423);
+            for (int i = 0; i < listaCoordenadas.Count; i++)
+            {
+                Bitmap bmpMarker = (Bitmap)Image.FromFile("avion-negro.png");
+                GMapMarker marker = new GMarkerGoogle(listaCoordenadas[i], bmpMarker);
+                markers.Markers.Add(marker);
+                gMap_mapa.Overlays.Add(markers);
+            }
             label_SAC.Text = "SAC = " + cat20.SAC.ToString();
             label_SIC.Text = "SIC = " + cat20.SIC.ToString();
             label_Time.Text = "Time:" + cat20.myTime.ToString();

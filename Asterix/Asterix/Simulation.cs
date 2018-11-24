@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using LibreriaClases;
+using GMap.NET.MapProviders;
+using GMap.NET;
+using GMap.NET.WindowsForms.Markers;
+using GMap.NET.WindowsForms;
 
 namespace Asterix
 {
@@ -29,9 +33,19 @@ namespace Asterix
         TimeSpan starttime = TimeSpan.FromHours(22);
         int i = 0;
         int j = 0;
+        int counter = 0;
+        GMapOverlay markers = new GMapOverlay("markers");
 
         private void Main_Load(object sender, EventArgs e)
         {
+            gMap_mapa.MapProvider = GMapProviders.GoogleMap;
+            gMap_mapa.DragButton = MouseButtons.Left;
+            gMap_mapa.Zoom = 5;
+            gMap_mapa.MinZoom = 1;
+            gMap_mapa.MaxZoom = 50;
+            gMap_mapa.Position = new PointLatLng(41.289182, 2.0746423);
+            
+            
             label_starttime.Text = starttime.ToString(@"hh\:mm\:ss");
             timer.Interval = 1000;
             listaCAT10 = listas.getListCAT10();
@@ -83,8 +97,20 @@ namespace Asterix
                 while (listFLights[i].time < starttime)
                 {
                     tablaSingle = listFLights[i].actualizarTabla(tablaSingle,i);
+                    Bitmap bmpMarker = (Bitmap)Image.FromFile("avion-negro.png");
+                    GMapMarker marker = new GMarkerGoogle(listFLights[i].punto, bmpMarker);
+                    markers.Markers.Add(marker);
+                    gMap_mapa.Overlays.Add(markers);
                     i++;
+                    
                 }
+                if (counter > 5)
+                {
+                    gMap_mapa.Overlays.RemoveAt(0);
+                    gMap_mapa.Refresh();
+                }
+                counter++;
+                
             }
 
 
@@ -220,39 +246,48 @@ namespace Asterix
             }
         */}
 
-        private void dataGridView_flights_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView_flights_CellDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             int fila = dataGridView_flights.CurrentCell.RowIndex;
-            List<String> listaCoordenades = createListCoordenadas(fila);
-
-            if (listFLights[fila].CAT == 10)
+            List<PointLatLng> listaCoordenades = createListCoordenadas(fila);
+            if (e.Button == MouseButtons.Left)
             {
-                CAT10_INFOFLIGHT cat10_infoflight = new CAT10_INFOFLIGHT(listaCAT10[listFLights[fila].realindex],listaCoordenades);
-                cat10_infoflight.Show();
+                if (listFLights[fila].CAT == 10)
+                {
+                    CAT10_INFOFLIGHT cat10_infoflight = new CAT10_INFOFLIGHT(listaCAT10[listFLights[fila].realindex],listaCoordenades);
+                    cat10_infoflight.Show();
+                }
+                else if (listFLights[fila].CAT == 20)
+                {
+                    CAT20_INFOFLIGHT cat20_infoflight = new CAT20_INFOFLIGHT(listaCAT20[listFLights[fila].realindex], listaCoordenades);
+                    cat20_infoflight.Show();
+                }
+                else if (listFLights[fila].CAT == 21)
+                {
+                    CAT21_INFOFLIGHT cat21_infoflight = new CAT21_INFOFLIGHT(listaCAT21[listFLights[fila].realindex], listaCoordenades);
+                    cat21_infoflight.Show();
+                }
             }
-            else if (listFLights[fila].CAT == 20)
+            else if (e.Button == MouseButtons.Right)
             {
-                CAT20_INFOFLIGHT cat20_infoflight = new CAT20_INFOFLIGHT(listaCAT20[listFLights[fila].realindex], listaCoordenades);
-                cat20_infoflight.Show();
-            }
-            else if (listFLights[fila].CAT == 21)
-            {
-                CAT21_INFOFLIGHT cat21_infoflight = new CAT21_INFOFLIGHT(listaCAT21[listFLights[fila].realindex], listaCoordenades);
-                cat21_infoflight.Show();
+                Bitmap bmpMarker = (Bitmap)Image.FromFile("avion-amarillo.png");
+                GMapMarker marker = new GMarkerGoogle(listFLights[i].punto, bmpMarker);
+                markers.Markers.Add(marker);
+                gMap_mapa.Overlays.Add(markers);
             }
         }
 
-        private List<String> createListCoordenadas(int fila)
+        private List<PointLatLng> createListCoordenadas(int fila)
         {
-            List<String> listaCoordenadas = new List<String>();
+            List<PointLatLng> listaCoordenadas = new List<PointLatLng>();
 
             string nombre = listFLights[fila].ACID;
-            listaCoordenadas.Add(listFLights[fila].coordinates);
+            listaCoordenadas.Add(listFLights[fila].punto);
             for (int i = fila+1; i < listFLights.Count; i++)
             {
                 if (nombre.Equals(listFLights[i].ACID))
                 {
-                    listaCoordenadas.Add(listFLights[i].coordinates);
+                    listaCoordenadas.Add(listFLights[i].punto);
                 }
             }
 

@@ -46,6 +46,7 @@
             this.pictureBox_pause = new System.Windows.Forms.PictureBox();
             this.pictureBox_restart = new System.Windows.Forms.PictureBox();
             this.dataGridView_flights = new System.Windows.Forms.DataGridView();
+            this.gMap_mapa = new GMap.NET.WindowsForms.GMapControl();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_speedtime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).BeginInit();
             this.panel_vertical.SuspendLayout();
@@ -82,7 +83,7 @@
             this.label_starttime.AutoSize = true;
             this.label_starttime.Font = new System.Drawing.Font("Century Gothic", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_starttime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(124)))), ((int)(((byte)(191)))));
-            this.label_starttime.Location = new System.Drawing.Point(515, 45);
+            this.label_starttime.Location = new System.Drawing.Point(492, 10);
             this.label_starttime.Name = "label_starttime";
             this.label_starttime.Size = new System.Drawing.Size(132, 56);
             this.label_starttime.TabIndex = 2;
@@ -95,7 +96,7 @@
             // 
             // trackBar_speedtime
             // 
-            this.trackBar_speedtime.Location = new System.Drawing.Point(642, 136);
+            this.trackBar_speedtime.Location = new System.Drawing.Point(744, 100);
             this.trackBar_speedtime.Maximum = 1000;
             this.trackBar_speedtime.Minimum = 1;
             this.trackBar_speedtime.Name = "trackBar_speedtime";
@@ -219,7 +220,7 @@
             // pictureBox_start
             // 
             this.pictureBox_start.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_start.Image")));
-            this.pictureBox_start.Location = new System.Drawing.Point(854, 131);
+            this.pictureBox_start.Location = new System.Drawing.Point(692, 16);
             this.pictureBox_start.Name = "pictureBox_start";
             this.pictureBox_start.Size = new System.Drawing.Size(54, 50);
             this.pictureBox_start.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -230,7 +231,7 @@
             // pictureBox_pause
             // 
             this.pictureBox_pause.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_pause.Image")));
-            this.pictureBox_pause.Location = new System.Drawing.Point(985, 134);
+            this.pictureBox_pause.Location = new System.Drawing.Point(783, 16);
             this.pictureBox_pause.Name = "pictureBox_pause";
             this.pictureBox_pause.Size = new System.Drawing.Size(65, 65);
             this.pictureBox_pause.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -241,7 +242,7 @@
             // pictureBox_restart
             // 
             this.pictureBox_restart.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_restart.Image")));
-            this.pictureBox_restart.Location = new System.Drawing.Point(1110, 104);
+            this.pictureBox_restart.Location = new System.Drawing.Point(883, 18);
             this.pictureBox_restart.Name = "pictureBox_restart";
             this.pictureBox_restart.Size = new System.Drawing.Size(50, 48);
             this.pictureBox_restart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -252,13 +253,38 @@
             // 
             this.dataGridView_flights.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dataGridView_flights.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_flights.Location = new System.Drawing.Point(300, 250);
+            this.dataGridView_flights.Location = new System.Drawing.Point(528, 150);
             this.dataGridView_flights.Name = "dataGridView_flights";
             this.dataGridView_flights.RowHeadersVisible = false;
             this.dataGridView_flights.Size = new System.Drawing.Size(497, 114);
             this.dataGridView_flights.TabIndex = 11;
-            this.dataGridView_flights.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_flights_CellContentClick);
-            this.dataGridView_flights.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_flights_CellDoubleClick);
+            this.dataGridView_flights.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_flights_CellDoubleClick);
+            // 
+            // gMap_mapa
+            // 
+            this.gMap_mapa.Bearing = 0F;
+            this.gMap_mapa.CanDragMap = true;
+            this.gMap_mapa.EmptyTileColor = System.Drawing.Color.Navy;
+            this.gMap_mapa.GrayScaleMode = false;
+            this.gMap_mapa.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+            this.gMap_mapa.LevelsKeepInMemmory = 5;
+            this.gMap_mapa.Location = new System.Drawing.Point(492, 300);
+            this.gMap_mapa.MarkersEnabled = true;
+            this.gMap_mapa.MaxZoom = 50;
+            this.gMap_mapa.MinZoom = 10;
+            this.gMap_mapa.MouseWheelZoomEnabled = true;
+            this.gMap_mapa.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+            this.gMap_mapa.Name = "gMap_mapa";
+            this.gMap_mapa.NegativeMode = false;
+            this.gMap_mapa.PolygonsEnabled = true;
+            this.gMap_mapa.RetryLoadTile = 0;
+            this.gMap_mapa.RoutesEnabled = true;
+            this.gMap_mapa.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            this.gMap_mapa.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
+            this.gMap_mapa.ShowTileGridLines = false;
+            this.gMap_mapa.Size = new System.Drawing.Size(590, 335);
+            this.gMap_mapa.TabIndex = 12;
+            this.gMap_mapa.Zoom = 10D;
             // 
             // Simulation
             // 
@@ -266,6 +292,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(1300, 650);
+            this.Controls.Add(this.gMap_mapa);
             this.Controls.Add(this.dataGridView_flights);
             this.Controls.Add(this.pictureBox_restart);
             this.Controls.Add(this.pictureBox_pause);
@@ -313,6 +340,7 @@
         private System.Windows.Forms.PictureBox pictureBox_pause;
         private System.Windows.Forms.PictureBox pictureBox_restart;
         private System.Windows.Forms.DataGridView dataGridView_flights;
+        private GMap.NET.WindowsForms.GMapControl gMap_mapa;
     }
 }
 
