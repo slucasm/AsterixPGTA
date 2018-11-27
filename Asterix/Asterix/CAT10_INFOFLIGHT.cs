@@ -30,12 +30,13 @@ namespace Asterix
         {
             gMap_mapa.MapProvider = GMapProviders.GoogleMap;
             gMap_mapa.DragButton = MouseButtons.Left;
-            gMap_mapa.Zoom = 5;
+            gMap_mapa.Position = new PointLatLng(listaCoordenadas[0].Lat, listaCoordenadas[0].Lng);
             gMap_mapa.MinZoom = 1;
-            gMap_mapa.MaxZoom = 50;
-            gMap_mapa.Position = new PointLatLng(41.289182, 2.0746423);
+            gMap_mapa.MaxZoom = 20;
+            gMap_mapa.Zoom = 8;
+            gMap_mapa.ShowCenter = false;
 
-            for (int i = 0; i < listaCoordenadas.Count; i++)
+            for (int i = 0; i < listaCoordenadas.Count; i+=10)
             {
                 Bitmap bmpMarker = (Bitmap)Image.FromFile("avion-negro.png");
                 GMapMarker marker = new GMarkerGoogle(listaCoordenadas[i], bmpMarker);
@@ -47,8 +48,8 @@ namespace Asterix
             label_SIC.Text = "SIC = " + cat10.SIC.ToString();
             label_Message.Text = "Message: " + cat10.Message_type;
             label_Time.Text = "Time:" + cat10.myTime.ToString();
-            label_X.Text = "Latitude = " + cat10.X.ToString();
-            label_Y.Text = "Longitude = " + cat10.Y.ToString();
+            label_X.Text = "X = " + cat10.X.ToString();
+            label_Y.Text = "Y = " + cat10.Y.ToString();
             label_coordinates.Text = "Coordinates = " + cat10.coordinates;
             label_VX.Text = "Vx = " + cat10.VX.ToString();
             label_VY.Text = "Vy = " + cat10.VY.ToString();

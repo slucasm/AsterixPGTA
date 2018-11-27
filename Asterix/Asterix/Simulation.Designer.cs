@@ -258,6 +258,7 @@
             this.dataGridView_flights.RowHeadersVisible = false;
             this.dataGridView_flights.Size = new System.Drawing.Size(497, 114);
             this.dataGridView_flights.TabIndex = 11;
+            this.dataGridView_flights.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_flights_CellMouseClick);
             this.dataGridView_flights.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_flights_CellDoubleClick);
             // 
             // gMap_mapa
@@ -285,6 +286,7 @@
             this.gMap_mapa.Size = new System.Drawing.Size(590, 335);
             this.gMap_mapa.TabIndex = 12;
             this.gMap_mapa.Zoom = 10D;
+            this.gMap_mapa.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(this.gMap_mapa_OnMarkerClick);
             // 
             // Simulation
             // 

@@ -54,7 +54,7 @@
             this.label_title.AutoSize = true;
             this.label_title.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.label_title.Location = new System.Drawing.Point(141, 9);
+            this.label_title.Location = new System.Drawing.Point(286, 9);
             this.label_title.Name = "label_title";
             this.label_title.Size = new System.Drawing.Size(135, 19);
             this.label_title.TabIndex = 0;
@@ -233,7 +233,7 @@
             this.gMap_mapa.GrayScaleMode = false;
             this.gMap_mapa.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.gMap_mapa.LevelsKeepInMemmory = 5;
-            this.gMap_mapa.Location = new System.Drawing.Point(361, 121);
+            this.gMap_mapa.Location = new System.Drawing.Point(319, 90);
             this.gMap_mapa.MarkersEnabled = true;
             this.gMap_mapa.MaxZoom = 2;
             this.gMap_mapa.MinZoom = 2;
@@ -247,7 +247,7 @@
             this.gMap_mapa.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gMap_mapa.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gMap_mapa.ShowTileGridLines = false;
-            this.gMap_mapa.Size = new System.Drawing.Size(311, 204);
+            this.gMap_mapa.Size = new System.Drawing.Size(353, 235);
             this.gMap_mapa.TabIndex = 16;
             this.gMap_mapa.Zoom = 0D;
             // 

@@ -221,7 +221,7 @@
             this.gMap_mapa.GrayScaleMode = false;
             this.gMap_mapa.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.gMap_mapa.LevelsKeepInMemmory = 5;
-            this.gMap_mapa.Location = new System.Drawing.Point(439, 122);
+            this.gMap_mapa.Location = new System.Drawing.Point(362, 70);
             this.gMap_mapa.MarkersEnabled = true;
             this.gMap_mapa.MaxZoom = 2;
             this.gMap_mapa.MinZoom = 2;
@@ -235,7 +235,7 @@
             this.gMap_mapa.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gMap_mapa.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gMap_mapa.ShowTileGridLines = false;
-            this.gMap_mapa.Size = new System.Drawing.Size(311, 204);
+            this.gMap_mapa.Size = new System.Drawing.Size(388, 256);
             this.gMap_mapa.TabIndex = 40;
             this.gMap_mapa.Zoom = 0D;
             // 

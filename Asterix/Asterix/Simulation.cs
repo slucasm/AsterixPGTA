@@ -34,16 +34,18 @@ namespace Asterix
         int i = 0;
         int j = 0;
         int counter = 0;
+
         GMapOverlay markers = new GMapOverlay("markers");
 
         private void Main_Load(object sender, EventArgs e)
         {
             gMap_mapa.MapProvider = GMapProviders.GoogleMap;
             gMap_mapa.DragButton = MouseButtons.Left;
-            gMap_mapa.Zoom = 5;
-            gMap_mapa.MinZoom = 1;
-            gMap_mapa.MaxZoom = 50;
             gMap_mapa.Position = new PointLatLng(41.289182, 2.0746423);
+            gMap_mapa.MinZoom = 1;
+            gMap_mapa.MaxZoom = 20;
+            gMap_mapa.Zoom = 7;
+            gMap_mapa.ShowCenter = false;
             
             
             label_starttime.Text = starttime.ToString(@"hh\:mm\:ss");
@@ -94,92 +96,30 @@ namespace Asterix
             
             if (i < listFLights.Count)
             {
+                
+                GMapOverlay markers = new GMapOverlay("markers" +counter);
                 while (listFLights[i].time < starttime)
                 {
+                    
                     tablaSingle = listFLights[i].actualizarTabla(tablaSingle,i);
                     Bitmap bmpMarker = (Bitmap)Image.FromFile("avion-negro.png");
                     GMapMarker marker = new GMarkerGoogle(listFLights[i].punto, bmpMarker);
+                    marker.Tag = i;
                     markers.Markers.Add(marker);
-                    gMap_mapa.Overlays.Add(markers);
                     i++;
-                    
                 }
-                if (counter > 5)
+                gMap_mapa.Overlays.Add(markers);
+                
+                if (gMap_mapa.Overlays.Count >= 5)
                 {
                     gMap_mapa.Overlays.RemoveAt(0);
                     gMap_mapa.Refresh();
+                    gMap_mapa.Update();
                 }
                 counter++;
-                
+                gMap_mapa.Position = new PointLatLng(41.289182, 2.0746423);
             }
 
-
-            //if (listaCAT21.Count != 0 && listaCAT10.Count != 0)
-            //{
-            //    if (i < listaCAT21.Count)
-            //    {
-            //        while (listaCAT21[i].getTime() < starttime)
-            //        {
-            //            Console.WriteLine(listaCAT21[i].getADDRESS());
-            //            Console.WriteLine(listaCAT21[i].getTime());
-            //            Console.WriteLine(i);
-            //            i++;
-            //        }
-            //    }
-            //    if (j < listaCAT10.Count)
-            //    {
-            //        while (listaCAT10[j].getTime() < starttime)
-            //        {
-            //            Console.WriteLine(listaCAT10[j].getADDRESS());
-            //            Console.WriteLine(listaCAT10[j].getTime());
-            //            Console.WriteLine(j);
-            //            j++;
-            //        }
-            //    }
-
-            //}
-            //else if (listaCAT21.Count != 0)
-            //{
-            //    if ( i < listaCAT21.Count)
-            //    {
-            //        while (listaCAT21[i].getTime() < starttime)
-            //        {
-            //            Console.WriteLine(listaCAT21[i].getADDRESS());
-            //            Console.WriteLine(listaCAT21[i].getTime());
-            //            Console.WriteLine(i);
-            //            i++;
-            //        }
-            //    }
-                
-            //}
-            //else if (listaCAT20.Count != 0)
-            //{
-            //    if (i < listaCAT20.Count)
-            //    {
-            //        while (listaCAT20[i].getTime() < starttime)
-            //        {
-            //            Console.WriteLine(listaCAT20[i].getADDRESS());
-            //            Console.WriteLine(listaCAT20[i].getTime());
-            //            Console.WriteLine(i);
-            //            i++;
-            //        }
-            //    }
-
-            //}
-            //else if (listaCAT10.Count != 0)
-            //{
-            //    if (i < listaCAT10.Count)
-            //    {
-            //        while (listaCAT10[i].getTime() < starttime)
-            //        {
-            //            Console.WriteLine(listaCAT10[i].getADDRESS());
-            //            Console.WriteLine(listaCAT10[i].getTime());
-            //            Console.WriteLine(i);
-            //            i++;
-            //        }
-            //    }
-
-            //}
             starttime = starttime.Add(TimeSpan.FromSeconds(1));
         }
 
@@ -224,7 +164,7 @@ namespace Asterix
             timer.Stop();
         }
 
-        private void dataGridView_flights_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        /*private void dataGridView_flights_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {/*
             int columna = dataGridView_flights.CurrentCell.ColumnIndex;
             int fila = dataGridView_flights.CurrentCell.RowIndex;
@@ -244,10 +184,11 @@ namespace Asterix
                 CAT21_INFOFLIGHT cat21_infoflight = new CAT21_INFOFLIGHT(listaCAT21[listFLights[fila].realindex]);
                 cat21_infoflight.Show();
             }
-        */}
+        }*/
 
         private void dataGridView_flights_CellDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            timer.Stop();
             int fila = dataGridView_flights.CurrentCell.RowIndex;
             List<PointLatLng> listaCoordenades = createListCoordenadas(fila);
             if (e.Button == MouseButtons.Left)
@@ -270,10 +211,10 @@ namespace Asterix
             }
             else if (e.Button == MouseButtons.Right)
             {
-                Bitmap bmpMarker = (Bitmap)Image.FromFile("avion-amarillo.png");
+                /*Bitmap bmpMarker = (Bitmap)Image.FromFile("avion-amarillo.png");
                 GMapMarker marker = new GMarkerGoogle(listFLights[i].punto, bmpMarker);
                 markers.Markers.Add(marker);
-                gMap_mapa.Overlays.Add(markers);
+                gMap_mapa.Overlays.Add(markers);*/
             }
         }
 
@@ -283,16 +224,67 @@ namespace Asterix
 
             string nombre = listFLights[fila].ACID;
             listaCoordenadas.Add(listFLights[fila].punto);
-            for (int i = fila+1; i < listFLights.Count; i++)
+            if (listFLights[fila].ACID != null)
             {
-                if (nombre.Equals(listFLights[i].ACID))
+                for (int i = fila + 1; i < listFLights.Count; i++)
                 {
-                    listaCoordenadas.Add(listFLights[i].punto);
+                    if (nombre.Equals(listFLights[i].ACID))
+                    {
+                        listaCoordenadas.Add(listFLights[i].punto);
+                    }
                 }
             }
-
             return listaCoordenadas;
         }
+
+        private void dataGridView_flights_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            timer.Stop();
+
+            if (e.Button == MouseButtons.Right)
+            {
+                int fila = e.RowIndex;//dataGridView_flights.CurrentRow.Index;
+                Bitmap bmpMarker = (Bitmap)Image.FromFile("avion-amarillo.png");
+                GMapMarker marker = new GMarkerGoogle(listFLights[fila].punto, bmpMarker);
+                markers.Markers.Add(marker);
+                gMap_mapa.Overlays.Add(markers);
+            }
+        }
+
+        private void gMap_mapa_OnMarkerClick(GMapMarker item, MouseEventArgs e)
+        {
+            timer.Stop();
+            if (e.Button == MouseButtons.Left)
+            {
+                int index = Convert.ToInt32(item.Tag);
+                List<PointLatLng> listaCoordenades = createListCoordenadas(index);
+                if (listFLights[index].CAT == 10)
+                {
+                    CAT10_INFOFLIGHT cat10_infoflight = new CAT10_INFOFLIGHT(listaCAT10[listFLights[index].realindex], listaCoordenades);
+                    cat10_infoflight.Show();
+                }
+                else if (listFLights[index].CAT == 20)
+                {
+                    CAT20_INFOFLIGHT cat20_infoflight = new CAT20_INFOFLIGHT(listaCAT20[listFLights[index].realindex], listaCoordenades);
+                    cat20_infoflight.Show();
+                }
+                else if (listFLights[index].CAT == 21)
+                {
+                    CAT21_INFOFLIGHT cat21_infoflight = new CAT21_INFOFLIGHT(listaCAT21[listFLights[index].realindex], listaCoordenades);
+                    cat21_infoflight.Show();
+                }
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                int index = Convert.ToInt32(item.Tag);
+                dataGridView_flights.ClearSelection();
+                dataGridView_flights.Rows[index].Selected = true;
+            }
+        }
+
+        
+
+        
 
     }
 }

@@ -54,7 +54,7 @@
             this.label_title.AutoSize = true;
             this.label_title.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.label_title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.label_title.Location = new System.Drawing.Point(97, 10);
+            this.label_title.Location = new System.Drawing.Point(248, 10);
             this.label_title.Name = "label_title";
             this.label_title.Size = new System.Drawing.Size(135, 19);
             this.label_title.TabIndex = 1;
