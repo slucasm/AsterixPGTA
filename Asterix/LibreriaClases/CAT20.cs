@@ -496,8 +496,9 @@ namespace LibreriaClases
                     double sectogradlon = Convert.ToDouble(42.410) / 3600;
                     double latitud = (Convert.ToDouble(gradlat) + Convert.ToDouble(mintogradlat)) + Convert.ToDouble(sectogradlat);
                     double longitud = (Convert.ToDouble(gradlon) + Convert.ToDouble(mintogradlon)) + Convert.ToDouble(sectogradlon);
-                    latitud = latitud + (X/30)/3600;
-                    longitud = longitud + (Y/30)/3600;
+                    double lat_original = latitud;
+                    latitud = latitud + (X/6378000)*(180/Math.PI);
+                    longitud = longitud + (Y / 6378000) * (180 / Math.PI) / Math.Cos(lat_original * (Math.PI / 180)); ;
 
                     punto = new PointLatLng(latitud, longitud);
 

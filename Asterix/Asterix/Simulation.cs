@@ -30,6 +30,9 @@ namespace Asterix
         ManageListas listas;
         DataTable tablaSingle = new DataTable();
 
+        Boolean playPress = false;
+        Boolean stopPress = true;
+
         TimeSpan starttime = TimeSpan.FromHours(22);
         int i = 0;
         int j = 0;
@@ -50,6 +53,7 @@ namespace Asterix
             
             label_starttime.Text = starttime.ToString(@"hh\:mm\:ss");
             timer.Interval = 1000;
+            trackBar_speedtime.Value = 1000;
             listaCAT10 = listas.getListCAT10();
             listaCAT20 = listas.getListCAT20();
             listaCAT21 = listas.getListCAT21();
@@ -86,6 +90,8 @@ namespace Asterix
             i = 0;
             dataGridView_flights.DataSource = tablaSingle;
             MessageBox.Show("Fichero decodificado correctamente");
+            trackBar_speedtime.Value = 1000;
+            timer.Interval = 1000;
  
         }
 
@@ -129,12 +135,6 @@ namespace Asterix
             
         }
 
-        private void button_start_Click(object sender, EventArgs e)
-        {
-            timer.Start();
-            
-        }
-
         private void button_tablas_Click(object sender, EventArgs e)
         {
             TablaVuelos f = new TablaVuelos(listas);
@@ -157,64 +157,53 @@ namespace Asterix
         private void pictureBox_start_Click(object sender, EventArgs e)
         {
             timer.Start();
+            playPress = true;
+            stopPress = false;
         }
 
         private void pictureBox_pause_Click(object sender, EventArgs e)
         {
             timer.Stop();
+            playPress = false;
+            stopPress = true;
         }
 
-        /*private void dataGridView_flights_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {/*
-            int columna = dataGridView_flights.CurrentCell.ColumnIndex;
-            int fila = dataGridView_flights.CurrentCell.RowIndex;
-
-            if (listFLights[fila].CAT == 10)
-            {
-                CAT10_INFOFLIGHT cat10_infoflight = new CAT10_INFOFLIGHT(listaCAT10[listFLights[fila].realindex]);
-                cat10_infoflight.Show();
-            }
-            else if (listFLights[fila].CAT == 20)
-            {
-                CAT20_INFOFLIGHT cat20_infoflight = new CAT20_INFOFLIGHT(listaCAT20[listFLights[fila].realindex]);
-                cat20_infoflight.Show();
-            }
-            else if (listFLights[fila].CAT == 21)
-            {
-                CAT21_INFOFLIGHT cat21_infoflight = new CAT21_INFOFLIGHT(listaCAT21[listFLights[fila].realindex]);
-                cat21_infoflight.Show();
-            }
-        }*/
 
         private void dataGridView_flights_CellDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            timer.Stop();
-            int fila = dataGridView_flights.CurrentCell.RowIndex;
-            List<PointLatLng> listaCoordenades = createListCoordenadas(fila);
-            if (e.Button == MouseButtons.Left)
+            if (stopPress == true)
             {
-                if (listFLights[fila].CAT == 10)
+                int fila = dataGridView_flights.CurrentCell.RowIndex;
+                List<PointLatLng> listaCoordenades = createListCoordenadas(fila);
+                if (e.Button == MouseButtons.Left)
                 {
-                    CAT10_INFOFLIGHT cat10_infoflight = new CAT10_INFOFLIGHT(listaCAT10[listFLights[fila].realindex],listaCoordenades);
-                    cat10_infoflight.Show();
+                    if (listFLights[fila].CAT == 10)
+                    {
+                        CAT10_INFOFLIGHT cat10_infoflight = new CAT10_INFOFLIGHT(listaCAT10[listFLights[fila].realindex], listaCoordenades);
+                        cat10_infoflight.Show();
+                    }
+                    else if (listFLights[fila].CAT == 20)
+                    {
+                        CAT20_INFOFLIGHT cat20_infoflight = new CAT20_INFOFLIGHT(listaCAT20[listFLights[fila].realindex], listaCoordenades);
+                        cat20_infoflight.Show();
+                    }
+                    else if (listFLights[fila].CAT == 21)
+                    {
+                        CAT21_INFOFLIGHT cat21_infoflight = new CAT21_INFOFLIGHT(listaCAT21[listFLights[fila].realindex], listaCoordenades);
+                        cat21_infoflight.Show();
+                    }
                 }
-                else if (listFLights[fila].CAT == 20)
+                else if (e.Button == MouseButtons.Right)
                 {
-                    CAT20_INFOFLIGHT cat20_infoflight = new CAT20_INFOFLIGHT(listaCAT20[listFLights[fila].realindex], listaCoordenades);
-                    cat20_infoflight.Show();
-                }
-                else if (listFLights[fila].CAT == 21)
-                {
-                    CAT21_INFOFLIGHT cat21_infoflight = new CAT21_INFOFLIGHT(listaCAT21[listFLights[fila].realindex], listaCoordenades);
-                    cat21_infoflight.Show();
+                    /*Bitmap bmpMarker = (Bitmap)Image.FromFile("avion-amarillo.png");
+                    GMapMarker marker = new GMarkerGoogle(listFLights[i].punto, bmpMarker);
+                    markers.Markers.Add(marker);
+                    gMap_mapa.Overlays.Add(markers);*/
                 }
             }
-            else if (e.Button == MouseButtons.Right)
+            else
             {
-                /*Bitmap bmpMarker = (Bitmap)Image.FromFile("avion-amarillo.png");
-                GMapMarker marker = new GMarkerGoogle(listFLights[i].punto, bmpMarker);
-                markers.Markers.Add(marker);
-                gMap_mapa.Overlays.Add(markers);*/
+                MessageBox.Show("Please, stop simulation to view more flight information!");
             }
         }
 
@@ -239,7 +228,6 @@ namespace Asterix
 
         private void dataGridView_flights_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            timer.Stop();
 
             if (e.Button == MouseButtons.Right)
             {
@@ -249,37 +237,58 @@ namespace Asterix
                 markers.Markers.Add(marker);
                 gMap_mapa.Overlays.Add(markers);
             }
+
         }
 
         private void gMap_mapa_OnMarkerClick(GMapMarker item, MouseEventArgs e)
         {
+            if (stopPress == true)
+            {
+                //timer.Stop();
+                if (e.Button == MouseButtons.Left)
+                {
+                    int index = Convert.ToInt32(item.Tag);
+                    List<PointLatLng> listaCoordenades = createListCoordenadas(index);
+                    if (listFLights[index].CAT == 10)
+                    {
+                        CAT10_INFOFLIGHT cat10_infoflight = new CAT10_INFOFLIGHT(listaCAT10[listFLights[index].realindex], listaCoordenades);
+                        cat10_infoflight.Show();
+                    }
+                    else if (listFLights[index].CAT == 20)
+                    {
+                        CAT20_INFOFLIGHT cat20_infoflight = new CAT20_INFOFLIGHT(listaCAT20[listFLights[index].realindex], listaCoordenades);
+                        cat20_infoflight.Show();
+                    }
+                    else if (listFLights[index].CAT == 21)
+                    {
+                        CAT21_INFOFLIGHT cat21_infoflight = new CAT21_INFOFLIGHT(listaCAT21[listFLights[index].realindex], listaCoordenades);
+                        cat21_infoflight.Show();
+                    }
+                }
+                else if (e.Button == MouseButtons.Right)
+                {
+                    int index = Convert.ToInt32(item.Tag);
+                    dataGridView_flights.ClearSelection();
+                    dataGridView_flights.Rows[index].Selected = true;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please, stop simulation to view more flight information!");
+            }
+        }
+
+        private void pictureBox_restart_Click(object sender, EventArgs e)
+        {
             timer.Stop();
-            if (e.Button == MouseButtons.Left)
-            {
-                int index = Convert.ToInt32(item.Tag);
-                List<PointLatLng> listaCoordenades = createListCoordenadas(index);
-                if (listFLights[index].CAT == 10)
-                {
-                    CAT10_INFOFLIGHT cat10_infoflight = new CAT10_INFOFLIGHT(listaCAT10[listFLights[index].realindex], listaCoordenades);
-                    cat10_infoflight.Show();
-                }
-                else if (listFLights[index].CAT == 20)
-                {
-                    CAT20_INFOFLIGHT cat20_infoflight = new CAT20_INFOFLIGHT(listaCAT20[listFLights[index].realindex], listaCoordenades);
-                    cat20_infoflight.Show();
-                }
-                else if (listFLights[index].CAT == 21)
-                {
-                    CAT21_INFOFLIGHT cat21_infoflight = new CAT21_INFOFLIGHT(listaCAT21[listFLights[index].realindex], listaCoordenades);
-                    cat21_infoflight.Show();
-                }
-            }
-            else if (e.Button == MouseButtons.Right)
-            {
-                int index = Convert.ToInt32(item.Tag);
-                dataGridView_flights.ClearSelection();
-                dataGridView_flights.Rows[index].Selected = true;
-            }
+            starttime = TimeSpan.FromHours(22);
+            label_starttime.Text = starttime.ToString(@"hh\:mm\:ss");
+            timer.Interval = 1000;
+            trackBar_speedtime.Value = 1000;
+            tablaSingle.Clear();
+            i = 0;
+            gMap_mapa.Overlays.Clear();
+            gMap_mapa.Refresh();
         }
 
         

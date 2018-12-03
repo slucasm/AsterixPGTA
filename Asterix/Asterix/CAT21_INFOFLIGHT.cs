@@ -30,7 +30,7 @@ namespace Asterix
         {
             gMap_mapa.MapProvider = GMapProviders.GoogleMap;
             GMapOverlay markers = new GMapOverlay("markers");
-            for (int i = 0; i < listaCoordenadas.Count; i+=10)
+            for (int i = 0; i < listaCoordenadas.Count; i+=20)
             {
                 Bitmap bmpMarker = (Bitmap)Image.FromFile("avion-negro.png");
                 GMapMarker marker = new GMarkerGoogle(listaCoordenadas[i], bmpMarker);

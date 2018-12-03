@@ -35,7 +35,7 @@ namespace Asterix
             gMap_mapa.MaxZoom = 20;
             gMap_mapa.Zoom = 8;
             gMap_mapa.ShowCenter = false;
-            for (int i = 0; i < listaCoordenadas.Count; i+=10)
+            for (int i = 0; i < listaCoordenadas.Count; i++)
             {
                 Bitmap bmpMarker = (Bitmap)Image.FromFile("avion-negro.png");
                 GMapMarker marker = new GMarkerGoogle(listaCoordenadas[i], bmpMarker);

@@ -459,6 +459,7 @@ namespace LibreriaClases
                     X = CA2todec(oc1);
                     Y = CA2todec(oc2);
                     double latitud, longitud;
+                    double lat_original;
                     if (SAC == 107)
                     {
                         double gradlat = 41;
@@ -469,6 +470,7 @@ namespace LibreriaClases
                         double sectogradlon = Convert.ToDouble(42.410) / 3600;
                         latitud = (Convert.ToDouble(gradlat) + Convert.ToDouble(mintogradlat)) + Convert.ToDouble(sectogradlat);
                         longitud = (Convert.ToDouble(gradlon) + Convert.ToDouble(mintogradlon)) + Convert.ToDouble(sectogradlon);
+                        lat_original = latitud;
                     }
                     else
                     {
@@ -480,9 +482,10 @@ namespace LibreriaClases
                         double sectogradlon = Convert.ToDouble(42.411) / 3600;
                         latitud = (Convert.ToDouble(gradlat) + Convert.ToDouble(mintogradlat)) + Convert.ToDouble(sectogradlat);
                         longitud = (Convert.ToDouble(gradlon) + Convert.ToDouble(mintogradlon)) + Convert.ToDouble(sectogradlon);
+                        lat_original = latitud;
                     }
-                    latitud = latitud + (X / 30) / 3600;
-                    longitud = longitud + (Y / 30) / 3600;
+                    latitud = latitud + (Y / 6378000) *(180/Math.PI);
+                    longitud = longitud + (X / 6378000) * (180 / Math.PI) / Math.Cos(lat_original * (180 / Math.PI));
 
                     punto = new PointLatLng(latitud, longitud);
                     string[] separados1lat;

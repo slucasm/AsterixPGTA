@@ -47,6 +47,9 @@
             this.pictureBox_restart = new System.Windows.Forms.PictureBox();
             this.dataGridView_flights = new System.Windows.Forms.DataGridView();
             this.gMap_mapa = new GMap.NET.WindowsForms.GMapControl();
+            this.label_speed = new System.Windows.Forms.Label();
+            this.label_minspeed = new System.Windows.Forms.Label();
+            this.label_maxspeed = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_speedtime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).BeginInit();
             this.panel_vertical.SuspendLayout();
@@ -83,11 +86,11 @@
             this.label_starttime.AutoSize = true;
             this.label_starttime.Font = new System.Drawing.Font("Century Gothic", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_starttime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(124)))), ((int)(((byte)(191)))));
-            this.label_starttime.Location = new System.Drawing.Point(492, 10);
+            this.label_starttime.Location = new System.Drawing.Point(1039, 66);
             this.label_starttime.Name = "label_starttime";
-            this.label_starttime.Size = new System.Drawing.Size(132, 56);
+            this.label_starttime.Size = new System.Drawing.Size(212, 56);
             this.label_starttime.TabIndex = 2;
-            this.label_starttime.Text = "Hour";
+            this.label_starttime.Text = "22:00:00";
             // 
             // timer
             // 
@@ -96,11 +99,11 @@
             // 
             // trackBar_speedtime
             // 
-            this.trackBar_speedtime.Location = new System.Drawing.Point(744, 100);
+            this.trackBar_speedtime.Location = new System.Drawing.Point(1100, 260);
             this.trackBar_speedtime.Maximum = 1000;
             this.trackBar_speedtime.Minimum = 1;
             this.trackBar_speedtime.Name = "trackBar_speedtime";
-            this.trackBar_speedtime.Size = new System.Drawing.Size(104, 45);
+            this.trackBar_speedtime.Size = new System.Drawing.Size(100, 45);
             this.trackBar_speedtime.TabIndex = 3;
             this.trackBar_speedtime.Value = 1000;
             this.trackBar_speedtime.Scroll += new System.EventHandler(this.trackBar_speedtime_Scroll);
@@ -220,9 +223,9 @@
             // pictureBox_start
             // 
             this.pictureBox_start.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_start.Image")));
-            this.pictureBox_start.Location = new System.Drawing.Point(692, 16);
+            this.pictureBox_start.Location = new System.Drawing.Point(1040, 175);
             this.pictureBox_start.Name = "pictureBox_start";
-            this.pictureBox_start.Size = new System.Drawing.Size(54, 50);
+            this.pictureBox_start.Size = new System.Drawing.Size(60, 60);
             this.pictureBox_start.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_start.TabIndex = 8;
             this.pictureBox_start.TabStop = false;
@@ -231,9 +234,9 @@
             // pictureBox_pause
             // 
             this.pictureBox_pause.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_pause.Image")));
-            this.pictureBox_pause.Location = new System.Drawing.Point(783, 16);
+            this.pictureBox_pause.Location = new System.Drawing.Point(1120, 175);
             this.pictureBox_pause.Name = "pictureBox_pause";
-            this.pictureBox_pause.Size = new System.Drawing.Size(65, 65);
+            this.pictureBox_pause.Size = new System.Drawing.Size(60, 60);
             this.pictureBox_pause.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_pause.TabIndex = 9;
             this.pictureBox_pause.TabStop = false;
@@ -242,21 +245,22 @@
             // pictureBox_restart
             // 
             this.pictureBox_restart.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_restart.Image")));
-            this.pictureBox_restart.Location = new System.Drawing.Point(883, 18);
+            this.pictureBox_restart.Location = new System.Drawing.Point(1200, 175);
             this.pictureBox_restart.Name = "pictureBox_restart";
-            this.pictureBox_restart.Size = new System.Drawing.Size(50, 48);
+            this.pictureBox_restart.Size = new System.Drawing.Size(60, 60);
             this.pictureBox_restart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_restart.TabIndex = 10;
             this.pictureBox_restart.TabStop = false;
+            this.pictureBox_restart.Click += new System.EventHandler(this.pictureBox_restart_Click);
             // 
             // dataGridView_flights
             // 
             this.dataGridView_flights.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dataGridView_flights.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_flights.Location = new System.Drawing.Point(528, 150);
+            this.dataGridView_flights.Location = new System.Drawing.Point(418, 150);
             this.dataGridView_flights.Name = "dataGridView_flights";
             this.dataGridView_flights.RowHeadersVisible = false;
-            this.dataGridView_flights.Size = new System.Drawing.Size(497, 114);
+            this.dataGridView_flights.Size = new System.Drawing.Size(495, 114);
             this.dataGridView_flights.TabIndex = 11;
             this.dataGridView_flights.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_flights_CellMouseClick);
             this.dataGridView_flights.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_flights_CellDoubleClick);
@@ -269,7 +273,7 @@
             this.gMap_mapa.GrayScaleMode = false;
             this.gMap_mapa.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.gMap_mapa.LevelsKeepInMemmory = 5;
-            this.gMap_mapa.Location = new System.Drawing.Point(492, 300);
+            this.gMap_mapa.Location = new System.Drawing.Point(318, 300);
             this.gMap_mapa.MarkersEnabled = true;
             this.gMap_mapa.MaxZoom = 50;
             this.gMap_mapa.MinZoom = 10;
@@ -283,10 +287,43 @@
             this.gMap_mapa.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gMap_mapa.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gMap_mapa.ShowTileGridLines = false;
-            this.gMap_mapa.Size = new System.Drawing.Size(590, 335);
+            this.gMap_mapa.Size = new System.Drawing.Size(676, 335);
             this.gMap_mapa.TabIndex = 12;
             this.gMap_mapa.Zoom = 10D;
             this.gMap_mapa.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(this.gMap_mapa_OnMarkerClick);
+            // 
+            // label_speed
+            // 
+            this.label_speed.AutoSize = true;
+            this.label_speed.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
+            this.label_speed.ForeColor = System.Drawing.Color.White;
+            this.label_speed.Location = new System.Drawing.Point(1077, 245);
+            this.label_speed.Name = "label_speed";
+            this.label_speed.Size = new System.Drawing.Size(143, 15);
+            this.label_speed.TabIndex = 13;
+            this.label_speed.Text = "Change speed simulation";
+            // 
+            // label_minspeed
+            // 
+            this.label_minspeed.AutoSize = true;
+            this.label_minspeed.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
+            this.label_minspeed.ForeColor = System.Drawing.Color.White;
+            this.label_minspeed.Location = new System.Drawing.Point(1206, 270);
+            this.label_minspeed.Name = "label_minspeed";
+            this.label_minspeed.Size = new System.Drawing.Size(66, 15);
+            this.label_minspeed.TabIndex = 14;
+            this.label_minspeed.Text = "Min. speed";
+            // 
+            // label_maxspeed
+            // 
+            this.label_maxspeed.AutoSize = true;
+            this.label_maxspeed.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
+            this.label_maxspeed.ForeColor = System.Drawing.Color.White;
+            this.label_maxspeed.Location = new System.Drawing.Point(1025, 270);
+            this.label_maxspeed.Name = "label_maxspeed";
+            this.label_maxspeed.Size = new System.Drawing.Size(69, 15);
+            this.label_maxspeed.TabIndex = 15;
+            this.label_maxspeed.Text = "Max. speed";
             // 
             // Simulation
             // 
@@ -294,6 +331,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(1300, 650);
+            this.Controls.Add(this.label_maxspeed);
+            this.Controls.Add(this.label_minspeed);
+            this.Controls.Add(this.label_speed);
             this.Controls.Add(this.gMap_mapa);
             this.Controls.Add(this.dataGridView_flights);
             this.Controls.Add(this.pictureBox_restart);
@@ -343,6 +383,9 @@
         private System.Windows.Forms.PictureBox pictureBox_restart;
         private System.Windows.Forms.DataGridView dataGridView_flights;
         private GMap.NET.WindowsForms.GMapControl gMap_mapa;
+        private System.Windows.Forms.Label label_speed;
+        private System.Windows.Forms.Label label_minspeed;
+        private System.Windows.Forms.Label label_maxspeed;
     }
 }
 
