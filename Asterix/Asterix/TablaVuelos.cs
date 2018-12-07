@@ -204,7 +204,7 @@ namespace Asterix
             tablaCAT20 = listas.getTablaCAT20();
             tablaCAT21 = listas.getTablaCAT21();
             listas.singleList();
-            MessageBox.Show("Fichero decodificado correctamente");
+            MessageBox.Show("File decoded correctly");
             dataGridView_CAT10.DataSource = tablaCAT10;
             dataGridView_CAT20.DataSource = tablaCAT20;
             dataGridView_CAT21.DataSource = tablaCAT21;

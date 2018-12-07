@@ -35,51 +35,73 @@ namespace Asterix
 
         private void button_open_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.DefaultExt = "AST";
-            ofd.Filter = "Archivos AST|*.AST|All files(*.*)|*.*";
-            ofd.Title = "Abrir archivos";
-            ofd.ShowDialog();
-            fichero = new Fichero(ofd.FileName);
-            fichero.leer();
-            listaCAT10 = fichero.getListCAT10();
-            listaCAT20 = fichero.getListCAT20();
-            listaCAT21 = fichero.getListCAT21();
-            listas = new ManageListas(listaCAT10, listaCAT20, listaCAT21);
-            listas.resolvelistas();
-            listas.actualizarTabla();
-            tablaCAT10 = listas.getTablaCAT10();
-            tablaCAT20 = listas.getTablaCAT20();
-            tablaCAT21 = listas.getTablaCAT21();
-            listas.singleList();
-            MessageBox.Show("Fichero decodificado correctamente");
+            try
+            {
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.DefaultExt = "AST";
+                ofd.Filter = "Archivos AST|*.AST|All files(*.*)|*.*";
+                ofd.Title = "Abrir archivos";
+                ofd.ShowDialog();
+                fichero = new Fichero(ofd.FileName);
+                fichero.leer();
+                listaCAT10 = fichero.getListCAT10();
+                listaCAT20 = fichero.getListCAT20();
+                listaCAT21 = fichero.getListCAT21();
+                listas = new ManageListas(listaCAT10, listaCAT20, listaCAT21);
+                listas.resolvelistas();
+                listas.actualizarTabla();
+                tablaCAT10 = listas.getTablaCAT10();
+                tablaCAT20 = listas.getTablaCAT20();
+                tablaCAT21 = listas.getTablaCAT21();
+                listas.singleList();
+                MessageBox.Show("File decoded correctly");
+            }
+            catch (Exception g)
+            {
+                MessageBox.Show(g.Message);
+            }
         }
 
         private void button_simulation_Click(object sender, EventArgs e)
         {
-            if (fichero != null)
+            try
             {
-                Simulation simulation = new Simulation(listas);
-                simulation.Show();
-                this.Hide();
+                if (fichero != null)
+                {
+                    Simulation simulation = new Simulation(listas);
+                    simulation.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Primero debes cargar un fichero");
+                }
+
             }
-            else
+            catch (Exception a)
             {
-                MessageBox.Show("Primero debes cargar un fichero");
+                MessageBox.Show(a.Message);
             }
         }
 
         private void button_tablas_Click(object sender, EventArgs e)
         {
-            if (fichero != null)
+            try
             {
-                TablaVuelos f = new TablaVuelos(listas);
-                f.Show();
-                this.Hide();
+                if (fichero != null)
+                {
+                    TablaVuelos f = new TablaVuelos(listas);
+                    f.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Primero debes cargar un fichero");
+                }
             }
-            else
+            catch (Exception b)
             {
-                MessageBox.Show("Primero debes cargar un fichero");
+                MessageBox.Show(b.Message);
             }
         }
 
